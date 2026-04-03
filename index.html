@@ -1363,94 +1363,33 @@ function openFoodForm(id){
   document.getElementById('formOverlay').classList.add('open');document.getElementById('formSheet').classList.add('open');
   document.body.style.overflow='hidden';document.getElementById('formSheet').querySelector('.sheet-body').scrollTop=0;
 }
-
+function closeFoodForm(){document.getElementById('formOverlay').classList.remove('open');document.getElementById('formSheet').classList.remove('open');document.body.style.overflow='';editingFoodId=null;}
+function setV(id,val){const el=document.getElementById(id);if(!el)return;el.value=val===null||val===undefined?'':val;}
 function saveFood(){
-  const name = document.getElementById('f_name').value.trim();
-  const cal = parseInt(document.getElementById('f_cal').value);
-
-  if(!name){
-    showToast('⚠️ 請填入品項名稱');
-    return;
-  }
-  if(!cal){
-    showToast('⚠️ 請填入熱量');
-    return;
-  }
-
-  const meals = [...document.querySelectorAll('.meal-chk input:checked')].map(cb => cb.dataset.m);
-  if(!meals.length){
-    showToast('⚠️ 請至少選一個餐別');
-    return;
-  }
-
-  const meal = meals;
-  const carb = parseFloat(document.getElementById('f_carb').value) || 0;
-  const prot = parseFloat(document.getElementById('f_prot').value) || 0;
-  const fat = parseFloat(document.getElementById('f_fat').value) || 0;
-  const cat = document.getElementById('f_cat').value;
-  const excVal = document.getElementById('f_exc').value;
-  const exc = excVal || null;
-  const note = document.getElementById('f_note').value.trim() || null;
-  const icon = document.getElementById('f_icon').value.trim() || '🍽️';
-  const proc = document.getElementById('f_proc').value;
-  const sat = document.getElementById('f_sat').value;
-  const pl = document.getElementById('f_pl').value;
-  const cl = document.getElementById('f_cl').value;
-  const fl = document.getElementById('f_fl').value;
-  const fib = document.getElementById('f_fib').value;
-  const pre = document.getElementById('f_pre').value === 'true';
-  const dinner_ok_raw = document.getElementById('f_dinner_ok').value;
-  const dinner_ok = dinner_ok_raw === '' ? undefined : dinner_ok_raw === 'true';
-  const post = document.getElementById('f_post').value === 'true';
-  const fit = [...document.querySelectorAll('.fit-chk input:checked')].map(cb => cb.dataset.k);
-
-  const foodObj = {
-    meal,
-    name,
-    icon,
-    cal,
-    carb,
-    prot,
-    fat,
-    cat,
-    exc,
-    note,
-    proc,
-    sat,
-    pl,
-    cl,
-    fl,
-    fib,
-    pre,
-    post,
-    fit: fit.length ? fit : ['rest','cardio','strength','flex']
-  };
-
-  if(dinner_ok !== undefined){
-    foodObj.dinner_ok = dinner_ok;
-  }
-
-  if(editingFoodId){
-    const idx = FOODS.findIndex(f => f.id === editingFoodId);
-    if(idx >= 0){
-      FOODS[idx] = {
-        ...FOODS[idx],
-        ...foodObj
-      };
-    }
-    showToast('✅ 已更新：' + icon + ' ' + name);
-  } else {
-    FOODS.push({
-      id: 'u' + Date.now(),
-      ...foodObj
-    });
-    showToast('✅ 已新增：' + icon + ' ' + name);
-  }
-
-  closeFoodForm();
-  renderFoodCards();
+  const name=document.getElementById('f_name').value.trim();const cal=parseInt(document.getElementById('f_cal').value);
+  if(!name){showToast('⚠️ 請填入品項名稱');return;}if(!cal){showToast('⚠️ 請填入熱量');return;}
+  const meals=[...document.querySelectorAll('.meal-chk input:checked')].map(cb=>cb.dataset.m);
+  if(!meals.length){showToast('⚠️ 請至少選一個餐別');return;}
+  const meal=meals.length===1?meals[0]:meals;
+  const carb=parseFloat(document.getElementById('f_carb').value)||0;
+  const prot=parseFloat(document.getElementById('f_prot').value)||0;
+  const fat=parseFloat(document.getElementById('f_fat').value)||0;
+  const cat=document.getElementById('f_cat').value,excVal=document.getElementById('f_exc').value;
+  const exc=excVal||null,note=document.getElementById('f_note').value.trim()||null;
+  const icon=document.getElementById('f_icon').value.trim()||'🍽️';
+  const proc=document.getElementById('f_proc').value,sat=document.getElementById('f_sat').value;
+  const pl=document.getElementById('f_pl').value,cl=document.getElementById('f_cl').value;
+  const fl=document.getElementById('f_fl').value,fib=document.getElementById('f_fib').value;
+  const pre=document.getElementById('f_pre').value==='true';
+  const dinner_ok_raw=document.getElementById('f_dinner_ok').value;
+  const dinner_ok=dinner_ok_raw===''?undefined:dinner_ok_raw==='true';
+  const post=document.getElementById('f_post').value==='true';
+  const fit=[...document.querySelectorAll('.fit-chk input:checked')].map(cb=>cb.dataset.k);
+  const foodObj={meal,name,icon,cal,carb,prot,fat,cat,exc,note,proc,sat,pl,cl,fl,fib,pre,post,...(dinner_ok!==undefined&&{dinner_ok}),fit:fit.length?fit:['rest','cardio','strength','flex']};
+  if(editingFoodId){const idx=FOODS.findIndex(f=>f.id===editingFoodId);if(idx>=0)FOODS[idx]={...FOODS[idx],...foodObj};showToast('✅ 已更新：'+icon+' '+name);}
+  else{FOODS.push({id:'u'+Date.now(),...foodObj});showToast('✅ 已新增：'+icon+' '+name);}
+  closeFoodForm();renderFoodCards();
 }
-
 
 // ══════════════════════════════════════════════════════════
 //  CONFIRM DIALOG
