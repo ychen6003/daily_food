@@ -45,5 +45,5 @@ daily-diet-app/
 
 ## 版本 Version
 
-v16 — 2025
+v16 — 2026
 
