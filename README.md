@@ -1,4 +1,5 @@
 # 每日飲食選單 Daily Diet Planner 🏋️
+https://ychen6003.github.io/daily_food/
 
 A mobile-first personal daily diet selector app — dark mode, no dependencies, runs entirely in the browser.
 
@@ -11,17 +12,6 @@ A mobile-first personal daily diet selector app — dark mode, no dependencies, 
 - ⚙️ **食物管理後台** — 新增、編輯、刪除、拖曳排序；支援多餐別標記
 - 🌙 **鎖定深色模式** — 強制 dark mode，不受系統設定影響
 
-## 使用方式 Usage
-
-### 方法一：GitHub Pages（推薦）
-
-1. 將本專案 push 到你的 GitHub repository
-2. 到 **Settings → Pages**，Source 選 `main` branch，`/ (root)` 目錄
-3. 儲存後等約 1 分鐘，即可透過 `https://<你的帳號>.github.io/<repo名稱>/` 瀏覽
-
-### 方法二：直接開啟
-
-直接用瀏覽器開啟 `index.html` 即可（不需要 server）。
 
 ## 檔案結構 File Structure
 
