@@ -1,7 +1,6 @@
 # 每日飲食選單 Daily Diet Planner 🏋️
-https://ychen6003.github.io/daily_food/
-
 A mobile-first personal daily diet selector app — dark mode, no dependencies, runs entirely in the browser.
+https://ychen6003.github.io/daily_food/
 
 ## 功能特色 Features
 
