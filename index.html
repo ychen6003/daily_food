@@ -685,6 +685,19 @@ body{background:var(--bg);color:var(--tx);font-family:'Noto Sans TC',sans-serif;
       </button>
     </div>
 
+    <!-- Optional supplement (下午班 strength only) — 午餐後、晚餐前 -->
+    <div class="opt-supp-wrap" id="optSuppWrap">
+      <button class="opt-supp-btn" id="btnOptSupp" onclick="toggleOptSupp()">
+        <div class="opt-supp-icon">🥛</div>
+        <div class="opt-supp-info">
+          <div class="opt-supp-label">＋ 需要訓後輕量補給嗎？（可略過）</div>
+          <div class="opt-supp-name" id="optSuppName">上完課後先補蛋白，再吃晚餐</div>
+          <div class="opt-supp-cal" id="optSuppCal"></div>
+        </div>
+        <div class="opt-supp-arrow" id="optSuppArrow">›</div>
+      </button>
+    </div>
+
     <!-- Dinner / Pre / Post (重訓日動態) -->
     <div style="margin-bottom:8px" id="dinnerPreWrap">
       <button class="meal-open-btn locked" id="btnDinner" onclick="openMealSheet('dinner')">
@@ -710,19 +723,6 @@ body{background:var(--bg);color:var(--tx);font-family:'Noto Sans TC',sans-serif;
         </div>
         <div class="mob-clear" onclick="event.stopPropagation();clearMeal('postworkout')">×</div>
         <div class="mob-arrow">›</div>
-      </button>
-    </div>
-
-    <!-- Optional supplement (下午班 strength only) -->
-    <div class="opt-supp-wrap" id="optSuppWrap">
-      <button class="opt-supp-btn" id="btnOptSupp" onclick="toggleOptSupp()">
-        <div class="opt-supp-icon">🥛</div>
-        <div class="opt-supp-info">
-          <div class="opt-supp-label">＋ 需要訓後輕量補給嗎？（可略過）</div>
-          <div class="opt-supp-name" id="optSuppName">上完課後先補蛋白，再吃晚餐</div>
-          <div class="opt-supp-cal" id="optSuppCal"></div>
-        </div>
-        <div class="opt-supp-arrow" id="optSuppArrow">›</div>
       </button>
     </div>
   </div>
