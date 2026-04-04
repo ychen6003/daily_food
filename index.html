@@ -719,7 +719,7 @@ body{background:var(--bg);color:var(--tx);font-family:'Noto Sans TC',sans-serif;
         <div class="opt-supp-icon">🥛</div>
         <div class="opt-supp-info">
           <div class="opt-supp-label">＋ 需要訓後輕量補給嗎？（可略過）</div>
-          <div class="opt-supp-name" id="optSuppName">練完超過1小時才吃晚餐 → 點此先補蛋白</div>
+          <div class="opt-supp-name" id="optSuppName">上完課後先補蛋白，再吃晚餐</div>
           <div class="opt-supp-cal" id="optSuppCal"></div>
         </div>
         <div class="opt-supp-arrow" id="optSuppArrow">›</div>
@@ -1613,9 +1613,10 @@ function pickMeal(food,slot){
       document.getElementById('btnDinner').classList.remove('locked');
       setTimeout(()=>document.getElementById('btnDinner').scrollIntoView({behavior:'smooth',block:'center'}),350);
     } else if(isStr && pst==='afternoon'){
-      // 下午班: 午餐(訓前主餐)→解鎖晚餐(訓後)
+      // 下午班: 午餐(訓前主餐)→顯示可選訓後補給，解鎖晚餐
+      document.getElementById('optSuppWrap').style.display='block';
       document.getElementById('btnDinner').classList.remove('locked');
-      setTimeout(()=>document.getElementById('btnDinner').scrollIntoView({behavior:'smooth',block:'center'}),350);
+      setTimeout(()=>document.getElementById('optSuppWrap').scrollIntoView({behavior:'smooth',block:'center'}),350);
     } else {
       // 非重訓日: 午餐→解鎖晚餐
       document.getElementById('btnDinner').classList.remove('locked');
@@ -1629,10 +1630,6 @@ function pickMeal(food,slot){
 
   // ── 晚餐/訓後補給/下午班晚餐 選完→checkComplete ──
   } else if(slot==='dinner'||slot==='postworkout'||slot==='dinner_post'){
-    // 下午班: 選完晚餐後顯示可選補給按鈕
-    if(isStr && pst==='afternoon'){
-      document.getElementById('optSuppWrap').style.display='block';
-    }
     checkComplete();
     setTimeout(()=>document.getElementById('summarySection').scrollIntoView({behavior:'smooth',block:'start'}),350);
   }
@@ -1676,7 +1673,7 @@ function pickOptSupp(food){
   btn.onclick=()=>{
     S.optSupp=null;
     btn.classList.remove('filled');
-    document.getElementById('optSuppName').textContent='練完超過1小時才吃晚餐 → 點此先補蛋白';
+    document.getElementById('optSuppName').textContent='上完課後先補蛋白，再吃晚餐';
     document.getElementById('optSuppCal').textContent='';
     document.getElementById('optSuppArrow').textContent='›';
     btn.onclick=()=>openMealSheet('optsupp');
@@ -1824,7 +1821,7 @@ function applyWorkout(type, strengthTime){
       document.getElementById('dinnerCal').textContent='';
       document.getElementById('postWrap').style.display='none';
       document.getElementById('optSuppWrap').style.display='none'; // shown after dinner picked
-      document.getElementById('optSuppName').textContent='練完超過1小時才吃晚餐 → 點此先補蛋白';
+      document.getElementById('optSuppName').textContent='上完課後先補蛋白，再吃晚餐';
       document.getElementById('optSuppCal').textContent='';
       document.getElementById('btnOptSupp').classList.remove('filled');
       document.getElementById('btnBreakfast').querySelector('.mob-label').textContent='早餐（可複選）';
@@ -1874,12 +1871,19 @@ function clearMeal(slot){
     document.getElementById('btnLunch').classList.remove('filled');
     document.getElementById('lunchName').textContent='請先完成早餐';
     document.getElementById('lunchCal').textContent='';
-    // Also clear dinner/pre
-    S.dinner=null; S.preworkout=null; S.postworkout=null;
+    // Also clear dinner/pre/optSupp
+    S.dinner=null; S.preworkout=null; S.postworkout=null; S.optSupp=null;
     document.getElementById('btnDinner').classList.add('locked');
     document.getElementById('btnDinner').classList.remove('filled');
     document.getElementById('dinnerName').textContent='請先完成午餐';
     document.getElementById('dinnerCal').textContent='';
+    document.getElementById('optSuppWrap').style.display='none';
+    const ob2=document.getElementById('btnOptSupp');
+    ob2.classList.remove('filled');
+    document.getElementById('optSuppName').textContent='上完課後先補蛋白，再吃晚餐';
+    document.getElementById('optSuppCal').textContent='';
+    document.getElementById('optSuppArrow').textContent='›';
+    ob2.onclick=()=>openMealSheet('optsupp');
     if(document.getElementById('btnPost')){
       document.getElementById('btnPost').classList.add('locked');
       document.getElementById('btnPost').classList.remove('filled');
@@ -1893,7 +1897,7 @@ function clearMeal(slot){
     document.getElementById('optSuppWrap').style.display='none';
     const ob=document.getElementById('btnOptSupp');
     ob.classList.remove('filled');
-    document.getElementById('optSuppName').textContent='練完超過1小時才吃晚餐 → 點此先補蛋白';
+    document.getElementById('optSuppName').textContent='上完課後先補蛋白，再吃晚餐';
     document.getElementById('optSuppCal').textContent='';
     document.getElementById('optSuppArrow').textContent='›';
     ob.onclick=()=>openMealSheet('optsupp');
