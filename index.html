@@ -520,7 +520,7 @@ body{background:var(--bg);color:var(--tx);font-family:'Noto Sans TC',sans-serif;
       <div class="ts-body">
         <div class="ts-label">早上班</div>
         <div class="ts-time">09:00 – 12:00</div>
-        <div class="ts-desc">早餐=訓前輕食 ✦ 午餐=訓後高蛋白 ✦ 晚餐=一般選擇</div>
+        <div class="ts-desc">早餐＝訓前輕食（低脂低纖）✦ 午餐＝訓後高蛋白 ✦ 晚餐＝一般</div>
       </div>
       <div class="ts-arrow">›</div>
     </div>
@@ -529,7 +529,7 @@ body{background:var(--bg);color:var(--tx);font-family:'Noto Sans TC',sans-serif;
       <div class="ts-body">
         <div class="ts-label">下午班</div>
         <div class="ts-time">13:00 – 17:00</div>
-        <div class="ts-desc">早餐=一般選擇 ✦ 午餐=訓前輕食 ✦ 晚餐=訓後高蛋白</div>
+        <div class="ts-desc">早餐＝一般 ✦ 午餐＝訓前主餐（補碳水）✦ 晚餐＝訓後高蛋白</div>
       </div>
       <div class="ts-arrow">›</div>
     </div>
@@ -538,7 +538,7 @@ body{background:var(--bg);color:var(--tx);font-family:'Noto Sans TC',sans-serif;
       <div class="ts-body">
         <div class="ts-label">晚上班</div>
         <div class="ts-time">19:00 – 21:00</div>
-        <div class="ts-desc">早餐=一般選擇 ✦ 午餐=一般選擇 ✦ 訓前＋訓後獨立補給</div>
+        <div class="ts-desc">早餐＝一般 ✦ 午餐＝補碳水備能 ✦ 訓前補給＋訓後補給</div>
       </div>
       <div class="ts-arrow">›</div>
     </div>
@@ -928,19 +928,23 @@ const WCF = {
     avoidL:['油炸'], avoidD:['油炸'], str:false },
   strength:{ lbl:'重訓日',  cal:1400, cp:.45, pp:.35, fp:.20,
     tip:'高碳高蛋白。依課表時段分配三餐角色。',
-    // Evening (default / original logic)
-    avoidL:['精緻澱粉','高脂','油炸'],
-    avoidD:['精緻澱粉','高脂','油炸'],
-    avoidPre:['高脂','油炸'],
-    avoidPost:['高脂','油炸'],
-    // Morning: breakfast acts as pre-workout (light), lunch acts as post-workout
-    avoidBF_morning:['高脂','油炸'],        // breakfast = pre: avoid fat/fried
-    avoidL_morning:['高脂','油炸'],          // lunch = post: avoid fat (same as post)
-    avoidD_morning:[],                       // dinner = normal, relaxed
-    // Afternoon: lunch acts as pre-workout, dinner acts as post-workout
-    avoidBF_afternoon:[],                    // breakfast = normal
-    avoidL_afternoon:['精緻澱粉','高脂','油炸'], // lunch = pre: strict
-    avoidD_afternoon:['高脂','油炸'],        // dinner = post: avoid fat
+
+    // ── 晚上班（19:00–21:00）: 午餐補碳水，訓前+訓後獨立步驟 ──
+    avoidL:['高脂','油炸'],          // 午餐避免高脂/油炸，鼓勵補碳水
+    avoidD:['高脂','油炸'],          // 晚餐(訓前)同上
+    avoidPre:['高脂','油炸'],        // 訓前補充: 避免高脂/油炸
+    avoidPost:['高脂','油炸'],       // 訓後補充: 避免高脂/油炸
+
+    // ── 早上班（9:00–12:00）: 早餐=訓前輕食, 午餐=訓後高蛋白, 晚餐=一般 ──
+    avoidBF_morning:['高脂','油炸'],     // 早餐(訓前): 避免高脂/油炸
+    avoidL_morning:['高脂','油炸'],      // 午餐(訓後): 避免高脂/油炸
+    avoidD_morning:[],                    // 晚餐: 寬鬆，不排除
+
+    // ── 下午班（13:00–18:00）: 早餐=一般, 午餐=訓前主餐(補碳水), 晚餐=訓後 ──
+    avoidBF_afternoon:[],                         // 早餐: 一般選擇
+    avoidL_afternoon:['高脂','油炸'],             // 午餐(訓前主餐): 只排高脂/油炸，精緻澱粉可以！
+    avoidD_afternoon:['高脂','油炸'],             // 晚餐(訓後): 避免高脂/油炸
+
     str:true },
   flex:    { lbl:'彈性日',  cal:1400, cp:.40, pp:.30, fp:.30,
     tip:'彈性飲食。各類食物均可，油炸降為次選，注意總熱量與脂肪。',
@@ -1017,31 +1021,66 @@ function score(food, slot){
   if(rem && food.cal > rem.cal+150)           return{tier:3,reason:'熱量超出今日預算',rc:'bad'};
   if(rem && food.fat > rem.fat+10)            return{tier:3,reason:'脂肪超出今日上限',rc:'bad'};
 
-  // ── Pre-workout rules (applies to: preworkout slot, morning breakfast, afternoon lunch) ──
-  const isPreSlot = slot==='preworkout' ||
-    (S.workout==='strength' && st==='morning' && slot==='breakfast') ||
+  // ── 訓前 slot 判斷 ──
+  // 早上班: 早餐承擔訓前角色（輕食，P20-30g C25-40g 低脂低纖）
+  // 下午班: 午餐是訓前主餐（P30-40g C50-70g，精緻澱粉可以）
+  // 晚上班: 獨立訓前補給 slot
+  const isLightPreSlot =  // 輕量訓前（早上班早餐、晚上班訓前補給）
+    slot==='preworkout' ||
+    (S.workout==='strength' && st==='morning' && slot==='breakfast');
+
+  const isMainPreSlot =   // 訓前主餐（下午班午餐）— 需要補碳水，不排精緻澱粉
     (S.workout==='strength' && st==='afternoon' && slot==='lunch');
 
-  // ── Post-workout rules (applies to: postworkout slot, morning lunch, afternoon dinner_post) ──
-  const isPostSlot = slot==='postworkout' ||
+  const isPostSlot =      // 訓後
+    slot==='postworkout' ||
     (S.workout==='strength' && st==='morning' && slot==='lunch') ||
-    (S.workout==='strength' && st==='afternoon' && slot==='dinner_post');
+    (S.workout==='strength' && st==='afternoon' && (slot==='dinner'||slot==='dinner_post'));
 
-  if(isPreSlot){
+  // 晚上班午餐需補碳水以備訓練能量
+  const isEveningLunch =
+    S.workout==='strength' && st==='evening' && slot==='lunch';
+
+  // ── 輕量訓前規則（早餐或獨立訓前補給）──
+  if(isLightPreSlot){
     if(food.fl==='高')   return{tier:3,reason:'訓前高脂影響消化與表現',rc:'bad'};
     if(food.fib==='高')  return{tier:2,reason:'高纖食物訓前有脹氣風險',rc:'warn'};
     if(food.proc==='高加工') return{tier:2,reason:'高加工，訓前次選',rc:'warn'};
-    if(food.sat==='高'&&food.fl==='低') return{tier:1,reason:'✓ 訓前理想：低脂易消化',rc:'ok'};
-    return{tier:1,reason:'✓ 適合訓前補給',rc:'ok'};
+    if(food.cal>400)     return{tier:2,reason:'熱量偏高，訓前宜輕食',rc:'warn'};
+    if(food.pl==='高'&&food.fl==='低') return{tier:1,reason:'✓ 訓前理想：低脂易消化',rc:'ok'};
+    return{tier:1,reason:'✓ 適合訓前輕食',rc:'ok'};
   }
 
+  // ── 訓前主餐規則（下午班午餐）— 補碳水為主 ──
+  if(isMainPreSlot){
+    if(food.fl==='高')   return{tier:3,reason:'訓前主餐避免高脂（影響訓練）',rc:'bad'};
+    if(food.cat==='油炸') return{tier:3,reason:'油炸食物訓前不建議',rc:'bad'};
+    // 鼓勵高碳水補充能量
+    if(food.cl==='高'&&food.pl==='高') return{tier:1,reason:'✓ 訓前主餐首選：碳水＋蛋白質',rc:'ok'};
+    if(food.cl==='高') return{tier:1,reason:'✓ 訓前補充碳水能量',rc:'ok'};
+    if(food.cl==='低') return{tier:2,reason:'碳水不足，訓前主餐建議補充碳水',rc:'warn'};
+    return{tier:1,reason:'✓ 訓前主餐適合',rc:'ok'};
+  }
+
+  // ── 訓後規則 ──
   if(isPostSlot){
     if(food.fl==='高')   return{tier:3,reason:'訓後高脂影響蛋白吸收',rc:'bad'};
     if(food.pl==='低')   return{tier:3,reason:'訓後蛋白質不足，無法有效修復',rc:'bad'};
     if(food.fl==='中')   return{tier:2,reason:'脂肪偏中，訓後次選',rc:'warn'};
     if(food.proc==='高加工') return{tier:2,reason:'高加工，次選',rc:'warn'};
+    if(food.pl==='高'&&food.fl==='低') return{tier:1,reason:'✓ 訓後首選：高蛋白低脂',rc:'ok'};
     if(food.pl==='高')   return{tier:1,reason:'✓ 高蛋白訓後補給',rc:'ok'};
     return{tier:1,reason:'✓ 訓後補給適合',rc:'ok'};
+  }
+
+  // ── 晚上班午餐：需補碳水能量 ──
+  if(isEveningLunch){
+    if(food.fl==='高')   return{tier:2,reason:'脂肪偏高，晚課前建議低脂',rc:'warn'};
+    if(food.cat==='油炸') return{tier:3,reason:'油炸食物影響訓練表現',rc:'bad'};
+    if(food.cl==='高'&&food.pl==='高') return{tier:1,reason:'✓ 晚課前首選：碳水＋蛋白質兼顧',rc:'ok'};
+    if(food.cl==='高') return{tier:1,reason:'✓ 補充碳水，為晚課備能',rc:'ok'};
+    if(food.cl==='低') return{tier:2,reason:'碳水不足，晚課前建議補充碳水',rc:'warn'};
+    return{tier:1,reason:'✓ 符合今日飲食策略',rc:'ok'};
   }
 
   // ── Dinner-specific: dinner_ok === false → Tier 3 ──
@@ -1295,8 +1334,24 @@ function openMealSheet(slot){
 
   const cfg=WCF[S.workout];
   let tipClass='tbox-blue', tipContent=`<strong>${cfg.lbl}</strong>｜${cfg.tip}`;
-  if(slot==='preworkout'){tipClass='tbox-purple'; tipContent='<strong>⚡ 訓前60–90分鐘</strong>｜選擇易消化、低脂、適量碳水的食物，避免高脂與高纖。';}
-  if(slot==='postworkout'){tipClass='tbox-green'; tipContent='<strong>💪 訓後30–90分鐘</strong>｜補充高蛋白修復肌肉，搭配少量碳水補肝醣，嚴禁高脂。';}
+  if(slot==='preworkout'){tipClass='tbox-purple'; tipContent='<strong>⚡ 訓前補給</strong>｜選擇易消化、低脂、適量碳水，避免高脂與高纖。';}
+  if(slot==='postworkout'){tipClass='tbox-green'; tipContent='<strong>💪 訓後補給</strong>｜高蛋白修復肌肉，少量碳水補肝醣，嚴禁高脂。';}
+  const pst3=S.strengthTime;
+  if(S.workout==='strength'&&pst3==='morning'&&slot==='breakfast'){
+    tipClass='tbox-purple';
+    tipContent='<strong>⚡ 早上班｜訓前輕食</strong>｜距上課60–120分鐘。目標 P20–30g、C25–40g、低脂低纖，避免影響消化。';}
+  if(S.workout==='strength'&&pst3==='morning'&&slot==='lunch'){
+    tipClass='tbox-green';
+    tipContent='<strong>💪 早上班｜訓後補給</strong>｜練完盡快吃。高蛋白優先，搭配碳水補肝醣，嚴禁高脂。';}
+  if(S.workout==='strength'&&pst3==='afternoon'&&slot==='lunch'){
+    tipClass='tbox-purple';
+    tipContent='<strong>⚡ 下午班｜訓前主餐</strong>｜最重要的一餐！目標 P30–40g、C50–70g。碳水要到位，這餐精緻澱粉可以。';}
+  if(S.workout==='strength'&&pst3==='afternoon'&&(slot==='dinner'||slot==='dinner_post')){
+    tipClass='tbox-green';
+    tipContent='<strong>💪 下午班｜訓後補給（晚餐）</strong>｜練完直接當晚餐。高蛋白優先，嚴禁高脂。';}
+  if(S.workout==='strength'&&pst3==='evening'&&slot==='lunch'){
+    tipClass='tbox-blue';
+    tipContent='<strong>☀️ 晚上班｜午餐補碳水</strong>｜為晚上訓練備能，碳水要充足（C50–70g），選高碳水＋高蛋白品項。';}
   document.getElementById('sheetTip').innerHTML=
     `<div class="tbox ${tipClass}" style="margin-bottom:8px">${tipContent}</div>`;
 
@@ -1656,8 +1711,8 @@ function applyWorkout(type, strengthTime){
   if(WCF[type].str){
     const st=strengthTime;
     if(st==='evening'){
-      // Original evening logic: preworkout + postworkout slots
-      document.getElementById('dinnerLabel').textContent='訓前補給（19:00 前）';
+      // 晚上班: 早餐=一般, 午餐=補碳水備能, 訓前+訓後獨立
+      document.getElementById('dinnerLabel').textContent='訓前補給（18:00 前）';
       document.getElementById('btnDinner').onclick=()=>openMealSheet('preworkout');
       document.getElementById('dinnerName').textContent='請先完成午餐';
       document.getElementById('dinnerCal').textContent='';
@@ -1666,24 +1721,26 @@ function applyWorkout(type, strengthTime){
       document.getElementById('postName').textContent='請先完成訓前補給';
       document.getElementById('postCal').textContent='';
       document.getElementById('btnPost').classList.remove('filled');
+      document.getElementById('btnBreakfast').querySelector('.mob-label').textContent='早餐';
+      document.getElementById('btnLunch').querySelector('.mob-label').textContent='午餐（建議補充碳水）';
     } else if(st==='morning'){
-      // Morning: breakfast=pre, lunch=post, dinner=normal
+      // 早上班: 早餐=訓前輕食, 午餐=訓後補給, 晚餐=一般
       document.getElementById('dinnerLabel').textContent='晚餐';
       document.getElementById('btnDinner').onclick=()=>openMealSheet('dinner');
       document.getElementById('dinnerName').textContent='請先完成午餐';
       document.getElementById('dinnerCal').textContent='';
       document.getElementById('postWrap').style.display='none';
-      // Relabel meal buttons to reflect role
       document.getElementById('btnBreakfast').querySelector('.mob-label').textContent='早餐（訓前輕食）';
       document.getElementById('btnLunch').querySelector('.mob-label').textContent='午餐（訓後補給）';
     } else if(st==='afternoon'){
-      // Afternoon: breakfast=normal, lunch=pre, dinner=post
+      // 下午班: 早餐=一般, 午餐=訓前主餐（補碳水）, 晚餐=訓後補給
       document.getElementById('dinnerLabel').textContent='晚餐（訓後補給）';
       document.getElementById('btnDinner').onclick=()=>openMealSheet('dinner_post');
       document.getElementById('dinnerName').textContent='請先完成午餐';
       document.getElementById('dinnerCal').textContent='';
       document.getElementById('postWrap').style.display='none';
-      document.getElementById('btnLunch').querySelector('.mob-label').textContent='午餐（訓前輕食）';
+      document.getElementById('btnBreakfast').querySelector('.mob-label').textContent='早餐';
+      document.getElementById('btnLunch').querySelector('.mob-label').textContent='午餐（訓前主餐）';
     }
   } else {
     // Non-strength: reset labels
@@ -1722,7 +1779,7 @@ function clearBreakfast(){
 }
 
 function clearMeal(slot){
-  const key={lunch:'lunch',preworkout:'preworkout',postworkout:'postworkout',dinner:'dinner'}[slot]||slot;
+  const key={lunch:'lunch',preworkout:'preworkout',postworkout:'postworkout',dinner:'dinner',dinner_post:'dinner'}[slot]||slot;
   S[key]=null; rebuildExcl();
   if(slot==='lunch'){
     document.getElementById('btnLunch').classList.remove('filled');
@@ -1782,13 +1839,13 @@ function renderSummary(){
   const editBtn='<span class="sum-edit">修改</span>';
   let rows=`
     <div class="sum-row" onclick="openBreakfastSheet()" style="cursor:pointer">
-      <div class="sum-lbl">早餐</div>
+      <div class="sum-lbl">${(()=>{const ps=S.strengthTime;return S.workout==='strength'&&ps==='morning'?'早餐（訓前）':'早餐';})()}</div>
       <div class="sum-body"><div class="sum-name">${bItems||'略過'}</div></div>
       <div class="sum-kcal">${bCal?bCal+' kcal':''}</div>
       ${editBtn}
     </div>
     <div class="sum-row" onclick="openMealSheet('lunch')" style="cursor:pointer">
-      <div class="sum-lbl">午餐</div>
+      <div class="sum-lbl">${(()=>{const ps=S.strengthTime;if(S.workout!=='strength')return '午餐';if(ps==='morning')return '午餐（訓後）';if(ps==='afternoon')return '午餐（訓前）';if(ps==='evening')return '午餐（補碳水）';return '午餐';})()}</div>
       <div class="sum-body"><div class="sum-name">${S.lunch?S.lunch.icon+' '+S.lunch.name:'—'}</div></div>
       <div class="sum-kcal">${S.lunch?.cal||0} kcal</div>
       ${editBtn}
