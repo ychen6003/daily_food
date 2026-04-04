@@ -1595,33 +1595,47 @@ function pickMeal(food,slot){
   const key={lunch:'lunch',preworkout:'preworkout',postworkout:'postworkout',dinner:'dinner',dinner_post:'dinner'}[slot];
   S[key]=food; rebuildExcl(); closeSheet();
   updateMealButton(slot); updateDash();
-  // Unlock next step
+
+  const pst=S.strengthTime;
+  const isStr=WCF[S.workout]?.str;
+
+  // ── 選完午餐後的解鎖邏輯，依時段分流 ──
   if(slot==='lunch'){
-    if(WCF[S.workout].str){
-      // Unlock preworkout
-      document.getElementById('dinnerLabel').textContent='訓前補給（18:00–18:30）';
+    if(isStr && pst==='evening'){
+      // 晚上班: 午餐→解鎖訓前補給
+      document.getElementById('dinnerLabel').textContent='訓前補給（18:00 前）';
       document.getElementById('btnDinner').onclick=()=>openMealSheet('preworkout');
       document.getElementById('btnDinner').classList.remove('locked');
       document.getElementById('postWrap').style.display='block';
-    } else {
+      setTimeout(()=>document.getElementById('btnDinner').scrollIntoView({behavior:'smooth',block:'center'}),350);
+    } else if(isStr && pst==='morning'){
+      // 早上班: 午餐(訓後)→解鎖晚餐（一般正餐）
       document.getElementById('btnDinner').classList.remove('locked');
+      setTimeout(()=>document.getElementById('btnDinner').scrollIntoView({behavior:'smooth',block:'center'}),350);
+    } else if(isStr && pst==='afternoon'){
+      // 下午班: 午餐(訓前主餐)→解鎖晚餐(訓後)
+      document.getElementById('btnDinner').classList.remove('locked');
+      setTimeout(()=>document.getElementById('btnDinner').scrollIntoView({behavior:'smooth',block:'center'}),350);
+    } else {
+      // 非重訓日: 午餐→解鎖晚餐
+      document.getElementById('btnDinner').classList.remove('locked');
+      setTimeout(()=>document.getElementById('btnDinner').scrollIntoView({behavior:'smooth',block:'center'}),350);
     }
+
+  // ── 訓前補給選完→解鎖訓後（晚上班專屬）──
   } else if(slot==='preworkout'){
     document.getElementById('btnPost').classList.remove('locked');
-  } else if(slot==='dinner'||slot==='postworkout'){
-    checkComplete();
-  }
-  // Scroll to next unlocked button after a brief delay
-  setTimeout(()=>{
-    if(slot==='lunch'){
-      const next=WCF[S.workout].str?'btnDinner':'btnDinner';
-      document.getElementById(next).scrollIntoView({behavior:'smooth',block:'center'});
-    } else if(slot==='preworkout'){
-      document.getElementById('btnPost').scrollIntoView({behavior:'smooth',block:'center'});
-    } else if(slot==='dinner'||slot==='postworkout'){
-      document.getElementById('summarySection').scrollIntoView({behavior:'smooth',block:'start'});
+    setTimeout(()=>document.getElementById('btnPost').scrollIntoView({behavior:'smooth',block:'center'}),350);
+
+  // ── 晚餐/訓後補給/下午班晚餐 選完→checkComplete ──
+  } else if(slot==='dinner'||slot==='postworkout'||slot==='dinner_post'){
+    // 下午班: 選完晚餐後顯示可選補給按鈕
+    if(isStr && pst==='afternoon'){
+      document.getElementById('optSuppWrap').style.display='block';
     }
-  }, 350);
+    checkComplete();
+    setTimeout(()=>document.getElementById('summarySection').scrollIntoView({behavior:'smooth',block:'start'}),350);
+  }
 }
 
 function updateMealButton(slot){
