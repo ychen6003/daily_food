@@ -4,51 +4,51 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 <meta name="color-scheme" content="dark">
+<link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">  
 <title>每日飲食</title>
-<link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700;900&family=Space+Mono:wght@400;700&display=swap');
 
 :root{
---bg:#111214;--sf:#1a1b1f;--sf2:#222428;--sf3:#2a2c32;
---bd:#32353d;--bd2:#3e4149;
---blue:#5b8dee;--bluebg:rgba(91,141,238,.11);--bluebd:rgba(91,141,238,.30);
---green:#4caf7d;--greenbg:rgba(76,175,125,.11);--greenbd:rgba(76,175,125,.30);
---warn:#e8a838;--warnbg:rgba(232,168,56,.11);--warnbd:rgba(232,168,56,.30);
---red:#e05c5c;--redbg:rgba(224,92,92,.11);--redbd:rgba(224,92,92,.30);
---purple:#a87ee8;--purplebg:rgba(168,126,232,.11);--purplebd:rgba(168,126,232,.30);
---tx:#e8eaf0;--tx2:#8b909e;--tx3:#5a5f6e;
---r:14px;--rs:9px;
+  --bg:#111214;--sf:#1a1b1f;--sf2:#222428;--sf3:#2a2c32;
+  --bd:#32353d;--bd2:#3e4149;
+  --blue:#5b8dee;--bluebg:rgba(91,141,238,.11);--bluebd:rgba(91,141,238,.30);
+  --green:#4caf7d;--greenbg:rgba(76,175,125,.11);--greenbd:rgba(76,175,125,.30);
+  --warn:#e8a838;--warnbg:rgba(232,168,56,.11);--warnbd:rgba(232,168,56,.30);
+  --red:#e05c5c;--redbg:rgba(224,92,92,.11);--redbd:rgba(224,92,92,.30);
+  --purple:#a87ee8;--purplebg:rgba(168,126,232,.11);--purplebd:rgba(168,126,232,.30);
+  --tx:#e8eaf0;--tx2:#8b909e;--tx3:#5a5f6e;
+  --r:14px;--rs:9px;
 }
 html,body{background:#111214;color:#e8eaf0}
 @media(prefers-color-scheme:light){html,body{background:#111214 !important;color:#e8eaf0 !important}}
 *{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent;color-scheme:dark}
 body{background:var(--bg);color:var(--tx);font-family:'Noto Sans TC',sans-serif;
-max-width:480px;margin:0 auto;min-height:100vh;padding-bottom:76px;overflow-x:hidden}
+  max-width:480px;margin:0 auto;min-height:100vh;padding-bottom:76px;overflow-x:hidden}
 
 /* ═══ TAB BAR ═══ */
 .tab-bar{position:fixed;bottom:0;left:50%;transform:translateX(-50%);
-width:100%;max-width:480px;background:var(--sf);border-top:1px solid var(--bd);
-display:flex;z-index:200;padding:0 4px}
+  width:100%;max-width:480px;background:var(--sf);border-top:1px solid var(--bd);
+  display:flex;z-index:200;padding:0 4px}
 .tb-btn{flex:1;padding:9px 2px 7px;display:flex;flex-direction:column;align-items:center;gap:2px;
-cursor:pointer;background:none;border:none;color:var(--tx3);font-family:inherit;
-font-size:10px;font-weight:500;transition:color .2s}
+  cursor:pointer;background:none;border:none;color:var(--tx3);font-family:inherit;
+  font-size:10px;font-weight:500;transition:color .2s}
 .tb-btn.active{color:var(--blue)}
 .tb-icon{font-size:17px;line-height:1}
 .tab-page{display:none}.tab-page.active{display:block}
 
 /* ═══ STICKY HEADER ═══ */
 .hdr{padding:12px 16px 10px;position:sticky;top:0;z-index:50;
-background:var(--bg);border-bottom:1px solid var(--bd)}
+  background:var(--bg);border-bottom:1px solid var(--bd)}
 .hdr-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:10px}
 .app-title{font-size:17px;font-weight:900;letter-spacing:-.3px}
 .app-title em{color:var(--blue);font-style:normal}
 .date-tag{font-family:'Space Mono',monospace;font-size:10px;color:var(--tx2);
-background:var(--sf2);padding:3px 9px;border-radius:20px;border:1px solid var(--bd)}
+  background:var(--sf2);padding:3px 9px;border-radius:20px;border:1px solid var(--bd)}
 
 /* calorie ring */
 .cal-bar{background:var(--sf);border-radius:var(--r);padding:10px 12px;
-display:flex;align-items:center;gap:12px;border:1px solid var(--bd);margin-bottom:8px}
+  display:flex;align-items:center;gap:12px;border:1px solid var(--bd);margin-bottom:8px}
 .cal-info{flex:1}
 .cal-lbl{font-size:10px;color:var(--tx2);margin-bottom:2px;letter-spacing:.3px}
 .cal-nums{display:flex;align-items:baseline;gap:3px}
@@ -61,9 +61,9 @@ display:flex;align-items:center;gap:12px;border:1px solid var(--bd);margin-botto
 .ring svg{transform:rotate(-90deg)}
 .ring-bg{fill:none;stroke:var(--bd2);stroke-width:4}
 .ring-fg{fill:none;stroke:var(--blue);stroke-width:4;stroke-linecap:round;
-transition:stroke-dashoffset .5s ease,stroke .3s}
+  transition:stroke-dashoffset .5s ease,stroke .3s}
 .ring-txt{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;
-font-family:'Space Mono',monospace;font-size:9px;font-weight:700;color:var(--tx2)}
+  font-family:'Space Mono',monospace;font-size:9px;font-weight:700;color:var(--tx2)}
 
 /* macro bars */
 .mbars{display:flex;flex-direction:column;gap:5px}
@@ -73,12 +73,26 @@ font-family:'Space Mono',monospace;font-size:9px;font-weight:700;color:var(--tx2
 .mbar{height:100%;border-radius:3px;transition:width .45s ease,background .3s}
 .mrow-val{font-family:'Space Mono',monospace;font-size:10px;width:76px;text-align:right;color:var(--tx2);flex-shrink:0}
 
+/* ═══ TODAY SUMMARY CARDS (fixed, above steps) ═══ */
+.today-summary{padding:12px 16px 0}
+.today-row{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:2px}
+.today-chip{display:flex;align-items:center;gap:5px;background:var(--sf);
+  border:1.5px solid var(--bd);border-radius:10px;padding:5px 10px;cursor:pointer;transition:all .18s}
+.today-chip.filled{border-color:var(--blue);background:var(--bluebg)}
+.today-chip.active-step{border-color:var(--blue);box-shadow:0 0 0 2px var(--bluebd)}
+.today-chip-label{font-size:10px;color:var(--tx2)}
+.today-chip.filled .today-chip-label{color:var(--blue)}
+.today-chip-val{font-size:11px;font-weight:700;color:var(--tx)}
+.today-chip.filled .today-chip-val{color:var(--blue)}
+.today-chip-cal{font-family:'Space Mono',monospace;font-size:9px;color:var(--warn)}
+.edit-icon{font-size:10px;color:var(--tx3)}
+
 /* ═══ WORKOUT PILLS ═══ */
 .section{padding:14px 16px 0}
 .section-hdr{display:flex;align-items:center;gap:8px;margin-bottom:10px}
 .step-num{width:22px;height:22px;border-radius:50%;flex-shrink:0;background:var(--sf2);
-border:1.5px solid var(--bd2);display:flex;align-items:center;justify-content:center;
-font-size:10px;font-weight:700;font-family:'Space Mono',monospace;color:var(--tx2);transition:all .25s}
+  border:1.5px solid var(--bd2);display:flex;align-items:center;justify-content:center;
+  font-size:10px;font-weight:700;font-family:'Space Mono',monospace;color:var(--tx2);transition:all .25s}
 .step-num.active{background:var(--blue);border-color:var(--blue);color:#fff}
 .step-num.done{background:var(--green);border-color:var(--green);color:#fff}
 .step-lbl{font-size:13px;font-weight:700;color:var(--tx2);transition:color .2s}
@@ -87,7 +101,7 @@ font-size:10px;font-weight:700;font-family:'Space Mono',monospace;color:var(--tx
 
 .pill-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px}
 .pill{background:var(--sf);border:1.5px solid var(--bd);border-radius:var(--r);
-padding:11px 10px;cursor:pointer;transition:all .18s;text-align:left;position:relative}
+  padding:11px 10px;cursor:pointer;transition:all .18s;text-align:left;position:relative}
 .pill:active{transform:scale(.97)}
 .pill.sel{border-color:var(--blue);background:var(--bluebg)}
 .pill-icon{font-size:19px;margin-bottom:4px;display:block}
@@ -96,24 +110,24 @@ padding:11px 10px;cursor:pointer;transition:all .18s;text-align:left;position:re
 .pill-sub{font-size:10px;color:var(--tx2);line-height:1.35}
 .pill-meta{font-size:10px;color:var(--warn);margin-top:3px;display:block;font-family:'Space Mono',monospace}
 .chkdot{position:absolute;top:8px;right:8px;width:14px;height:14px;border-radius:50%;
-background:var(--blue);display:none;align-items:center;justify-content:center}
+  background:var(--blue);display:none;align-items:center;justify-content:center}
 .chkdot::after{content:'✓';font-size:8px;color:#fff;font-weight:900}
 .pill.sel .chkdot{display:flex}
 
 /* cal limit input */
 .cal-input-row{display:flex;align-items:center;gap:10px;background:var(--sf);
-border-radius:var(--rs);padding:8px 13px;margin-top:8px;border:1px solid var(--bd)}
+  border-radius:var(--rs);padding:8px 13px;margin-top:8px;border:1px solid var(--bd)}
 .cal-input-lbl{font-size:11px;color:var(--tx2);flex:1}
 .cal-input{background:var(--sf2);border:1.5px solid var(--bd2);border-radius:6px;
-color:var(--tx);font-family:'Space Mono',monospace;font-size:13px;font-weight:700;
-padding:5px 8px;width:88px;text-align:center;outline:none;transition:border-color .2s}
+  color:var(--tx);font-family:'Space Mono',monospace;font-size:13px;font-weight:700;
+  padding:5px 8px;width:88px;text-align:center;outline:none;transition:border-color .2s}
 .cal-input:focus{border-color:var(--blue)}
 .cal-input-unit{font-size:10px;color:var(--tx3)}
 
-/* ═══ MEAL OPEN BUTTONS ═══ */
+/* ═══ MEAL OPEN BUTTONS (instead of long lists) ═══ */
 .meal-open-btn{width:100%;background:var(--sf);border:1.5px solid var(--bd);
-border-radius:var(--r);padding:13px 14px;display:flex;align-items:center;gap:12px;
-cursor:pointer;transition:all .18s;text-align:left}
+  border-radius:var(--r);padding:13px 14px;display:flex;align-items:center;gap:12px;
+  cursor:pointer;transition:all .18s;text-align:left}
 .meal-open-btn.filled{border-color:var(--blue);background:var(--bluebg)}
 .meal-open-btn:active{transform:scale(.99);background:var(--sf2)}
 .meal-open-btn.filled:active{background:var(--sf)}
@@ -126,55 +140,74 @@ cursor:pointer;transition:all .18s;text-align:left}
 .mob-cal{font-family:'Space Mono',monospace;font-size:11px;color:var(--warn)}
 .mob-arrow{font-size:14px;color:var(--tx3);flex-shrink:0}
 .mob-clear{font-size:16px;color:var(--tx3);flex-shrink:0;padding:4px 6px;border-radius:50%;
-transition:background .15s,color .15s;display:none}
+  transition:background .15s,color .15s;display:none}
 .mob-clear:active{background:var(--redbg);color:var(--red)}
 .meal-open-btn.filled .mob-clear{display:flex;align-items:center;justify-content:center}
 .meal-open-btn.filled .mob-arrow{display:none}
 
 /* ═══ BOTTOM SHEET ═══ */
 .sheet-overlay{position:fixed;inset:0;background:rgba(0,0,0,.6);z-index:300;
-opacity:0;pointer-events:none;transition:opacity .25s}
+  opacity:0;pointer-events:none;transition:opacity .25s}
 .sheet-overlay.open{opacity:1;pointer-events:auto}
 .sheet{position:fixed;bottom:0;left:50%;transform:translateX(-50%) translateY(100%);
-width:100%;max-width:480px;background:var(--sf);border-radius:20px 20px 0 0;
-z-index:301;transition:transform .32s cubic-bezier(.32,0,.18,1);
-display:flex;flex-direction:column;max-height:88vh}
+  width:100%;max-width:480px;background:var(--sf);border-radius:20px 20px 0 0;
+  z-index:301;transition:transform .32s cubic-bezier(.32,0,.18,1);
+  display:flex;flex-direction:column;max-height:88vh}
 .sheet.open{transform:translateX(-50%) translateY(0)}
 .sheet-handle-bar{padding:10px 16px 0;flex-shrink:0;display:flex;flex-direction:column;gap:0}
 .sheet-handle{width:36px;height:4px;background:var(--bd2);border-radius:2px;margin:0 auto 8px}
 .sheet-title{font-size:15px;font-weight:900;margin-bottom:4px;color:var(--tx)}
 .sheet-tip{font-size:11px;color:var(--tx2);line-height:1.4;margin-bottom:8px}
 .sheet-tip strong{color:var(--blue)}
+.sheet-tip.tip-purple strong{color:var(--purple)}
+.sheet-tip.tip-green strong{color:var(--green)}
 .sheet-macro-rem{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:10px}
 .smr-chip{font-family:'Space Mono',monospace;font-size:10px;padding:3px 8px;
-border-radius:20px;background:var(--sf2);color:var(--tx2);border:1px solid var(--bd)}
+  border-radius:20px;background:var(--sf2);color:var(--tx2);border:1px solid var(--bd)}
 .smr-chip.warn{color:var(--warn);border-color:var(--warnbd)}
 .smr-chip.over{color:var(--red);border-color:var(--redbd)}
-.sheet-divider{height:1px;background:var(--bd);margin:0}
+.sheet-divider{height:1px;background:var(--bd);margin:0 -0px}
 .sheet-body{overflow-y:auto;flex:1;padding:8px 16px 16px;-webkit-overflow-scrolling:touch}
 
-/* Subcat filter pills */
+
+/* ── Time Slot Picker ── */
+.ts-option{display:flex;align-items:center;gap:12px;padding:14px 12px;
+  background:var(--sf2);border:1.5px solid var(--bd);border-radius:var(--r);
+  cursor:pointer;transition:all .18s;margin-bottom:8px}
+.ts-option:active{border-color:var(--blue);background:var(--bluebg)}
+.ts-icon{font-size:24px;flex-shrink:0}
+.ts-body{flex:1;min-width:0}
+.ts-label{font-size:14px;font-weight:700;color:var(--tx);margin-bottom:2px}
+.ts-time{font-family:'Space Mono',monospace;font-size:11px;color:var(--warn);margin-bottom:3px}
+.ts-desc{font-size:10px;color:var(--tx2);line-height:1.4}
+.ts-arrow{font-size:16px;color:var(--tx3);flex-shrink:0}
+/* Workout pill time badge */
+.pill-timebadge{font-size:9px;color:var(--green);margin-top:2px;display:block;font-weight:700}
+
+/* ── Subcat filter pills ── */
 .subcat-bar{display:flex;gap:6px;padding:8px 0 4px;flex-wrap:nowrap;overflow-x:auto;
-scrollbar-width:none;-webkit-overflow-scrolling:touch}
+  scrollbar-width:none;-webkit-overflow-scrolling:touch}
 .subcat-bar::-webkit-scrollbar{display:none}
 .subcat-pill{padding:5px 14px;border-radius:20px;font-size:12px;font-weight:700;
-background:var(--sf3);border:1.5px solid var(--bd2);color:var(--tx2);
-cursor:pointer;transition:all .18s;white-space:nowrap;flex-shrink:0}
+  background:var(--sf3);border:1.5px solid var(--bd2);color:var(--tx2);
+  cursor:pointer;transition:all .18s;white-space:nowrap;flex-shrink:0}
 .subcat-pill.active{background:var(--bluebg);border-color:var(--bluebd);color:var(--blue)}
 
-/* Tier labels */
+/* ── Tier labels in sheet ── */
 .tier-label{font-size:10px;font-weight:700;color:var(--tx3);letter-spacing:.5px;
-text-transform:uppercase;padding:8px 0 5px;display:flex;align-items:center;gap:6px}
+  text-transform:uppercase;padding:8px 0 5px;display:flex;align-items:center;gap:6px}
 .tier-label::after{content:'';flex:1;height:1px;background:var(--bd)}
 
-/* Breakfast chips */
+/* ── Breakfast chips (in sheet) ── */
 .bchip{background:var(--sf2);border:1.5px solid var(--bd);border-radius:var(--rs);
-margin-bottom:6px;overflow:hidden;transition:border-color .18s}
+  margin-bottom:6px;overflow:hidden;transition:border-color .18s}
 .bchip.sel{border-color:var(--blue)}
+.bchip.tier2{opacity:.65}
 .bchip.tier3{opacity:.28;pointer-events:none;border-style:dashed}
+/* ONE fixed-height row — nothing above/below causes reflow */
 .bchip-row{display:flex;align-items:center;gap:8px;padding:8px 10px;min-height:50px}
 .bc-chk{width:16px;height:16px;border-radius:4px;border:1.5px solid var(--bd2);
-display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:all .18s;pointer-events:none}
+  display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:all .18s;pointer-events:none}
 .bchip.sel .bc-chk{background:var(--blue);border-color:var(--blue)}
 .bchip.sel .bc-chk::after{content:'✓';font-size:9px;color:#fff;font-weight:900}
 .bc-ico{font-size:17px;flex-shrink:0}
@@ -182,27 +215,29 @@ display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:
 .bc-name{font-size:12px;font-weight:700;color:var(--tx)}
 .bchip.sel .bc-name{color:var(--blue)}
 .bc-sub{font-size:10px;color:var(--tx2);margin-top:1px}
+/* qty stepper — fixed width, NO layout change on press */
 .qty-wrap{display:flex;align-items:center;gap:0;flex-shrink:0;
-background:var(--sf3);border-radius:20px;border:1px solid var(--bd2);overflow:hidden}
+  background:var(--sf3);border-radius:20px;border:1px solid var(--bd2);overflow:hidden}
 .qty-m,.qty-p{width:36px;height:36px;display:flex;align-items:center;justify-content:center;
-cursor:pointer;background:none;border:none;color:var(--tx2);font-size:18px;line-height:1;
-transition:background .15s;user-select:none}
+  cursor:pointer;background:none;border:none;color:var(--tx2);font-size:18px;line-height:1;
+  transition:background .15s;user-select:none}
 .qty-m:active,.qty-p:active{background:var(--blue);color:#fff}
 .qty-n{font-family:'Space Mono',monospace;font-size:12px;font-weight:700;
-min-width:22px;text-align:center;color:var(--tx);user-select:none}
+  min-width:22px;text-align:center;color:var(--tx);user-select:none}
+/* expand toggle */
 .bc-exp{width:32px;height:32px;display:flex;align-items:center;justify-content:center;
-color:var(--tx3);font-size:11px;flex-shrink:0;cursor:pointer;border-radius:50%;
-transition:transform .2s,background .15s}
+  color:var(--tx3);font-size:11px;flex-shrink:0;cursor:pointer;border-radius:50%;
+  transition:transform .2s,background .15s}
 .bc-exp:active{background:var(--sf3)}
 .bc-exp.open{transform:rotate(180deg)}
 .bchip-detail{overflow:hidden;max-height:0;transition:max-height .28s ease}
 .bchip-detail.open{max-height:60px}
 .bchip-detail-inner{padding:0 10px 8px 46px;font-size:10px;color:var(--tx2);
-border-top:1px solid var(--bd);line-height:1.7}
+  border-top:1px solid var(--bd);line-height:1.7}
 
-/* Meal cards */
+/* ── Meal cards (in sheet) ── */
 .mcard{background:var(--sf2);border:1.5px solid var(--bd);border-radius:var(--r);
-margin-bottom:6px;overflow:hidden;transition:border-color .18s,background .18s}
+  margin-bottom:6px;overflow:hidden;transition:border-color .18s,background .18s}
 .mcard.sel{border-color:var(--blue);background:var(--bluebg)}
 .mcard.tier2{opacity:.68}
 .mcard.tier3{opacity:.26;pointer-events:none;border-style:dashed}
@@ -210,18 +245,18 @@ margin-bottom:6px;overflow:hidden;transition:border-color .18s,background .18s}
 .mc-ico{font-size:20px;flex-shrink:0}
 .mc-main{flex:1;min-width:0}
 .mc-name{font-size:13px;font-weight:700;color:var(--tx);
-display:flex;align-items:center;gap:5px;flex-wrap:wrap}
+  display:flex;align-items:center;gap:5px;flex-wrap:wrap}
 .mcard.sel .mc-name{color:var(--blue)}
 .mc-cal{font-family:'Space Mono',monospace;font-size:11px;color:var(--warn);margin-top:2px}
 .mc-reason{font-size:10px;margin-top:2px}
 .mc-reason.ok{color:var(--green)}.mc-reason.warn{color:var(--warn)}.mc-reason.bad{color:var(--red)}
 .mc-right{display:flex;align-items:center;gap:5px;flex-shrink:0}
 .mc-chk{width:18px;height:18px;border-radius:50%;border:1.5px solid var(--bd2);
-display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:all .18s;pointer-events:none}
+  display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:all .18s;pointer-events:none}
 .mcard.sel .mc-chk{background:var(--blue);border-color:var(--blue)}
 .mcard.sel .mc-chk::after{content:'✓';font-size:10px;color:#fff;font-weight:900}
 .mc-exp{width:32px;height:32px;display:flex;align-items:center;justify-content:center;
-color:var(--tx3);font-size:11px;cursor:pointer;border-radius:50%;transition:transform .2s,background .15s}
+  color:var(--tx3);font-size:11px;cursor:pointer;border-radius:50%;transition:transform .2s,background .15s}
 .mc-exp:active{background:var(--sf3)}
 .mc-exp.open{transform:rotate(180deg)}
 .mc-detail{overflow:hidden;max-height:0;transition:max-height .28s ease}
@@ -238,11 +273,11 @@ color:var(--tx3);font-size:11px;cursor:pointer;border-radius:50%;transition:tran
 .tb2{background:var(--warnbg);color:var(--warn)}
 .tb3{background:var(--redbg);color:var(--red)}
 
-/* sheet footer */
+/* confirm in sheet footer */
 .sheet-footer{padding:10px 16px 12px;border-top:1px solid var(--bd);flex-shrink:0}
 .sheet-confirm-btn{width:100%;padding:12px;background:var(--blue);border:none;
-border-radius:var(--rs);color:#fff;font-family:inherit;font-size:13px;font-weight:700;
-cursor:pointer;transition:opacity .2s}
+  border-radius:var(--rs);color:#fff;font-family:inherit;font-size:13px;font-weight:700;
+  cursor:pointer;transition:opacity .2s}
 .sheet-confirm-btn:disabled{opacity:.28;cursor:not-allowed}
 .sheet-confirm-btn:not(:disabled):active{opacity:.8}
 
@@ -265,15 +300,15 @@ cursor:pointer;transition:opacity .2s}
 .sum-detail{font-size:10px;color:var(--tx2);margin-top:2px}
 .sum-kcal{font-family:'Space Mono',monospace;font-size:11px;color:var(--warn);white-space:nowrap}
 .sum-edit{font-size:10px;color:var(--blue);font-weight:700;flex-shrink:0;
-padding:2px 6px;border-radius:10px;background:var(--bluebg);align-self:center}
+  padding:2px 6px;border-radius:10px;background:var(--bluebg);align-self:center}
 .sum-row:active .sum-edit{background:var(--bluebd)}
 .sum-total{display:flex;justify-content:space-between;margin-top:10px;padding-top:10px;
-border-top:1.5px solid var(--bd2)}
+  border-top:1.5px solid var(--bd2)}
 .sum-total-lbl{font-size:13px;font-weight:700}
 .sum-total-val{font-family:'Space Mono',monospace;font-size:13px;font-weight:700;color:var(--tx)}
 .sum-macros{display:flex;gap:5px;flex-wrap:wrap;margin-top:8px}
 .sum-mchip{font-family:'Space Mono',monospace;font-size:10px;padding:3px 8px;
-border-radius:20px;background:var(--sf2);color:var(--tx2);border:1px solid var(--bd)}
+  border-radius:20px;background:var(--sf2);color:var(--tx2);border:1px solid var(--bd)}
 .sum-mchip.ok{color:var(--green);border-color:var(--greenbd)}
 .sum-mchip.warn{color:var(--warn);border-color:var(--warnbd)}
 .sum-mchip.bad{color:var(--red);border-color:var(--redbd)}
@@ -283,8 +318,8 @@ border-radius:20px;background:var(--sf2);color:var(--tx2);border:1px solid var(-
 .s-great{background:var(--bluebg);color:var(--blue)}
 
 .reset-btn{display:block;width:calc(100% - 32px);margin:16px auto 0;padding:12px;
-background:var(--sf2);border:1px solid var(--bd);border-radius:var(--r);color:var(--tx2);
-font-family:inherit;font-size:13px;font-weight:700;cursor:pointer;transition:all .2s}
+  background:var(--sf2);border:1px solid var(--bd);border-radius:var(--r);color:var(--tx2);
+  font-family:inherit;font-size:13px;font-weight:700;cursor:pointer;transition:all .2s}
 .reset-btn:active{background:var(--redbg);color:var(--red);border-color:var(--red)}
 
 .divider{height:1px;background:var(--bd);margin:14px 16px 0}
@@ -299,50 +334,73 @@ font-family:inherit;font-size:13px;font-weight:700;cursor:pointer;transition:all
 .admin-sub{font-size:11px;color:var(--tx2)}
 .admin-sec{padding:12px 16px 0}
 .admin-sec-title{font-size:10px;font-weight:700;color:var(--tx2);letter-spacing:.6px;
-text-transform:uppercase;margin-bottom:9px;display:flex;align-items:center;gap:8px}
+  text-transform:uppercase;margin-bottom:9px;display:flex;align-items:center;gap:8px}
 .admin-sec-title::after{content:'';flex:1;height:1px;background:var(--bd)}
+.add-form{background:var(--sf);border:1px solid var(--bd);border-radius:var(--r);padding:12px;margin-bottom:4px}
 .fr{margin-bottom:8px}
 .fl{font-size:10px;color:var(--tx2);margin-bottom:4px;display:block;font-weight:700}
 .fi,.fs{width:100%;background:var(--sf2);border:1.5px solid var(--bd2);border-radius:var(--rs);
-color:var(--tx);font-family:inherit;font-size:12px;padding:7px 9px;outline:none;
-transition:border-color .2s;appearance:none}
+  color:var(--tx);font-family:inherit;font-size:12px;padding:7px 9px;outline:none;
+  transition:border-color .2s;appearance:none}
 .fi:focus,.fs:focus{border-color:var(--blue)}
+.fg2{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.fg3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px}
+.tog-row{display:flex;gap:5px;flex-wrap:wrap}
+.tog{padding:4px 8px;border-radius:20px;font-size:11px;font-weight:700;background:var(--sf2);
+  border:1.5px solid var(--bd2);color:var(--tx2);cursor:pointer;transition:all .18s;font-family:inherit}
+.tog.on{background:var(--greenbg);border-color:var(--greenbd);color:var(--green)}
 .add-btn{width:100%;padding:10px;background:var(--blue);border:none;border-radius:var(--rs);
-color:#fff;font-family:inherit;font-size:13px;font-weight:700;cursor:pointer;margin-top:2px}
+  color:#fff;font-family:inherit;font-size:13px;font-weight:700;cursor:pointer;margin-top:2px}
 .add-btn:active{opacity:.8}
+.ftable{width:100%;border-collapse:collapse;font-size:11px}
+.ftable th{text-align:left;color:var(--tx2);font-weight:700;padding:5px 7px;
+  border-bottom:1px solid var(--bd);font-size:10px}
+.ftable td{padding:6px 7px;border-bottom:1px solid var(--bd);color:var(--tx);vertical-align:middle}
+.ftable tr:last-child td{border-bottom:none}
+.fn{font-weight:700;font-size:11px}
+.fm{font-size:9px;padding:1px 5px;border-radius:10px;background:var(--sf3);color:var(--tx2);display:inline-block}
+.fg2{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.fg3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px}
+.del-btn{background:none;border:none;cursor:pointer;color:var(--tx3);font-size:13px;padding:2px 4px;transition:color .15s}
+.del-btn:hover{color:var(--red)}
 .filter-tabs{display:flex;gap:6px;margin-bottom:9px;flex-wrap:wrap}
 .ftab{padding:3px 10px;border-radius:20px;font-size:11px;font-weight:700;background:var(--sf2);
-border:1px solid var(--bd);color:var(--tx2);cursor:pointer;transition:all .18s}
+  border:1px solid var(--bd);color:var(--tx2);cursor:pointer;transition:all .18s}
 .ftab.active{background:var(--bluebg);border-color:var(--bluebd);color:var(--blue)}
+.tbl-wrap{background:var(--sf);border:1px solid var(--bd);border-radius:var(--r);overflow:hidden}
 
+/* ── New admin styles ── */
 .admin-toolbar{display:flex;align-items:center;gap:10px;padding:10px 16px;
-border-bottom:1px solid var(--bd)}
+  border-bottom:1px solid var(--bd)}
 .add-fab{background:var(--blue);color:#fff;border:none;border-radius:20px;
-padding:7px 14px;font-family:inherit;font-size:12px;font-weight:700;cursor:pointer;
-white-space:nowrap;flex-shrink:0;transition:opacity .2s}
+  padding:7px 14px;font-family:inherit;font-size:12px;font-weight:700;cursor:pointer;
+  white-space:nowrap;flex-shrink:0;transition:opacity .2s}
 .add-fab:active{opacity:.8}
 
+/* Food cards list */
 .food-cards{display:flex;flex-direction:column;gap:6px}
 .food-card{background:var(--sf);border:1px solid var(--bd);border-radius:var(--r);padding:12px 14px;
-display:flex;align-items:flex-start;gap:10px;transition:box-shadow .2s,opacity .2s}
+  display:flex;align-items:flex-start;gap:10px;transition:box-shadow .2s,opacity .2s}
 .food-card.dragging{opacity:.5;box-shadow:0 8px 24px rgba(0,0,0,.5)}
 .food-card.drag-over{border-color:var(--blue);box-shadow:0 0 0 2px var(--bluebd)}
 
+/* Drag handle */
 .drag-handle{display:none;align-items:center;justify-content:center;
-width:22px;flex-shrink:0;cursor:grab;color:var(--tx3);font-size:16px;
-padding:4px 0;touch-action:none;user-select:none}
+  width:22px;flex-shrink:0;cursor:grab;color:var(--tx3);font-size:16px;
+  padding:4px 0;touch-action:none;user-select:none}
 .drag-handle:active{cursor:grabbing;color:var(--blue)}
 .sort-mode .drag-handle{display:flex}
 .sort-mode .fc-edit,.sort-mode .fc-del{display:none}
 
+/* Sort mode button */
 .sort-mode-btn{background:var(--sf2);border:1px solid var(--bd);border-radius:20px;
-color:var(--tx2);font-family:inherit;font-size:11px;font-weight:700;
-padding:5px 12px;cursor:pointer;transition:all .2s;white-space:nowrap}
+  color:var(--tx2);font-family:inherit;font-size:11px;font-weight:700;
+  padding:5px 12px;cursor:pointer;transition:all .2s;white-space:nowrap}
 .sort-mode-btn.active{background:var(--bluebg);border-color:var(--bluebd);color:var(--blue)}
 .fc-icon{font-size:20px;flex-shrink:0}
 .fc-body{flex:1;min-width:0}
 .fc-name{font-size:12px;font-weight:700;color:var(--tx);margin-bottom:3px;
-display:flex;align-items:center;gap:5px;flex-wrap:wrap}
+  display:flex;align-items:center;gap:5px;flex-wrap:wrap}
 .fc-meal{font-size:9px;padding:1px 6px;border-radius:10px;background:var(--sf3);color:var(--tx2)}
 .fc-macros{font-family:'Space Mono',monospace;font-size:10px;color:var(--tx2);margin-bottom:3px}
 .fc-macros span{color:var(--warn);margin-right:6px}
@@ -350,63 +408,74 @@ display:flex;align-items:center;gap:5px;flex-wrap:wrap}
 .fc-tag{font-size:9px;padding:1px 5px;border-radius:8px;background:var(--sf3);color:var(--tx3)}
 .fc-actions{display:flex;flex-direction:column;gap:5px;flex-shrink:0}
 .fc-edit{background:var(--sf2);border:1px solid var(--bd2);border-radius:6px;
-color:var(--tx2);font-size:10px;font-weight:700;padding:4px 8px;cursor:pointer;transition:all .18s}
+  color:var(--tx2);font-size:10px;font-weight:700;padding:4px 8px;cursor:pointer;transition:all .18s}
 .fc-edit:active{background:var(--bluebg);color:var(--blue);border-color:var(--bluebd)}
 .fc-del{background:none;border:1px solid var(--bd);border-radius:6px;
-color:var(--tx3);font-size:10px;font-weight:700;padding:4px 8px;cursor:pointer;transition:all .18s}
+  color:var(--tx3);font-size:10px;font-weight:700;padding:4px 8px;cursor:pointer;transition:all .18s}
 .fc-del:active{background:var(--redbg);color:var(--red);border-color:var(--redbd)}
 
-/* Form sheet */
+/* Form sheet styles */
+.form-step{padding:0}
 .form-step-title{font-size:11px;font-weight:700;color:var(--blue);letter-spacing:.3px;
-margin-bottom:10px;text-transform:uppercase}
+  margin-bottom:10px;text-transform:uppercase}
 .form-divider{height:1px;background:var(--bd);margin:12px 0}
 .req{color:var(--red);font-size:10px}
-.fg2{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+
+/* Nutrition grid */
 .nut-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px}
 .nut-box{display:flex;flex-direction:column;gap:4px}
 .nut-inp-wrap{display:flex;align-items:center;gap:4px}
 .nut-inp{flex:1}
 .nut-unit{font-size:11px;color:var(--tx2);white-space:nowrap;font-family:'Space Mono',monospace}
+
+/* Attribute grid */
 .attr-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:8px}
+
+/* Meal multi-select checkboxes */
 .meal-checks{display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-top:4px}
 .meal-chk{display:flex;align-items:center;gap:8px;cursor:pointer;
-background:var(--sf2);border:1px solid var(--bd);border-radius:var(--rs);padding:8px 10px;transition:all .18s}
+  background:var(--sf2);border:1px solid var(--bd);border-radius:var(--rs);padding:8px 10px;transition:all .18s}
 .meal-chk:has(input:checked){background:var(--bluebg);border-color:var(--bluebd)}
 .meal-chk input{width:15px;height:15px;accent-color:var(--blue);flex-shrink:0}
 .meal-chk span{font-size:12px;color:var(--tx);font-weight:500}
+
+/* Fit checkboxes */
 .fit-checks{display:flex;flex-direction:column;gap:6px;margin-top:4px}
 .fit-chk{display:flex;align-items:center;gap:8px;cursor:pointer;
-background:var(--sf2);border:1px solid var(--bd);border-radius:var(--rs);padding:8px 10px;transition:all .18s}
+  background:var(--sf2);border:1px solid var(--bd);border-radius:var(--rs);padding:8px 10px;transition:all .18s}
 .fit-chk:has(input:checked){background:var(--bluebg);border-color:var(--bluebd)}
 .fit-chk input{width:15px;height:15px;accent-color:var(--blue);flex-shrink:0}
 .fit-chk span{font-size:12px;color:var(--tx);font-weight:500}
 
 .toast{position:fixed;bottom:85px;left:50%;transform:translateX(-50%);background:var(--sf3);
-border:1px solid var(--bd2);color:var(--tx);font-size:12px;font-weight:700;
-padding:7px 16px;border-radius:20px;z-index:500;opacity:0;transition:opacity .25s;
-pointer-events:none;white-space:nowrap}
+  border:1px solid var(--bd2);color:var(--tx);font-size:12px;font-weight:700;
+  padding:7px 16px;border-radius:20px;z-index:500;opacity:0;transition:opacity .25s;
+  pointer-events:none;white-space:nowrap}
 .toast.show{opacity:1}
 
+/* Custom confirm dialog */
 .cdialog-overlay{position:fixed;inset:0;background:rgba(0,0,0,.65);z-index:600;
-display:flex;align-items:center;justify-content:center;padding:24px;
-opacity:0;pointer-events:none;transition:opacity .2s}
+  display:flex;align-items:center;justify-content:center;padding:24px;
+  opacity:0;pointer-events:none;transition:opacity .2s}
 .cdialog-overlay.open{opacity:1;pointer-events:auto}
 .cdialog{background:var(--sf);border:1px solid var(--bd2);border-radius:var(--r);
-width:100%;max-width:320px;padding:20px 18px 16px;text-align:center}
+  width:100%;max-width:320px;padding:20px 18px 16px;text-align:center}
 .cdialog-msg{font-size:14px;font-weight:700;color:var(--tx);margin-bottom:6px}
 .cdialog-sub{font-size:12px;color:var(--tx2);margin-bottom:18px}
 .cdialog-btns{display:flex;gap:8px}
 .cdialog-cancel{flex:1;padding:11px;background:var(--sf2);border:1px solid var(--bd);
-border-radius:var(--rs);color:var(--tx2);font-family:inherit;font-size:13px;font-weight:700;cursor:pointer}
+  border-radius:var(--rs);color:var(--tx2);font-family:inherit;font-size:13px;font-weight:700;cursor:pointer}
 .cdialog-ok{flex:1;padding:11px;background:var(--redbg);border:1px solid var(--redbd);
-border-radius:var(--rs);color:var(--red);font-family:inherit;font-size:13px;font-weight:700;cursor:pointer}
+  border-radius:var(--rs);color:var(--red);font-family:inherit;font-size:13px;font-weight:700;cursor:pointer}
 .cdialog-ok:active{background:var(--red);color:#fff}
 </style>
+<script src="foods.js"></script>
 </head>
 <body>
 
 <div class="toast" id="toast"></div>
 
+<!-- Custom confirm dialog (replaces browser confirm()) -->
 <div class="cdialog-overlay" id="cdialogOverlay">
   <div class="cdialog">
     <div class="cdialog-msg" id="cdialogMsg">確定要刪除？</div>
@@ -418,7 +487,7 @@ border-radius:var(--rs);color:var(--red);font-family:inherit;font-size:13px;font
   </div>
 </div>
 
-<!-- BOTTOM SHEET -->
+<!-- ════════ BOTTOM SHEET ════════ -->
 <div class="sheet-overlay" id="sheetOverlay" onclick="closeSheet()"></div>
 <div class="sheet" id="sheet">
   <div class="sheet-handle-bar">
@@ -434,8 +503,53 @@ border-radius:var(--rs);color:var(--red);font-family:inherit;font-size:13px;font
   </div>
 </div>
 
-<!-- PAGE 1: 今日選單 -->
+
+<!-- ════════ Strength Time-Slot Picker ════════ -->
+<div class="sheet-overlay" id="timeSlotOverlay" onclick="closeTimeSlot()"></div>
+<div class="sheet" id="timeSlotSheet">
+  <div class="sheet-handle-bar">
+    <div class="sheet-handle"></div>
+    <div class="sheet-title">今天幾點上課？</div>
+    <div style="font-size:11px;color:var(--tx2);margin-bottom:10px;line-height:1.5">
+      選擇課表時段，系統會調整早餐、午餐、晚餐的推薦邏輯
+    </div>
+    <div class="sheet-divider"></div>
+  </div>
+  <div class="sheet-body" style="padding:12px 16px 20px">
+    <div class="ts-option" onclick="confirmTimeSlot('morning')">
+      <div class="ts-icon">🌅</div>
+      <div class="ts-body">
+        <div class="ts-label">早上班</div>
+        <div class="ts-time">09:00 – 12:00</div>
+        <div class="ts-desc">早餐=訓前輕食 ✦ 午餐=訓後高蛋白 ✦ 晚餐=一般選擇</div>
+      </div>
+      <div class="ts-arrow">›</div>
+    </div>
+    <div class="ts-option" onclick="confirmTimeSlot('afternoon')">
+      <div class="ts-icon">☀️</div>
+      <div class="ts-body">
+        <div class="ts-label">下午班</div>
+        <div class="ts-time">13:00 – 17:00</div>
+        <div class="ts-desc">早餐=一般選擇 ✦ 午餐=訓前輕食 ✦ 晚餐=訓後高蛋白</div>
+      </div>
+      <div class="ts-arrow">›</div>
+    </div>
+    <div class="ts-option" onclick="confirmTimeSlot('evening')">
+      <div class="ts-icon">🌙</div>
+      <div class="ts-body">
+        <div class="ts-label">晚上班</div>
+        <div class="ts-time">19:00 – 21:00</div>
+        <div class="ts-desc">早餐=一般選擇 ✦ 午餐=一般選擇 ✦ 訓前＋訓後獨立補給</div>
+      </div>
+      <div class="ts-arrow">›</div>
+    </div>
+  </div>
+</div>
+
+<!-- ════════ PAGE 1: 今日選單 ════════ -->
 <div class="tab-page active" id="page-planner">
+
+  <!-- STICKY HEADER -->
   <div class="hdr">
     <div class="hdr-top">
       <div class="app-title">每日飲食 <em>🏋️</em></div>
@@ -479,6 +593,7 @@ border-radius:var(--rs);color:var(--red);font-family:inherit;font-size:13px;font
     </div>
   </div>
 
+  <!-- STEP 1: Workout type -->
   <div class="section">
     <div class="section-hdr">
       <div class="step-num active" id="s1n">1</div>
@@ -502,6 +617,7 @@ border-radius:var(--rs);color:var(--red);font-family:inherit;font-size:13px;font
         <span class="pill-icon">🏋️</span><span class="pill-name">重訓日</span>
         <span class="pill-sub">高碳高蛋白，訓前/訓後分開補給</span>
         <span class="pill-meta">碳45% 蛋35% 脂20%</span>
+        <span class="pill-timebadge" id="strengthTimeBadge" style="display:none"></span>
       </div>
       <div class="pill" onclick="selWorkout('flex')" id="wo-flex">
         <div class="chkdot"></div>
@@ -519,12 +635,14 @@ border-radius:var(--rs);color:var(--red);font-family:inherit;font-size:13px;font
 
   <div class="divider"></div>
 
+  <!-- STEPS 2–5: meal buttons -->
   <div class="section locked" id="mealSection">
     <div class="section-hdr">
       <div class="step-num" id="s2n">2</div>
       <div class="step-lbl" id="s2lbl">選擇三餐</div>
     </div>
 
+    <!-- Breakfast -->
     <div style="margin-bottom:8px">
       <button class="meal-open-btn" id="btnBreakfast" onclick="openBreakfastSheet()">
         <div class="mob-icon">🌅</div>
@@ -538,6 +656,7 @@ border-radius:var(--rs);color:var(--red);font-family:inherit;font-size:13px;font
       </button>
     </div>
 
+    <!-- Lunch -->
     <div style="margin-bottom:8px">
       <button class="meal-open-btn locked" id="btnLunch" onclick="openMealSheet('lunch')">
         <div class="mob-icon">☀️</div>
@@ -551,6 +670,7 @@ border-radius:var(--rs);color:var(--red);font-family:inherit;font-size:13px;font
       </button>
     </div>
 
+    <!-- Dinner / Pre / Post (重訓日動態) -->
     <div style="margin-bottom:8px" id="dinnerPreWrap">
       <button class="meal-open-btn locked" id="btnDinner" onclick="openMealSheet('dinner')">
         <div class="mob-icon">🌙</div>
@@ -564,6 +684,7 @@ border-radius:var(--rs);color:var(--red);font-family:inherit;font-size:13px;font
       </button>
     </div>
 
+    <!-- Post-workout (strength only) -->
     <div style="margin-bottom:8px;display:none" id="postWrap">
       <button class="meal-open-btn locked" id="btnPost" onclick="openMealSheet('postworkout')">
         <div class="mob-icon">💪</div>
@@ -578,6 +699,7 @@ border-radius:var(--rs);color:var(--red);font-family:inherit;font-size:13px;font
     </div>
   </div>
 
+  <!-- Summary -->
   <div class="section" id="summarySection" style="display:none">
     <div class="divider" style="margin:0 0 14px;width:100%"></div>
     <div class="section-hdr">
@@ -590,16 +712,20 @@ border-radius:var(--rs);color:var(--red);font-family:inherit;font-size:13px;font
   <button class="reset-btn" onclick="resetAll()">🔄 重新選擇</button>
 </div>
 
-<!-- PAGE 2: Admin -->
+<!-- ════════ PAGE 2: Admin ════════ -->
 <div class="tab-page" id="page-admin">
   <div class="admin-hdr">
     <div class="admin-title">食物資料庫</div>
     <div class="admin-sub">新增、編輯或刪除品項，即時反映到選單</div>
   </div>
+
+  <!-- Search bar -->
   <div style="padding:8px 16px;border-bottom:1px solid var(--bd)">
     <input class="fi" id="adminSearch" type="text" placeholder="🔍 搜尋品項名稱..."
       oninput="renderFoodCards()" style="font-size:13px;padding:9px 12px">
   </div>
+
+  <!-- Filter + Add button bar -->
   <div class="admin-toolbar">
     <div class="filter-tabs" style="flex:1;margin-bottom:0">
       <div class="ftab active" onclick="setFilter('全部',this)">全部</div>
@@ -611,6 +737,7 @@ border-radius:var(--rs);color:var(--red);font-family:inherit;font-size:13px;font
     </div>
     <button class="add-fab" onclick="openFoodForm(null)">＋ 新增</button>
   </div>
+
   <div class="admin-sec" style="padding-bottom:20px">
     <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:8px">
       <div class="admin-sec-title" style="margin-bottom:0">共 <span id="foodCount">0</span> 筆品項</div>
@@ -620,13 +747,13 @@ border-radius:var(--rs);color:var(--red);font-family:inherit;font-size:13px;font
     </div>
     <div id="sortHint" style="display:none;font-size:11px;color:var(--blue);margin-bottom:8px;padding:6px 10px;
       background:var(--bluebg);border-radius:var(--rs);border:1px solid var(--bluebd)">
-      拖曳左側 ☰ 圖示可調整品項順序
+      拖曳左側 ☰ 圖示可調整品項順序，順序即為「今日選單」中的顯示順序
     </div>
     <div class="food-cards" id="foodCards"></div>
   </div>
 </div>
 
-<!-- Food Form Sheet -->
+<!-- ════════ Food Form Sheet ════════ -->
 <div class="sheet-overlay" id="formOverlay" onclick="closeFoodForm()"></div>
 <div class="sheet" id="formSheet">
   <div class="sheet-handle-bar">
@@ -638,100 +765,144 @@ border-radius:var(--rs);color:var(--red);font-family:inherit;font-size:13px;font
     <div class="sheet-divider"></div>
   </div>
   <div class="sheet-body" id="formBody">
-    <div class="form-step-title">① 基本資訊</div>
-    <div class="fr">
-      <label class="fl">餐別 <span class="req">*</span>（可多選）</label>
-      <div class="meal-checks">
-        <label class="meal-chk"><input type="checkbox" data-m="早餐"><span>🌅 早餐</span></label>
-        <label class="meal-chk"><input type="checkbox" data-m="午餐"><span>☀️ 午餐</span></label>
-        <label class="meal-chk"><input type="checkbox" data-m="晚餐"><span>🌙 晚餐</span></label>
-        <label class="meal-chk"><input type="checkbox" data-m="訓前補給"><span>⚡ 訓前補給</span></label>
-        <label class="meal-chk"><input type="checkbox" data-m="訓後補給"><span>💪 訓後補給</span></label>
-      </div>
-    </div>
-    <div class="fr">
-      <label class="fl">品項名稱 <span class="req">*</span></label>
-      <input class="fi" id="f_name" type="text" placeholder="例：海鹽雞胸飯">
-    </div>
-    <div class="fg2">
+    <!-- Step 1: 基本資訊 -->
+    <div class="form-step" id="fstep1">
+      <div class="form-step-title">① 基本資訊</div>
       <div class="fr">
-        <label class="fl">圖示 Emoji</label>
-        <input class="fi" id="f_icon" type="text" placeholder="🍱" maxlength="4">
+        <label class="fl">餐別 <span class="req">*</span>（可多選）</label>
+        <div class="meal-checks">
+          <label class="meal-chk"><input type="checkbox" data-m="早餐"><span>🌅 早餐</span></label>
+          <label class="meal-chk"><input type="checkbox" data-m="午餐"><span>☀️ 午餐</span></label>
+          <label class="meal-chk"><input type="checkbox" data-m="晚餐"><span>🌙 晚餐</span></label>
+          <label class="meal-chk"><input type="checkbox" data-m="訓前補給"><span>⚡ 訓前補給</span></label>
+          <label class="meal-chk"><input type="checkbox" data-m="訓後補給"><span>💪 訓後補給</span></label>
+        </div>
       </div>
       <div class="fr">
-        <label class="fl">食物分類 <span class="req">*</span></label>
-        <select class="fs" id="f_cat">
-          <option value="高蛋白">高蛋白</option><option value="均衡">均衡</option>
-          <option value="中碳">中碳</option><option value="低脂">低脂</option>
-          <option value="原型澱粉">原型澱粉</option><option value="精緻澱粉">精緻澱粉</option>
-          <option value="高脂">高脂</option><option value="油炸">油炸</option><option value="飲品">飲品</option>
+        <label class="fl">品項名稱 <span class="req">*</span></label>
+        <input class="fi" id="f_name" type="text" placeholder="例：海鹽雞胸飯">
+      </div>
+      <div class="fg2">
+        <div class="fr">
+          <label class="fl">圖示 Emoji</label>
+          <input class="fi" id="f_icon" type="text" placeholder="🍱" maxlength="4">
+        </div>
+        <div class="fr">
+          <label class="fl">食物分類 <span class="req">*</span></label>
+          <select class="fs" id="f_cat">
+            <option value="高蛋白">高蛋白</option><option value="均衡">均衡</option>
+            <option value="中碳">中碳</option><option value="低脂">低脂</option>
+            <option value="原型澱粉">原型澱粉</option><option value="精緻澱粉">精緻澱粉</option>
+            <option value="高脂">高脂</option><option value="油炸">油炸</option><option value="飲品">飲品</option>
+          </select>
+        </div>
+      </div>
+      <div class="fr">
+        <label class="fl">備註說明（選填）</label>
+        <input class="fi" id="f_note" type="text" placeholder="簡短備註，例：低碳首選">
+      </div>
+    </div>
+
+    <div class="form-divider"></div>
+
+    <!-- Step 2: 熱量與營養素 -->
+    <div class="form-step" id="fstep2">
+      <div class="form-step-title">② 熱量與營養素（每份）</div>
+      <div class="nut-grid">
+        <div class="nut-box">
+          <label class="fl">熱量 <span class="req">*</span></label>
+          <div class="nut-inp-wrap"><input class="fi nut-inp" id="f_cal" type="number" placeholder="400" min="0"><span class="nut-unit">kcal</span></div>
+        </div>
+        <div class="nut-box">
+          <label class="fl">碳水化合物</label>
+          <div class="nut-inp-wrap"><input class="fi nut-inp" id="f_carb" type="number" placeholder="40" min="0"><span class="nut-unit">g</span></div>
+        </div>
+        <div class="nut-box">
+          <label class="fl">蛋白質</label>
+          <div class="nut-inp-wrap"><input class="fi nut-inp" id="f_prot" type="number" placeholder="30" min="0"><span class="nut-unit">g</span></div>
+        </div>
+        <div class="nut-box">
+          <label class="fl">脂肪</label>
+          <div class="nut-inp-wrap"><input class="fi nut-inp" id="f_fat" type="number" placeholder="10" min="0"><span class="nut-unit">g</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="form-divider"></div>
+
+    <!-- Step 3: 食物屬性標籤 -->
+    <div class="form-step" id="fstep3">
+      <div class="form-step-title">③ 食物屬性</div>
+      <div class="attr-grid">
+        <div class="fr">
+          <label class="fl">蛋白質含量</label>
+          <select class="fs" id="f_pl"><option value="高">高</option><option value="中" selected>中</option><option value="低">低</option></select>
+        </div>
+        <div class="fr">
+          <label class="fl">碳水含量</label>
+          <select class="fs" id="f_cl"><option value="高">高</option><option value="中" selected>中</option><option value="低">低</option></select>
+        </div>
+        <div class="fr">
+          <label class="fl">脂肪含量</label>
+          <select class="fs" id="f_fl"><option value="高">高</option><option value="中" selected>中</option><option value="低">低</option></select>
+        </div>
+        <div class="fr">
+          <label class="fl">纖維含量</label>
+          <select class="fs" id="f_fib"><option value="高">高</option><option value="中" selected>中</option><option value="低">低</option></select>
+        </div>
+        <div class="fr">
+          <label class="fl">加工程度</label>
+          <select class="fs" id="f_proc"><option value="原型">原型食物</option><option value="輕加工" selected>輕加工</option><option value="高加工">高加工</option></select>
+        </div>
+        <div class="fr">
+          <label class="fl">飽足感</label>
+          <select class="fs" id="f_sat"><option value="高">高</option><option value="中" selected>中</option><option value="低">低</option></select>
+        </div>
+      </div>
+      <div class="fr" style="margin-top:2px">
+        <label class="fl">選此食物後，排除哪個分類？（選填）</label>
+        <select class="fs" id="f_exc">
+          <option value="">不排除任何分類</option>
+          <option value="高脂">高脂</option>
+          <option value="精緻澱粉">精緻澱粉</option>
+          <option value="高糖">高糖</option>
+          <option value="油炸">油炸</option>
         </select>
       </div>
     </div>
-    <div class="fr">
-      <label class="fl">備註說明（選填）</label>
-      <input class="fi" id="f_note" type="text" placeholder="簡短備註">
-    </div>
+
     <div class="form-divider"></div>
-    <div class="form-step-title">② 熱量與營養素（每份）</div>
-    <div class="nut-grid">
-      <div class="nut-box">
-        <label class="fl">熱量 <span class="req">*</span></label>
-        <div class="nut-inp-wrap"><input class="fi nut-inp" id="f_cal" type="number" placeholder="400" min="0"><span class="nut-unit">kcal</span></div>
+
+    <!-- Step 4: 適合場景 -->
+    <div class="form-step" id="fstep4">
+      <div class="form-step-title">④ 適合場景</div>
+      <div class="fr">
+        <label class="fl">日型適合（可多選）</label>
+        <div class="fit-checks">
+          <label class="fit-chk"><input type="checkbox" data-k="rest" checked><span>無運動日適合</span></label>
+          <label class="fit-chk"><input type="checkbox" data-k="cardio" checked><span>有氧日適合</span></label>
+          <label class="fit-chk"><input type="checkbox" data-k="strength" checked><span>重訓日適合</span></label>
+          <label class="fit-chk"><input type="checkbox" data-k="flex" checked><span>彈性日適合</span></label>
+        </div>
       </div>
-      <div class="nut-box">
-        <label class="fl">碳水化合物</label>
-        <div class="nut-inp-wrap"><input class="fi nut-inp" id="f_carb" type="number" placeholder="40" min="0"><span class="nut-unit">g</span></div>
+      <div class="fg2" style="margin-top:4px">
+        <div class="fr">
+          <label class="fl">訓前補給適合</label>
+          <select class="fs" id="f_pre"><option value="false">否</option><option value="true">是</option></select>
+        </div>
+        <div class="fr">
+          <label class="fl">訓後補給適合</label>
+          <select class="fs" id="f_post"><option value="false">否</option><option value="true">是</option></select>
+        </div>
       </div>
-      <div class="nut-box">
-        <label class="fl">蛋白質</label>
-        <div class="nut-inp-wrap"><input class="fi nut-inp" id="f_prot" type="number" placeholder="30" min="0"><span class="nut-unit">g</span></div>
+      <div class="fr" style="margin-top:4px">
+        <label class="fl">晚餐適合</label>
+        <select class="fs" id="f_dinner_ok">
+          <option value="true">是（晚餐可選）</option>
+          <option value="false">否（晚餐不建議）</option>
+          <option value="">不適用（早餐/補給類）</option>
+        </select>
       </div>
-      <div class="nut-box">
-        <label class="fl">脂肪</label>
-        <div class="nut-inp-wrap"><input class="fi nut-inp" id="f_fat" type="number" placeholder="10" min="0"><span class="nut-unit">g</span></div>
-      </div>
-    </div>
-    <div class="form-divider"></div>
-    <div class="form-step-title">③ 食物屬性</div>
-    <div class="attr-grid">
-      <div class="fr"><label class="fl">蛋白質含量</label><select class="fs" id="f_pl"><option value="高">高</option><option value="中" selected>中</option><option value="低">低</option></select></div>
-      <div class="fr"><label class="fl">碳水含量</label><select class="fs" id="f_cl"><option value="高">高</option><option value="中" selected>中</option><option value="低">低</option></select></div>
-      <div class="fr"><label class="fl">脂肪含量</label><select class="fs" id="f_fl"><option value="高">高</option><option value="中" selected>中</option><option value="低">低</option></select></div>
-      <div class="fr"><label class="fl">纖維含量</label><select class="fs" id="f_fib"><option value="高">高</option><option value="中" selected>中</option><option value="低">低</option></select></div>
-      <div class="fr"><label class="fl">加工程度</label><select class="fs" id="f_proc"><option value="原型">原型食物</option><option value="輕加工" selected>輕加工</option><option value="高加工">高加工</option></select></div>
-      <div class="fr"><label class="fl">飽足感</label><select class="fs" id="f_sat"><option value="高">高</option><option value="中" selected>中</option><option value="低">低</option></select></div>
-    </div>
-    <div class="fr">
-      <label class="fl">選此食物後，排除哪個分類？（選填）</label>
-      <select class="fs" id="f_exc">
-        <option value="">不排除任何分類</option>
-        <option value="高脂">高脂</option><option value="精緻澱粉">精緻澱粉</option>
-        <option value="高糖">高糖</option><option value="油炸">油炸</option>
-      </select>
-    </div>
-    <div class="form-divider"></div>
-    <div class="form-step-title">④ 適合場景</div>
-    <div class="fr">
-      <label class="fl">日型適合（可多選）</label>
-      <div class="fit-checks">
-        <label class="fit-chk"><input type="checkbox" data-k="rest" checked><span>無運動日適合</span></label>
-        <label class="fit-chk"><input type="checkbox" data-k="cardio" checked><span>有氧日適合</span></label>
-        <label class="fit-chk"><input type="checkbox" data-k="strength" checked><span>重訓日適合</span></label>
-        <label class="fit-chk"><input type="checkbox" data-k="flex" checked><span>彈性日適合</span></label>
-      </div>
-    </div>
-    <div class="fg2" style="margin-top:4px">
-      <div class="fr"><label class="fl">訓前補給適合</label><select class="fs" id="f_pre"><option value="false">否</option><option value="true">是</option></select></div>
-      <div class="fr"><label class="fl">訓後補給適合</label><select class="fs" id="f_post"><option value="false">否</option><option value="true">是</option></select></div>
-    </div>
-    <div class="fr" style="margin-top:4px">
-      <label class="fl">晚餐適合</label>
-      <select class="fs" id="f_dinner_ok">
-        <option value="true">是（晚餐可選）</option>
-        <option value="false">否（晚餐不建議）</option>
-        <option value="">不適用（早餐/補給類）</option>
-      </select>
     </div>
   </div>
   <div class="sheet-footer">
@@ -744,7 +915,6 @@ border-radius:var(--rs);color:var(--red);font-family:inherit;font-size:13px;font
   <button class="tb-btn" id="tab-admin" onclick="switchTab('admin')"><span class="tb-icon">⚙️</span>食物管理</button>
 </div>
 
-<script src="foods.js"></script>
 <script>
 // ══════════════════════════════════════════════════════════
 //  WORKOUT CONFIG
@@ -757,30 +927,46 @@ const WCF = {
     tip:'中碳補充燃料。高加工食品降為次選，避免油炸。',
     avoidL:['油炸'], avoidD:['油炸'], str:false },
   strength:{ lbl:'重訓日',  cal:1400, cp:.45, pp:.35, fp:.20,
-    tip:'高碳高蛋白。中午嚴格排除精緻澱粉＋高脂；晚餐分訓前（18:00）與訓後（21:00）。',
+    tip:'高碳高蛋白。依課表時段分配三餐角色。',
+    // Evening (default / original logic)
     avoidL:['精緻澱粉','高脂','油炸'],
+    avoidD:['精緻澱粉','高脂','油炸'],
     avoidPre:['高脂','油炸'],
     avoidPost:['高脂','油炸'],
+    // Morning: breakfast acts as pre-workout (light), lunch acts as post-workout
+    avoidBF_morning:['高脂','油炸'],        // breakfast = pre: avoid fat/fried
+    avoidL_morning:['高脂','油炸'],          // lunch = post: avoid fat (same as post)
+    avoidD_morning:[],                       // dinner = normal, relaxed
+    // Afternoon: lunch acts as pre-workout, dinner acts as post-workout
+    avoidBF_afternoon:[],                    // breakfast = normal
+    avoidL_afternoon:['精緻澱粉','高脂','油炸'], // lunch = pre: strict
+    avoidD_afternoon:['高脂','油炸'],        // dinner = post: avoid fat
     str:true },
   flex:    { lbl:'彈性日',  cal:1400, cp:.40, pp:.30, fp:.30,
     tip:'彈性飲食。各類食物均可，油炸降為次選，注意總熱量與脂肪。',
     avoidL:['油炸'], avoidD:['油炸'], str:false },
 };
 
-// Load FOODS from foods.js
-let FOODS = Array.isArray(window.FOODS_DATA) ? [...FOODS_DATA] : [];
+// ══════════════════════════════════════════════════════════
+//  FOOD DATABASE — 完整版 v6，全數審查
+//  早餐：單品複選＋數量；午/晚/訓前/訓後：單選
+// ══════════════════════════════════════════════════════════
+// FOODS data loaded from foods.js
 
 // ══════════════════════════════════════════════════════════
 //  STATE
 // ══════════════════════════════════════════════════════════
 let S = {
   workout:null, calLimit:null,
-  breakfast:{}, bfConfirmed:false,
+  strengthTime:null,  // 'morning' | 'afternoon' | 'evening'
+  breakfast:{},   // {id:qty}
+  bfConfirmed:false,
   lunch:null, preworkout:null, postworkout:null, dinner:null,
-  exclCats:[], sheetSlot:null,
+  exclCats:[],
+  sheetSlot:null,
 };
 let adminFilter='全部';
-let sheetSubcat='全部';
+let sheetSubcat='全部';  // subcat filter within meal sheet
 
 // ══════════════════════════════════════════════════════════
 //  MACRO ENGINE
@@ -804,39 +990,65 @@ function getRem(){const t=getT();if(!t)return null;const m=getMacros();
   return{cal:t.cal-m.cal,carb:t.carb-m.carb,prot:t.prot-m.prot,fat:t.fat-m.fat};}
 
 // ══════════════════════════════════════════════════════════
-//  3-TIER SCORING
+//  3-TIER SCORING ENGINE
 // ══════════════════════════════════════════════════════════
 function score(food, slot){
   const rem=getRem(), t=getT(), m=getMacros();
   const cfg=WCF[S.workout];
-  const avoidKey = slot==='lunch'?'avoidL':slot==='dinner'?'avoidD':
-                   slot==='preworkout'?'avoidPre':slot==='postworkout'?'avoidPost':null;
+  const st=S.strengthTime; // 'morning'|'afternoon'|'evening'|null
+
+  // Determine avoidList based on slot AND strengthTime
+  let avoidKey;
+  if(S.workout==='strength' && st && st!=='evening'){
+    // Morning / Afternoon: no independent pre/postworkout slots
+    if(slot==='breakfast') avoidKey = st==='morning'?'avoidBF_morning':'avoidBF_afternoon';
+    else if(slot==='lunch') avoidKey = st==='morning'?'avoidL_morning':'avoidL_afternoon';
+    else if(slot==='dinner'||slot==='dinner_post') avoidKey = st==='morning'?'avoidD_morning':'avoidD_afternoon';
+    else avoidKey=null;
+  } else {
+    avoidKey = slot==='lunch'?'avoidL':slot==='dinner'?'avoidD':
+               slot==='preworkout'?'avoidPre':slot==='postworkout'?'avoidPost':null;
+  }
   const avoidList = avoidKey ? (cfg[avoidKey]||[]) : [];
 
+  // ── TIER 3: Hard排除 ──
   if(avoidList.includes(food.cat))            return{tier:3,reason:'此分類今日不建議',rc:'bad'};
   if(S.exclCats.includes(food.cat))           return{tier:3,reason:'已被前餐排除',rc:'bad'};
   if(rem && food.cal > rem.cal+150)           return{tier:3,reason:'熱量超出今日預算',rc:'bad'};
   if(rem && food.fat > rem.fat+10)            return{tier:3,reason:'脂肪超出今日上限',rc:'bad'};
 
-  if(slot==='preworkout'){
+  // ── Pre-workout rules (applies to: preworkout slot, morning breakfast, afternoon lunch) ──
+  const isPreSlot = slot==='preworkout' ||
+    (S.workout==='strength' && st==='morning' && slot==='breakfast') ||
+    (S.workout==='strength' && st==='afternoon' && slot==='lunch');
+
+  // ── Post-workout rules (applies to: postworkout slot, morning lunch, afternoon dinner_post) ──
+  const isPostSlot = slot==='postworkout' ||
+    (S.workout==='strength' && st==='morning' && slot==='lunch') ||
+    (S.workout==='strength' && st==='afternoon' && slot==='dinner_post');
+
+  if(isPreSlot){
     if(food.fl==='高')   return{tier:3,reason:'訓前高脂影響消化與表現',rc:'bad'};
-    if(!food.pre)        return{tier:3,reason:'標記為不適合訓前',rc:'bad'};
     if(food.fib==='高')  return{tier:2,reason:'高纖食物訓前有脹氣風險',rc:'warn'};
     if(food.proc==='高加工') return{tier:2,reason:'高加工，訓前次選',rc:'warn'};
-    return{tier:1,reason:'✓ 訓前理想補給',rc:'ok'};
+    if(food.sat==='高'&&food.fl==='低') return{tier:1,reason:'✓ 訓前理想：低脂易消化',rc:'ok'};
+    return{tier:1,reason:'✓ 適合訓前補給',rc:'ok'};
   }
-  if(slot==='postworkout'){
+
+  if(isPostSlot){
     if(food.fl==='高')   return{tier:3,reason:'訓後高脂影響蛋白吸收',rc:'bad'};
     if(food.pl==='低')   return{tier:3,reason:'訓後蛋白質不足，無法有效修復',rc:'bad'};
-    if(!food.post)       return{tier:3,reason:'標記為不適合訓後',rc:'bad'};
     if(food.fl==='中')   return{tier:2,reason:'脂肪偏中，訓後次選',rc:'warn'};
     if(food.proc==='高加工') return{tier:2,reason:'高加工，次選',rc:'warn'};
     if(food.pl==='高')   return{tier:1,reason:'✓ 高蛋白訓後補給',rc:'ok'};
     return{tier:1,reason:'✓ 訓後補給適合',rc:'ok'};
   }
-  if(slot==='dinner' && food.dinner_ok===false)
-    return{tier:3,reason:'此品項不建議作為晚餐',rc:'bad'};
 
+  // ── Dinner-specific: dinner_ok === false → Tier 3 ──
+  if((slot==='dinner'||slot==='dinner_post') && food.dinner_ok===false)
+    return{tier:3,reason:'此品項不建議作為晚餐（過重或過油）',rc:'bad'};
+
+  // ── 通用 Tier 2 警告 ──
   const warns=[];
   if(rem && food.fat > rem.fat*0.75)  warns.push('脂肪偏高');
   if(rem && food.carb > rem.carb*0.85) warns.push('碳水偏高');
@@ -844,6 +1056,7 @@ function score(food, slot){
   if(rem && food.cal > rem.cal*0.85)  warns.push('熱量偏高');
   if(warns.length) return{tier:2,reason:'⚠ '+warns.join('、')+' — 可吃但不優先',rc:'warn'};
 
+  // ── Tier 1 ──
   const bon=[];
   if(food.pl==='高' && t && m.prot<t.prot*0.5) bon.push('補充蛋白質');
   if(food.proc==='原型') bon.push('原型食物');
@@ -886,7 +1099,7 @@ function updateDash(){
 }
 
 // ══════════════════════════════════════════════════════════
-//  SHEET
+//  BOTTOM SHEET
 // ══════════════════════════════════════════════════════════
 function openSheet(){
   document.getElementById('sheetOverlay').classList.add('open');
@@ -897,16 +1110,43 @@ function closeSheet(){
   document.getElementById('sheetOverlay').classList.remove('open');
   document.getElementById('sheet').classList.remove('open');
   document.body.style.overflow='';
+  // Reset any swipe transform
   document.getElementById('sheet').style.transform='';
 }
+
+// ── Swipe-down to close sheet ──
 (function(){
-  let startY=0,isDragging=false;
+  let startY=0, isDragging=false;
   const sheet=document.getElementById('sheet');
-  sheet.addEventListener('touchstart',e=>{if(!sheet.classList.contains('open'))return;startY=e.touches[0].clientY;isDragging=true;},{passive:true});
-  sheet.addEventListener('touchmove',e=>{if(!isDragging)return;const dy=e.touches[0].clientY-startY;if(dy>0)sheet.style.transform=`translateX(-50%) translateY(${dy}px)`;},{passive:true});
-  sheet.addEventListener('touchend',e=>{if(!isDragging)return;isDragging=false;const dy=e.changedTouches[0].clientY-startY;if(dy>80)closeSheet();else sheet.style.transform='';},{passive:true});
+  const handle=()=>sheet.querySelector('.sheet-handle-bar');
+
+  sheet.addEventListener('touchstart',e=>{
+    if(!sheet.classList.contains('open')) return;
+    startY=e.touches[0].clientY;
+    isDragging=true;
+  },{passive:true});
+
+  sheet.addEventListener('touchmove',e=>{
+    if(!isDragging) return;
+    const dy=e.touches[0].clientY-startY;
+    if(dy>0){
+      sheet.style.transform=`translateX(-50%) translateY(${dy}px)`;
+    }
+  },{passive:true});
+
+  sheet.addEventListener('touchend',e=>{
+    if(!isDragging) return;
+    isDragging=false;
+    const dy=e.changedTouches[0].clientY-startY;
+    if(dy>80){
+      closeSheet();
+    } else {
+      sheet.style.transform='';
+    }
+  },{passive:true});
 })();
 
+// ── Macro remaining chips for sheet ──
 function renderSheetMacroRem(){
   const rem=getRem();
   const el=document.getElementById('sheetMacroRem');
@@ -919,96 +1159,150 @@ function renderSheetMacroRem(){
     <span class="smr-chip ${chipClass(rem.cal,80)}">熱量還剩 ${rem.cal} kcal</span>`;
 }
 
-// ── Breakfast ──
+// ── Breakfast Sheet ──
 function openBreakfastSheet(){
   S.sheetSlot='breakfast';
   document.getElementById('sheetTitle').textContent='選擇早餐（可複選）';
   renderSheetMacroRem();
   const cfg=WCF[S.workout];
-  document.getElementById('sheetTip').innerHTML=`<div class="tbox tbox-blue" style="margin-bottom:8px"><strong>${cfg.lbl}</strong>｜${cfg.tip}</div>`;
+  document.getElementById('sheetTip').innerHTML=
+    `<div class="tbox tbox-blue" style="margin-bottom:8px"><strong>${cfg.lbl}</strong>｜${cfg.tip}</div>`;
   document.getElementById('sheetFooter').style.display='block';
   document.getElementById('sheetConfirmBtn').disabled=false;
+
   const body=document.getElementById('sheetBody');
   body.innerHTML='';
   const foods=FOODS.filter(f=>{const m=Array.isArray(f.meal)?f.meal:[f.meal];return m.includes('早餐')&&f.fit.includes(S.workout);});
+
   foods.forEach(f=>{
-    const qty=S.breakfast[f.id]||0,sel=qty>0;
+    const qty=S.breakfast[f.id]||0, sel=qty>0;
     const chip=document.createElement('div');
-    chip.className=`bchip${sel?' sel':''}`;chip.id='bchip-'+f.id;
+    chip.className=`bchip${sel?' sel':''}`;
+    chip.id='bchip-'+f.id;
     const hasUnit=!!f.unit;
-    chip.innerHTML=`<div class="bchip-row">
-      <div class="bc-chk"></div><div class="bc-ico">${f.icon}</div>
-      <div class="bc-txt">
-        <div class="bc-name">${f.name}</div>
-        <div class="bc-sub" id="bcsub-${f.id}"><span style="font-family:'Space Mono',monospace;color:var(--warn)">${f.cal*(qty||1)} kcal</span> 碳${f.carb*(qty||1)}g 蛋白${f.prot*(qty||1)}g</div>
+    chip.innerHTML=`
+      <div class="bchip-row">
+        <div class="bc-chk"></div>
+        <div class="bc-ico">${f.icon}</div>
+        <div class="bc-txt">
+          <div class="bc-name">${f.name}</div>
+          <div class="bc-sub" id="bcsub-${f.id}"><span style="font-family:'Space Mono',monospace;color:var(--warn)">${f.cal*(qty||1)} kcal</span> 碳${f.carb*(qty||1)}g 蛋白${f.prot*(qty||1)}g</div>
+        </div>
+        ${hasUnit?`<div class="qty-wrap" onclick="event.stopPropagation()">
+          <button class="qty-m" onclick="adjQty('${f.id}',-1)">−</button>
+          <span class="qty-n" id="qv-${f.id}">${qty}</span>
+          <button class="qty-p" onclick="adjQty('${f.id}',1)">＋</button>
+        </div>`:''}
+        <div class="bc-exp" id="bce-${f.id}" onclick="toggleBDetail(event,'${f.id}')">∨</div>
       </div>
-      ${hasUnit?`<div class="qty-wrap" onclick="event.stopPropagation()"><button class="qty-m" onclick="adjQty('${f.id}',-1)">−</button><span class="qty-n" id="qv-${f.id}">${qty}</span><button class="qty-p" onclick="adjQty('${f.id}',1)">＋</button></div>`:''}
-      <div class="bc-exp" id="bce-${f.id}" onclick="toggleBDetail(event,'${f.id}')">∨</div>
-    </div>
-    <div class="bchip-detail" id="bcd-${f.id}"><div class="bchip-detail-inner">${f.note||''}</div></div>`;
-    if(hasUnit){chip.querySelector('.bc-txt').onclick=()=>{if(!S.breakfast[f.id])adjQty(f.id,1);};}
-    else{chip.querySelector('.bchip-row').onclick=(e)=>{if(e.target.closest('.bc-exp'))return;toggleBItem(f.id);};}
+      <div class="bchip-detail" id="bcd-${f.id}">
+        <div class="bchip-detail-inner">${f.note||''}</div>
+      </div>`;
+    if(hasUnit){
+      chip.querySelector('.bc-txt').onclick=()=>{if(!S.breakfast[f.id])adjQty(f.id,1);};
+    } else {
+      chip.querySelector('.bchip-row').onclick=(e)=>{
+        if(e.target.closest('.bc-exp'))return; toggleBItem(f.id);
+      };
+    }
     body.appendChild(chip);
   });
   openSheet();
 }
+
 function toggleBDetail(e,id){
   e.stopPropagation();
   const d=document.getElementById('bcd-'+id),a=document.getElementById('bce-'+id);
-  const o=d.classList.contains('open');d.classList.toggle('open',!o);a.classList.toggle('open',!o);
+  const o=d.classList.contains('open');
+  d.classList.toggle('open',!o); a.classList.toggle('open',!o);
 }
+
 function adjQty(id,delta){
-  const f=FOODS.find(x=>x.id===id);if(!f)return;
-  const cur=S.breakfast[id]||0,next=Math.max(0,cur+delta);
-  if(next===0)delete S.breakfast[id];else S.breakfast[id]=next;
+  // No re-render — only update existing DOM elements
+  const f=FOODS.find(x=>x.id===id); if(!f) return;
+  const cur=S.breakfast[id]||0, next=Math.max(0,cur+delta);
+  if(next===0) delete S.breakfast[id]; else S.breakfast[id]=next;
+
   const chip=document.getElementById('bchip-'+id);
-  if(chip)chip.classList.toggle('sel',next>0);
+  if(chip) chip.classList.toggle('sel',next>0);
   const qvEl=document.getElementById('qv-'+id);
-  if(qvEl)qvEl.textContent=next;
+  if(qvEl) qvEl.textContent=next;
   const subEl=document.getElementById('bcsub-'+id);
-  if(subEl)subEl.innerHTML=`<span style="font-family:'Space Mono',monospace;color:var(--warn)">${f.cal*(next||1)} kcal</span> 碳${f.carb*(next||1)}g 蛋白${f.prot*(next||1)}g`;
+  if(subEl) subEl.innerHTML=`<span style="font-family:'Space Mono',monospace;color:var(--warn)">${f.cal*(next||1)} kcal</span> 碳${f.carb*(next||1)}g 蛋白${f.prot*(next||1)}g`;
+
+  // Update confirm btn
   document.getElementById('sheetConfirmBtn').disabled=false;
-  renderSheetMacroRem();updateDash();updateBFButton();
+  renderSheetMacroRem();
+  updateDash();
+  updateBFButton();
 }
+
 function toggleBItem(id){
-  if(S.breakfast[id])delete S.breakfast[id];else S.breakfast[id]=1;
+  if(S.breakfast[id]) delete S.breakfast[id]; else S.breakfast[id]=1;
   const chip=document.getElementById('bchip-'+id);
-  if(chip)chip.classList.toggle('sel',!!S.breakfast[id]);
+  if(chip) chip.classList.toggle('sel',!!S.breakfast[id]);
   document.getElementById('sheetConfirmBtn').disabled=false;
-  renderSheetMacroRem();updateDash();updateBFButton();
+  renderSheetMacroRem(); updateDash(); updateBFButton();
 }
+
 function confirmBreakfast(){
-  S.bfConfirmed=true;rebuildExcl();closeSheet();
-  updateBFButton();unlockLunch();updateDash();
-  showToast(Object.keys(S.breakfast).length===0?'已略過早餐 ✓':'早餐確認 ✓');
-  setTimeout(()=>{document.getElementById('btnLunch').scrollIntoView({behavior:'smooth',block:'center'});},350);
+  S.bfConfirmed=true; rebuildExcl(); closeSheet();
+  updateBFButton(); unlockLunch(); updateDash();
+  const isEmpty=Object.keys(S.breakfast).length===0;
+  showToast(isEmpty?'已略過早餐 ✓':'早餐確認 ✓');
+  setTimeout(()=>{
+    document.getElementById('btnLunch').scrollIntoView({behavior:'smooth',block:'center'});
+  }, 350);
 }
+
 function updateBFButton(){
   const ids=Object.keys(S.breakfast);
   const btn=document.getElementById('btnBreakfast');
-  if(!S.bfConfirmed){btn.classList.remove('filled');document.getElementById('bfName').textContent='點此選擇早餐';document.getElementById('bfCal').textContent='';return;}
-  if(!ids.length){btn.classList.add('filled');document.getElementById('bfName').textContent='略過早餐';document.getElementById('bfCal').textContent='0 kcal';return;}
+  const nameEl=document.getElementById('bfName');
+  const calEl=document.getElementById('bfCal');
+  if(!S.bfConfirmed){
+    btn.classList.remove('filled');
+    nameEl.textContent='點此選擇早餐'; calEl.textContent=''; return;
+  }
+  if(!ids.length){
+    btn.classList.add('filled');
+    nameEl.textContent='略過早餐'; calEl.textContent='0 kcal'; return;
+  }
   let cal=0;
-  const names=ids.map(id=>{const f=FOODS.find(x=>x.id===id),q=S.breakfast[id];if(!f)return'';cal+=f.cal*q;return f.icon+f.name+(q>1?' ×'+q:'');}).filter(Boolean).join('、');
-  btn.classList.add('filled');document.getElementById('bfName').textContent=names;document.getElementById('bfCal').textContent=`${cal} kcal`;
+  const names=ids.map(id=>{const f=FOODS.find(x=>x.id===id),q=S.breakfast[id];
+    if(!f)return''; cal+=f.cal*q; return f.icon+f.name+(q>1?' ×'+q:'');}).filter(Boolean).join('、');
+  btn.classList.add('filled');
+  nameEl.textContent=names; calEl.textContent=`${cal} kcal`;
 }
 
-// ── Meal Sheet ──
+// ── Meal Sheet (午/晚/訓前/訓後) ──
 function openMealSheet(slot){
   S.sheetSlot=slot;
-  const slotTitles={lunch:'選擇午餐',dinner:'選擇晚餐',preworkout:'訓前補給（18:00–18:30）',postworkout:'訓後補給（21:00–22:00）'};
+  const st=S.strengthTime;
+  const preLabel=st==='morning'?'早餐（訓前輕食 09:00）':st==='afternoon'?'午餐（訓前輕食）':'訓前補給（19:00 前）';
+  const postLabel=st==='morning'?'午餐（訓後補給）':st==='afternoon'?'晚餐（訓後補給）':'訓後補給（21:00–22:00）';
+  const slotTitles={
+    lunch: st==='morning'?'午餐（訓後補給）':st==='afternoon'?'午餐（訓前輕食）':'選擇午餐',
+    dinner:'選擇晚餐',
+    dinner_post:'晚餐（訓後補給）',
+    preworkout:preLabel,
+    postworkout:postLabel,
+  };
   document.getElementById('sheetTitle').textContent=slotTitles[slot]||'選擇餐點';
   document.getElementById('sheetFooter').style.display='none';
   renderSheetMacroRem();
-  sheetSubcat='全部';
-  const cfg=WCF[S.workout];
-  let tipClass='tbox-blue',tipContent=`<strong>${cfg.lbl}</strong>｜${cfg.tip}`;
-  if(slot==='preworkout'){tipClass='tbox-purple';tipContent='<strong>⚡ 訓前60–90分鐘</strong>｜選擇易消化、低脂、適量碳水的食物，避免高脂與高纖。';}
-  if(slot==='postworkout'){tipClass='tbox-green';tipContent='<strong>💪 訓後30–90分鐘</strong>｜補充高蛋白修復肌肉，搭配少量碳水補肝醣，嚴禁高脂。';}
-  document.getElementById('sheetTip').innerHTML=`<div class="tbox ${tipClass}" style="margin-bottom:8px">${tipContent}</div>`;
+  sheetSubcat='全部';  // reset subcat filter on open
 
-  const mealTypeMap={lunch:'午餐',dinner:'晚餐',preworkout:'訓前補給',postworkout:'訓後補給'};
+  const cfg=WCF[S.workout];
+  let tipClass='tbox-blue', tipContent=`<strong>${cfg.lbl}</strong>｜${cfg.tip}`;
+  if(slot==='preworkout'){tipClass='tbox-purple'; tipContent='<strong>⚡ 訓前60–90分鐘</strong>｜選擇易消化、低脂、適量碳水的食物，避免高脂與高纖。';}
+  if(slot==='postworkout'){tipClass='tbox-green'; tipContent='<strong>💪 訓後30–90分鐘</strong>｜補充高蛋白修復肌肉，搭配少量碳水補肝醣，嚴禁高脂。';}
+  document.getElementById('sheetTip').innerHTML=
+    `<div class="tbox ${tipClass}" style="margin-bottom:8px">${tipContent}</div>`;
+
+  const mealTypeMap={lunch:'午餐',dinner:'晚餐',dinner_post:'晚餐',preworkout:'訓前補給',postworkout:'訓後補給'};
   const mealType=mealTypeMap[slot];
+
   const foods=FOODS
     .filter(f=>{const m=Array.isArray(f.meal)?f.meal:[f.meal];return m.includes(mealType)&&f.fit.includes(S.workout);})
     .map(f=>({...f,sc:score(f,slot)}))
@@ -1016,107 +1310,229 @@ function openMealSheet(slot){
 
   const body=document.getElementById('sheetBody');
   body.innerHTML='';
-  const hasSubcats=['lunch','dinner'].includes(slot);
 
+  // ── Subcat filter bar (only for lunch/dinner slots) ──
+  const hasSubcats=['lunch','dinner'].includes(slot);
   if(hasSubcats){
     const subcats=['全部','飯','麵','其他'];
-    const bar=document.createElement('div');bar.className='subcat-bar';
+    const bar=document.createElement('div');
+    bar.className='subcat-bar';
     subcats.forEach(sc=>{
       const pill=document.createElement('div');
       pill.className='subcat-pill'+(sheetSubcat===sc?' active':'');
-      const cnt=sc==='全部'?foods.length:foods.filter(f=>f.subcat===sc).length;
-      pill.textContent=sc==='全部'?`全部 (${cnt})`:sc==='飯'?'🍚 飯':sc==='麵'?'🍜 麵':'🥗 其他';
-      pill.onclick=()=>{sheetSubcat=sc;bar.querySelectorAll('.subcat-pill').forEach(p=>p.classList.remove('active'));pill.classList.add('active');renderMealCards(body,filteredBySubcat(foods,sc),slot);};
+      pill.textContent=sc==='全部'?'全部':'🍚 飯'===`🍚 ${sc}`?'🍚 飯':sc==='麵'?'🍜 麵':'🥗 其他';
+      pill.textContent = sc==='全部'?'全部 ('+foods.length+')':
+        sc==='飯'?'🍚 飯':sc==='麵'?'🍜 麵':'🥗 其他';
+      pill.onclick=()=>{
+        sheetSubcat=sc;
+        bar.querySelectorAll('.subcat-pill').forEach(p=>p.classList.remove('active'));
+        pill.classList.add('active');
+        renderMealCards(body,filteredBySubcat(foods,sc),slot);
+      };
       bar.appendChild(pill);
     });
     body.appendChild(bar);
-    renderMealCards(body,filteredBySubcat(foods,sheetSubcat),slot);
-  } else {
-    renderMealCards(body,foods,slot);
   }
-  openSheet();
-}
 
-function filteredBySubcat(list,sc){return sc==='全部'?list:list.filter(f=>f.subcat===sc);}
+  function filteredBySubcat(list,sc){
+    if(sc==='全部') return list;
+    return list.filter(f=>f.subcat===sc);
+  }
 
-function renderMealCards(container,foodList,slot){
-  const bar=container.querySelector('.subcat-bar');
-  container.innerHTML='';if(bar)container.appendChild(bar);
+  function renderMealCards(container, foodList, slotName){
+    // Remove existing cards (keep subcat bar)
+    const bar=container.querySelector('.subcat-bar');
+    container.innerHTML='';
+    if(bar) container.appendChild(bar);
+
+    const tiers2=[{t:1,lbl:'⭐ 推薦'},{t:2,lbl:'🟡 可吃，但不優先'},{t:3,lbl:'🔴 不建議'}];
+    tiers2.forEach(({t,lbl})=>{
+      const grp=foodList.filter(f=>f.sc.tier===t);
+      if(!grp.length) return;
+      const lEl=document.createElement('div');
+      lEl.className='tier-label';
+      container.appendChild(lEl);
+      if(t===3){
+        let t3open=false;
+        const t3wrap=document.createElement('div');
+        t3wrap.style.display='none';
+        lEl.style.cursor='pointer';
+        const setLbl=()=>{lEl.textContent=lbl+(t3open?' (收合)':' — 點擊展開 '+grp.length+' 項');};
+        setLbl();
+        lEl.onclick=()=>{t3open=!t3open;t3wrap.style.display=t3open?'':'none';setLbl();};
+        grp.forEach(f=>{
+          const card=document.createElement('div');
+          card.className='mcard tier3'; card.id='mc2-'+f.id;
+          card.innerHTML='<div class="mcard-top"><div class="mc-ico">'+f.icon+'</div><div class="mc-main"><div class="mc-name">'+f.name+'<span class="tbadge tb3">不建議</span></div><div class="mc-cal">'+f.cal+' kcal</div><div class="mc-reason bad">'+f.sc.reason+'</div></div></div>';
+          t3wrap.appendChild(card);
+        });
+        container.appendChild(t3wrap);
+        return;
+      }
+      lEl.textContent=lbl;
+      grp.forEach(f=>{
+        const slotKey2={lunch:'lunch',dinner:'dinner',preworkout:'preworkout',postworkout:'postworkout'}[slotName];
+        const curSel2=slotKey2 && S[slotKey2]?.id===f.id;
+        const card=document.createElement('div');
+        card.className=`mcard${curSel2?' sel':''}${t===2?' tier2':''}`;
+        card.id='mc2-'+f.id;
+        card.innerHTML=`<div class="mcard-top">
+          <div class="mc-ico">${f.icon}</div>
+          <div class="mc-main">
+            <div class="mc-name">${f.name}${t===2?'<span class="tbadge tb2">次選</span>':''}</div>
+            <div class="mc-cal">${f.cal} kcal</div>
+            <div class="mc-reason ${f.sc.rc}">${f.sc.reason}</div>
+          </div>
+          <div class="mc-right">
+            <div class="mc-exp" id="mce2-${f.id}" onclick="toggleMcDetail2(event,'${f.id}')">∨</div>
+            <div class="mc-chk"></div>
+          </div></div>
+        <div class="mc-detail" id="mcd2-${f.id}">
+          <div class="mc-detail-inner">
+            <div class="mc-tags">
+              <span class="mc-tag">${f.cat}</span>
+              <span class="mc-tag">${f.proc}</span>
+              <span class="mc-tag">飽足${f.sat}</span>
+              <span class="mc-tag">蛋白${f.pl}</span>
+              <span class="mc-tag">脂肪${f.fl}</span>
+            </div>
+            <div class="mc-macro">碳水 ${f.carb}g ／ 蛋白 ${f.prot}g ／ 脂肪 ${f.fat}g</div>
+            ${f.note?`<div class="mc-note">${f.note}</div>`:''}
+          </div></div>`;
+        if(t<3){
+          card.querySelector('.mcard-top').onclick=(e)=>{
+            if(e.target.closest('.mc-exp'))return; pickMeal(f,slotName);
+          };
+        }
+        container.appendChild(card);
+      });
+    });
+    if(!foodList.length){
+      const em=document.createElement('div');
+      em.className='empty-s'; em.textContent='此分類目前無符合品項';
+      container.appendChild(em);
+    }
+  }
+
+  if(hasSubcats){
+    renderMealCards(body, filteredBySubcat(foods, sheetSubcat), slot);
+  } else {
   const tiers=[{t:1,lbl:'⭐ 推薦'},{t:2,lbl:'🟡 可吃，但不優先'},{t:3,lbl:'🔴 不建議'}];
   tiers.forEach(({t,lbl})=>{
-    const grp=foodList.filter(f=>f.sc.tier===t);if(!grp.length)return;
-    const lEl=document.createElement('div');lEl.className='tier-label';container.appendChild(lEl);
+    const grp=foods.filter(f=>f.sc.tier===t);
+    if(!grp.length) return;
+    const lEl=document.createElement('div');
+    lEl.className='tier-label';
+    body.appendChild(lEl);
     if(t===3){
-      let t3open=false;const t3wrap=document.createElement('div');t3wrap.style.display='none';
+      let t3open=false;
+      const t3wrap=document.createElement('div');
+      t3wrap.style.display='none';
       lEl.style.cursor='pointer';
-      const setLbl=()=>{lEl.textContent=lbl+(t3open?' (收合)':' — 點擊展開 '+grp.length+' 項');};setLbl();
+      const setLbl=()=>{lEl.textContent=lbl+(t3open?' (收合)':' — 點擊展開 '+grp.length+' 項');};
+      setLbl();
       lEl.onclick=()=>{t3open=!t3open;t3wrap.style.display=t3open?'':'none';setLbl();};
       grp.forEach(f=>{
-        const card=document.createElement('div');card.className='mcard tier3';
-        card.innerHTML=`<div class="mcard-top"><div class="mc-ico">${f.icon}</div><div class="mc-main"><div class="mc-name">${f.name}<span class="tbadge tb3">不建議</span></div><div class="mc-cal">${f.cal} kcal</div><div class="mc-reason bad">${f.sc.reason}</div></div></div>`;
+        const card=document.createElement('div');
+        card.className='mcard tier3'; card.id='mc-'+f.id;
+        card.innerHTML='<div class="mcard-top"><div class="mc-ico">'+f.icon+'</div><div class="mc-main"><div class="mc-name">'+f.name+'<span class="tbadge tb3">不建議</span></div><div class="mc-cal">'+f.cal+' kcal</div><div class="mc-reason bad">'+f.sc.reason+'</div></div></div>';
         t3wrap.appendChild(card);
       });
-      container.appendChild(t3wrap);return;
+      body.appendChild(t3wrap);
+      return;
     }
     lEl.textContent=lbl;
     grp.forEach(f=>{
+      // Only highlight if selected in THIS slot (not cross-slot contamination)
       const slotKey={lunch:'lunch',dinner:'dinner',preworkout:'preworkout',postworkout:'postworkout'}[slot];
-      const curSel=slotKey&&S[slotKey]?.id===f.id;
+      const curSel = slotKey && S[slotKey]?.id === f.id;
       const card=document.createElement('div');
-      card.className=`mcard${curSel?' sel':''}${t===2?' tier2':''}`;
-      card.id='mc-'+f.id+'-'+slot;
-      card.innerHTML=`<div class="mcard-top">
-        <div class="mc-ico">${f.icon}</div>
-        <div class="mc-main">
-          <div class="mc-name">${f.name}${t===2?'<span class="tbadge tb2">次選</span>':''}</div>
-          <div class="mc-cal">${f.cal} kcal</div>
-          <div class="mc-reason ${f.sc.rc}">${f.sc.reason}</div>
+      card.className=`mcard${curSel?' sel':''}${t===2?' tier2':t===3?' tier3':''}`;
+      card.id='mc-'+f.id;
+      card.innerHTML=`
+        <div class="mcard-top">
+          <div class="mc-ico">${f.icon}</div>
+          <div class="mc-main">
+            <div class="mc-name">${f.name}${t===2?'<span class="tbadge tb2">次選</span>':t===3?'<span class="tbadge tb3">不建議</span>':''}</div>
+            <div class="mc-cal">${f.cal} kcal</div>
+            <div class="mc-reason ${f.sc.rc}">${f.sc.reason}</div>
+          </div>
+          <div class="mc-right">
+            <div class="mc-exp" id="mce-${f.id}" onclick="toggleMcDetail(event,'${f.id}')">∨</div>
+            <div class="mc-chk"></div>
+          </div>
         </div>
-        <div class="mc-right">
-          <div class="mc-exp" onclick="toggleMcDetail(event,'${f.id}','${slot}')">∨</div>
-          <div class="mc-chk"></div>
-        </div></div>
-      <div class="mc-detail" id="mcd-${f.id}-${slot}">
-        <div class="mc-detail-inner">
-          <div class="mc-tags"><span class="mc-tag">${f.cat}</span><span class="mc-tag">${f.proc}</span><span class="mc-tag">飽足${f.sat}</span><span class="mc-tag">蛋白${f.pl}</span><span class="mc-tag">脂肪${f.fl}</span></div>
-          <div class="mc-macro">碳水 ${f.carb}g ／ 蛋白 ${f.prot}g ／ 脂肪 ${f.fat}g</div>
-          ${f.note?`<div class="mc-note">${f.note}</div>`:''}
-        </div></div>`;
-      card.querySelector('.mcard-top').onclick=(e)=>{if(e.target.closest('.mc-exp'))return;pickMeal(f,slot);};
-      container.appendChild(card);
+        <div class="mc-detail" id="mcd-${f.id}">
+          <div class="mc-detail-inner">
+            <div class="mc-tags">
+              <span class="mc-tag">${f.cat}</span>
+              <span class="mc-tag">${f.proc}</span>
+              <span class="mc-tag">飽足${f.sat}</span>
+              <span class="mc-tag">蛋白${f.pl}</span>
+              <span class="mc-tag">脂肪${f.fl}</span>
+            </div>
+            <div class="mc-macro">碳水 ${f.carb}g ／ 蛋白 ${f.prot}g ／ 脂肪 ${f.fat}g</div>
+            ${f.note?`<div class="mc-note">${f.note}</div>`:''}
+          </div>
+        </div>`;
+      if(t<3){
+        card.querySelector('.mcard-top').onclick=(e)=>{
+          if(e.target.closest('.mc-exp'))return; pickMeal(f,slot);
+        };
+      }
+      body.appendChild(card);
     });
   });
-  if(!foodList.length){const em=document.createElement('div');em.className='empty-s';em.textContent='此分類目前無符合品項';container.appendChild(em);}
+  } // end else (non-subcat path)
+  openSheet();
 }
 
-function toggleMcDetail(e,id,slot){
+function toggleMcDetail2(e,id){
   e.stopPropagation();
-  const d=document.getElementById(`mcd-${id}-${slot}`);
-  if(!d)return;
-  const exp=e.target.closest('.mc-exp');
+  const d=document.getElementById('mcd2-'+id),a=document.getElementById('mce2-'+id);
+  if(!d||!a) return;
   const o=d.classList.contains('open');
-  d.classList.toggle('open',!o);if(exp)exp.classList.toggle('open',!o);
+  d.classList.toggle('open',!o); a.classList.toggle('open',!o);
+}
+
+function toggleMcDetail(e,id){
+  e.stopPropagation();
+  const d=document.getElementById('mcd-'+id),a=document.getElementById('mce-'+id);
+  const o=d.classList.contains('open');
+  d.classList.toggle('open',!o); a.classList.toggle('open',!o);
 }
 
 function pickMeal(food,slot){
   const key={lunch:'lunch',preworkout:'preworkout',postworkout:'postworkout',dinner:'dinner'}[slot];
-  S[key]=food;rebuildExcl();closeSheet();
-  updateMealButton(slot);updateDash();
+  S[key]=food; rebuildExcl(); closeSheet();
+  updateMealButton(slot); updateDash();
+  // Unlock next step
   if(slot==='lunch'){
     if(WCF[S.workout].str){
+      // Unlock preworkout
       document.getElementById('dinnerLabel').textContent='訓前補給（18:00–18:30）';
       document.getElementById('btnDinner').onclick=()=>openMealSheet('preworkout');
       document.getElementById('btnDinner').classList.remove('locked');
       document.getElementById('postWrap').style.display='block';
-    } else {document.getElementById('btnDinner').classList.remove('locked');}
+    } else {
+      document.getElementById('btnDinner').classList.remove('locked');
+    }
   } else if(slot==='preworkout'){
     document.getElementById('btnPost').classList.remove('locked');
-  } else if(slot==='dinner'||slot==='postworkout'){checkComplete();}
+  } else if(slot==='dinner'||slot==='postworkout'){
+    checkComplete();
+  }
+  // Scroll to next unlocked button after a brief delay
   setTimeout(()=>{
-    if(slot==='lunch')document.getElementById('btnDinner').scrollIntoView({behavior:'smooth',block:'center'});
-    else if(slot==='preworkout')document.getElementById('btnPost').scrollIntoView({behavior:'smooth',block:'center'});
-    else document.getElementById('summarySection').scrollIntoView({behavior:'smooth',block:'start'});
-  },350);
+    if(slot==='lunch'){
+      const next=WCF[S.workout].str?'btnDinner':'btnDinner';
+      document.getElementById(next).scrollIntoView({behavior:'smooth',block:'center'});
+    } else if(slot==='preworkout'){
+      document.getElementById('btnPost').scrollIntoView({behavior:'smooth',block:'center'});
+    } else if(slot==='dinner'||slot==='postworkout'){
+      document.getElementById('summarySection').scrollIntoView({behavior:'smooth',block:'start'});
+    }
+  }, 350);
 }
 
 function updateMealButton(slot){
@@ -1138,87 +1554,219 @@ function updateMealButton(slot){
 
 function checkComplete(){
   const cfg=WCF[S.workout];
-  const done=cfg.str?(S.lunch&&S.preworkout&&S.postworkout):(S.lunch&&S.dinner);
-  if(done)renderSummary();
+  const pst=S.strengthTime;
+  let done;
+  if(!cfg.str){
+    done = S.lunch && S.dinner;
+  } else if(pst==='evening'){
+    done = S.lunch && S.preworkout && S.postworkout;
+  } else if(pst==='morning'){
+    // breakfast(pre) + lunch(post) + dinner = complete
+    done = S.bfConfirmed && S.lunch && S.dinner;
+  } else if(pst==='afternoon'){
+    // breakfast + lunch(pre) + dinner(post) = complete
+    done = S.bfConfirmed && S.lunch && S.dinner;
+  } else {
+    done = S.lunch && S.dinner;
+  }
+  if(done) renderSummary();
 }
 
 // ══════════════════════════════════════════════════════════
 //  WORKOUT SELECT
 // ══════════════════════════════════════════════════════════
 function selWorkout(type){
-  S={workout:type,calLimit:WCF[type].cal,breakfast:{},bfConfirmed:false,
+  // For strength, show time-slot picker first
+  if(type==='strength'){
+    // Highlight pill immediately for feedback, then ask time
+    document.querySelectorAll('.pill').forEach(p=>p.classList.remove('sel'));
+  const tbEl=document.getElementById('strengthTimeBadge');
+  if(tbEl){tbEl.textContent='';tbEl.style.display='none';}
+  // Reset meal button labels
+  ['btnBreakfast','btnLunch'].forEach(id=>{
+    const btn=document.getElementById(id);
+    if(!btn) return;
+    const lbl=btn.querySelector('.mob-label');
+    if(lbl) lbl.textContent=id==='btnBreakfast'?'早餐（可複選）':'午餐';
+  });
+    document.getElementById('wo-strength').classList.add('sel');
+    openTimeSlotPicker();
+    return;
+  }
+  applyWorkout(type, null);
+}
+
+function openTimeSlotPicker(){
+  document.getElementById('timeSlotOverlay').classList.add('open');
+  document.getElementById('timeSlotSheet').classList.add('open');
+  document.body.style.overflow='hidden';
+}
+
+function closeTimeSlot(){
+  document.getElementById('timeSlotOverlay').classList.remove('open');
+  document.getElementById('timeSlotSheet').classList.remove('open');
+  document.body.style.overflow='';
+}
+
+function confirmTimeSlot(timeSlot){
+  closeTimeSlot();
+  applyWorkout('strength', timeSlot);
+}
+
+function applyWorkout(type, strengthTime){
+  S={workout:type,calLimit:WCF[type].cal,strengthTime:strengthTime,
+     breakfast:{},bfConfirmed:false,
      lunch:null,preworkout:null,postworkout:null,dinner:null,exclCats:[],sheetSlot:null};
+
   document.querySelectorAll('.pill').forEach(p=>p.classList.remove('sel'));
   document.getElementById('wo-'+type).classList.add('sel');
+
+  // Show time badge on strength pill if applicable
+  const timeBadgeEl=document.getElementById('strengthTimeBadge');
+  if(timeBadgeEl){
+    const labels={morning:'早上班 09:00–12:00',afternoon:'下午班 13:00–17:00',evening:'晚上班 19:00–21:00'};
+    timeBadgeEl.textContent=strengthTime?'📍 '+labels[strengthTime]:'';
+    timeBadgeEl.style.display=strengthTime?'block':'none';
+  }
+
   document.getElementById('calInputRow').style.display='flex';
   document.getElementById('calLimitInp').value=S.calLimit;
+
+  // Show meal section
   document.getElementById('mealSection').classList.remove('locked');
-  document.getElementById('s2n').classList.add('active');document.getElementById('s2lbl').classList.add('active');
-  document.getElementById('s1n').classList.remove('active');document.getElementById('s1n').classList.add('done');document.getElementById('s1n').textContent='✓';
+  document.getElementById('s2n').classList.add('active');
+  document.getElementById('s2lbl').classList.add('active');
+  document.getElementById('s1n').classList.remove('active');
+  document.getElementById('s1n').classList.add('done');
+  document.getElementById('s1n').textContent='✓';
+
+  // Reset meal buttons
   document.getElementById('btnBreakfast').classList.remove('filled');
-  document.getElementById('bfName').textContent='點此選擇早餐';document.getElementById('bfCal').textContent='';
-  document.getElementById('btnLunch').classList.add('locked');document.getElementById('btnLunch').classList.remove('filled');
-  document.getElementById('lunchName').textContent='請先完成早餐';document.getElementById('lunchCal').textContent='';
-  document.getElementById('btnDinner').classList.add('locked');document.getElementById('btnDinner').classList.remove('filled');
+  document.getElementById('bfName').textContent='點此選擇早餐';
+  document.getElementById('bfCal').textContent='';
+
+  document.getElementById('btnLunch').classList.add('locked');
+  document.getElementById('lunchName').textContent='請先完成早餐';
+  document.getElementById('lunchCal').textContent='';
+  document.getElementById('btnLunch').classList.remove('filled');
+
+  document.getElementById('btnDinner').classList.add('locked');
+  document.getElementById('btnDinner').classList.remove('filled');
+
   if(WCF[type].str){
-    document.getElementById('dinnerLabel').textContent='訓前補給（18:00–18:30）';
-    document.getElementById('btnDinner').onclick=()=>openMealSheet('preworkout');
-    document.getElementById('dinnerName').textContent='請先完成午餐';document.getElementById('dinnerCal').textContent='';
-    document.getElementById('postWrap').style.display='block';
-    document.getElementById('btnPost').classList.add('locked');document.getElementById('btnPost').classList.remove('filled');
-    document.getElementById('postName').textContent='請先完成訓前補給';document.getElementById('postCal').textContent='';
+    const st=strengthTime;
+    if(st==='evening'){
+      // Original evening logic: preworkout + postworkout slots
+      document.getElementById('dinnerLabel').textContent='訓前補給（19:00 前）';
+      document.getElementById('btnDinner').onclick=()=>openMealSheet('preworkout');
+      document.getElementById('dinnerName').textContent='請先完成午餐';
+      document.getElementById('dinnerCal').textContent='';
+      document.getElementById('postWrap').style.display='block';
+      document.getElementById('btnPost').classList.add('locked');
+      document.getElementById('postName').textContent='請先完成訓前補給';
+      document.getElementById('postCal').textContent='';
+      document.getElementById('btnPost').classList.remove('filled');
+    } else if(st==='morning'){
+      // Morning: breakfast=pre, lunch=post, dinner=normal
+      document.getElementById('dinnerLabel').textContent='晚餐';
+      document.getElementById('btnDinner').onclick=()=>openMealSheet('dinner');
+      document.getElementById('dinnerName').textContent='請先完成午餐';
+      document.getElementById('dinnerCal').textContent='';
+      document.getElementById('postWrap').style.display='none';
+      // Relabel meal buttons to reflect role
+      document.getElementById('btnBreakfast').querySelector('.mob-label').textContent='早餐（訓前輕食）';
+      document.getElementById('btnLunch').querySelector('.mob-label').textContent='午餐（訓後補給）';
+    } else if(st==='afternoon'){
+      // Afternoon: breakfast=normal, lunch=pre, dinner=post
+      document.getElementById('dinnerLabel').textContent='晚餐（訓後補給）';
+      document.getElementById('btnDinner').onclick=()=>openMealSheet('dinner_post');
+      document.getElementById('dinnerName').textContent='請先完成午餐';
+      document.getElementById('dinnerCal').textContent='';
+      document.getElementById('postWrap').style.display='none';
+      document.getElementById('btnLunch').querySelector('.mob-label').textContent='午餐（訓前輕食）';
+    }
   } else {
+    // Non-strength: reset labels
+    document.getElementById('btnBreakfast').querySelector('.mob-label').textContent='早餐（可複選）';
+    document.getElementById('btnLunch').querySelector('.mob-label').textContent='午餐';
     document.getElementById('dinnerLabel').textContent='晚餐';
     document.getElementById('btnDinner').onclick=()=>openMealSheet('dinner');
-    document.getElementById('dinnerName').textContent='請先完成午餐';document.getElementById('dinnerCal').textContent='';
+    document.getElementById('dinnerName').textContent='請先完成午餐';
+    document.getElementById('dinnerCal').textContent='';
     document.getElementById('postWrap').style.display='none';
   }
+
   document.getElementById('summarySection').style.display='none';
   updateDash();
-  setTimeout(()=>{document.getElementById('mealSection').scrollIntoView({behavior:'smooth',block:'start'});},120);
+  // Auto-scroll to meal section
+  setTimeout(()=>{
+    document.getElementById('mealSection').scrollIntoView({behavior:'smooth',block:'start'});
+  }, 120);
 }
-function unlockLunch(){document.getElementById('btnLunch').classList.remove('locked');}
+
+function unlockLunch(){
+  document.getElementById('btnLunch').classList.remove('locked');
+}
+
 function clearBreakfast(){
-  S.breakfast={};S.bfConfirmed=false;updateBFButton();
-  document.getElementById('btnLunch').classList.add('locked');document.getElementById('btnLunch').classList.remove('filled');
-  document.getElementById('lunchName').textContent='請先完成早餐';document.getElementById('lunchCal').textContent='';
-  S.lunch=null;clearMeal('dinner');clearMeal('postworkout');
-  document.getElementById('summarySection').style.display='none';updateDash();showToast('已清除早餐');
+  S.breakfast={}; S.bfConfirmed=false;
+  updateBFButton();
+  // Re-lock lunch and below
+  document.getElementById('btnLunch').classList.add('locked');
+  document.getElementById('btnLunch').classList.remove('filled');
+  document.getElementById('lunchName').textContent='請先完成早餐';
+  document.getElementById('lunchCal').textContent='';
+  S.lunch=null; clearMeal('dinner'); clearMeal('postworkout');
+  document.getElementById('summarySection').style.display='none';
+  updateDash(); showToast('已清除早餐');
 }
+
 function clearMeal(slot){
   const key={lunch:'lunch',preworkout:'preworkout',postworkout:'postworkout',dinner:'dinner'}[slot]||slot;
-  S[key]=null;rebuildExcl();
+  S[key]=null; rebuildExcl();
   if(slot==='lunch'){
     document.getElementById('btnLunch').classList.remove('filled');
-    document.getElementById('lunchName').textContent='請先完成早餐';document.getElementById('lunchCal').textContent='';
-    S.dinner=null;S.preworkout=null;S.postworkout=null;
-    document.getElementById('btnDinner').classList.add('locked');document.getElementById('btnDinner').classList.remove('filled');
-    document.getElementById('dinnerName').textContent='請先完成午餐';document.getElementById('dinnerCal').textContent='';
-    const bp=document.getElementById('btnPost');if(bp){bp.classList.add('locked');bp.classList.remove('filled');}
+    document.getElementById('lunchName').textContent='請先完成早餐';
+    document.getElementById('lunchCal').textContent='';
+    // Also clear dinner/pre
+    S.dinner=null; S.preworkout=null; S.postworkout=null;
+    document.getElementById('btnDinner').classList.add('locked');
+    document.getElementById('btnDinner').classList.remove('filled');
+    document.getElementById('dinnerName').textContent='請先完成午餐';
+    document.getElementById('dinnerCal').textContent='';
+    if(document.getElementById('btnPost')){
+      document.getElementById('btnPost').classList.add('locked');
+      document.getElementById('btnPost').classList.remove('filled');
+    }
     document.getElementById('summarySection').style.display='none';
   } else if(slot==='dinner'){
     document.getElementById('btnDinner').classList.remove('filled');
-    document.getElementById('dinnerName').textContent='請先完成午餐';document.getElementById('dinnerCal').textContent='';
+    document.getElementById('dinnerName').textContent='請先完成午餐';
+    document.getElementById('dinnerCal').textContent='';
     document.getElementById('summarySection').style.display='none';
   } else if(slot==='postworkout'){
-    const bp=document.getElementById('btnPost');
-    if(bp){bp.classList.remove('filled');document.getElementById('postName').textContent='請先完成訓前補給';document.getElementById('postCal').textContent='';}
+    if(document.getElementById('btnPost')){
+      document.getElementById('btnPost').classList.remove('filled');
+      document.getElementById('postName').textContent='請先完成訓前補給';
+      document.getElementById('postCal').textContent='';
+    }
     document.getElementById('summarySection').style.display='none';
   }
-  updateDash();showToast('已清除選擇');
+  updateDash(); showToast('已清除選擇');
 }
+
 function onCalChange(){
   const v=parseInt(document.getElementById('calLimitInp').value);
-  if(v>=800&&v<=5000){S.calLimit=v;updateDash();}
+  if(v>=800&&v<=5000){S.calLimit=v; updateDash();}
 }
 
 // ══════════════════════════════════════════════════════════
-//  EXCL
+//  REBUILD EXCLUDES
 // ══════════════════════════════════════════════════════════
 function rebuildExcl(){
   const cats=[];
   Object.keys(S.breakfast).forEach(id=>{const f=FOODS.find(x=>x.id===id);if(f?.exc)cats.push(f.exc);});
-  if(S.lunch?.exc)cats.push(S.lunch.exc);
+  if(S.lunch?.exc) cats.push(S.lunch.exc);
   S.exclCats=[...new Set(cats)];
 }
 
@@ -1227,17 +1775,64 @@ function rebuildExcl(){
 // ══════════════════════════════════════════════════════════
 function renderSummary(){
   document.getElementById('summarySection').style.display='block';
-  const t=getT(),m=getMacros(),cfg=WCF[S.workout];
+  const t=getT(), m=getMacros(), cfg=WCF[S.workout];
   const bCal=Object.entries(S.breakfast).reduce((s,[id,q])=>{const f=FOODS.find(x=>x.id===id);return s+(f?f.cal*q:0);},0);
   const bItems=Object.entries(S.breakfast).map(([id,q])=>{const f=FOODS.find(x=>x.id===id);return f?f.icon+f.name+(q>1?' ×'+q:''):''}).filter(Boolean).join('、');
+
   const editBtn='<span class="sum-edit">修改</span>';
-  let rows=`<div class="sum-row" onclick="openBreakfastSheet()" style="cursor:pointer"><div class="sum-lbl">早餐</div><div class="sum-body"><div class="sum-name">${bItems||'略過'}</div></div><div class="sum-kcal">${bCal?bCal+' kcal':''}</div>${editBtn}</div>
-    <div class="sum-row" onclick="openMealSheet('lunch')" style="cursor:pointer"><div class="sum-lbl">午餐</div><div class="sum-body"><div class="sum-name">${S.lunch?S.lunch.icon+' '+S.lunch.name:'—'}</div></div><div class="sum-kcal">${S.lunch?.cal||0} kcal</div>${editBtn}</div>`;
-  if(cfg.str){
-    rows+=`<div class="sum-row" onclick="openMealSheet('preworkout')" style="cursor:pointer"><div class="sum-lbl">訓前補給</div><div class="sum-body"><div class="sum-name">${S.preworkout?S.preworkout.icon+' '+S.preworkout.name:'—'}</div></div><div class="sum-kcal">${S.preworkout?.cal||0} kcal</div>${editBtn}</div>
-    <div class="sum-row" onclick="openMealSheet('postworkout')" style="cursor:pointer"><div class="sum-lbl">訓後補給</div><div class="sum-body"><div class="sum-name">${S.postworkout?S.postworkout.icon+' '+S.postworkout.name:'—'}</div></div><div class="sum-kcal">${S.postworkout?.cal||0} kcal</div>${editBtn}</div>`;
+  let rows=`
+    <div class="sum-row" onclick="openBreakfastSheet()" style="cursor:pointer">
+      <div class="sum-lbl">早餐</div>
+      <div class="sum-body"><div class="sum-name">${bItems||'略過'}</div></div>
+      <div class="sum-kcal">${bCal?bCal+' kcal':''}</div>
+      ${editBtn}
+    </div>
+    <div class="sum-row" onclick="openMealSheet('lunch')" style="cursor:pointer">
+      <div class="sum-lbl">午餐</div>
+      <div class="sum-body"><div class="sum-name">${S.lunch?S.lunch.icon+' '+S.lunch.name:'—'}</div></div>
+      <div class="sum-kcal">${S.lunch?.cal||0} kcal</div>
+      ${editBtn}
+    </div>`;
+  const pst2=S.strengthTime;
+  if(cfg.str && pst2==='evening'){
+    rows+=`
+    <div class="sum-row" onclick="openMealSheet('preworkout')" style="cursor:pointer">
+      <div class="sum-lbl">訓前補給</div>
+      <div class="sum-body"><div class="sum-name">${S.preworkout?S.preworkout.icon+' '+S.preworkout.name:'—'}</div></div>
+      <div class="sum-kcal">${S.preworkout?.cal||0} kcal</div>
+      ${editBtn}
+    </div>
+    <div class="sum-row" onclick="openMealSheet('postworkout')" style="cursor:pointer">
+      <div class="sum-lbl">訓後補給</div>
+      <div class="sum-body"><div class="sum-name">${S.postworkout?S.postworkout.icon+' '+S.postworkout.name:'—'}</div></div>
+      <div class="sum-kcal">${S.postworkout?.cal||0} kcal</div>
+      ${editBtn}
+    </div>`;
+  } else if(cfg.str && pst2==='morning'){
+    // breakfast shown above as 早餐（訓前）, lunch as 午餐（訓後）, then dinner
+    rows+=`
+    <div class="sum-row" onclick="openMealSheet('dinner')" style="cursor:pointer">
+      <div class="sum-lbl">晚餐</div>
+      <div class="sum-body"><div class="sum-name">${S.dinner?S.dinner.icon+' '+S.dinner.name:'—'}</div></div>
+      <div class="sum-kcal">${S.dinner?.cal||0} kcal</div>
+      ${editBtn}
+    </div>`;
+  } else if(cfg.str && pst2==='afternoon'){
+    rows+=`
+    <div class="sum-row" onclick="openMealSheet('dinner_post')" style="cursor:pointer">
+      <div class="sum-lbl">晚餐（訓後）</div>
+      <div class="sum-body"><div class="sum-name">${S.dinner?S.dinner.icon+' '+S.dinner.name:'—'}</div></div>
+      <div class="sum-kcal">${S.dinner?.cal||0} kcal</div>
+      ${editBtn}
+    </div>`;
   } else {
-    rows+=`<div class="sum-row" onclick="openMealSheet('dinner')" style="cursor:pointer"><div class="sum-lbl">晚餐</div><div class="sum-body"><div class="sum-name">${S.dinner?S.dinner.icon+' '+S.dinner.name:'—'}</div></div><div class="sum-kcal">${S.dinner?.cal||0} kcal</div>${editBtn}</div>`;
+    rows+=`
+    <div class="sum-row" onclick="openMealSheet('dinner')" style="cursor:pointer">
+      <div class="sum-lbl">晚餐</div>
+      <div class="sum-body"><div class="sum-name">${S.dinner?S.dinner.icon+' '+S.dinner.name:'—'}</div></div>
+      <div class="sum-kcal">${S.dinner?.cal||0} kcal</div>
+      ${editBtn}
+    </div>`;
   }
   const diff=t.cal-m.cal;
   const carbC=m.carb>t.carb?'bad':m.carb>t.carb*.85?'warn':'';
@@ -1246,9 +1841,14 @@ function renderSummary(){
   const st=diff<0?`<div class="status-msg s-over">⚠️ 超出目標 ${Math.abs(diff)} kcal</div>`
     :diff<=80?`<div class="status-msg s-great">🎯 完美達標！剩餘 ${diff} kcal</div>`
     :`<div class="status-msg s-ok">✅ 剩餘 ${diff} kcal，表現良好！</div>`;
+
   document.getElementById('sumCard').innerHTML=`${rows}
     <div class="sum-total"><div class="sum-total-lbl">今日總計</div><div class="sum-total-val">${m.cal} / ${t.cal} kcal</div></div>
-    <div class="sum-macros"><div class="sum-mchip ${carbC}">碳水 ${m.carb}/${t.carb}g</div><div class="sum-mchip ${protC}">蛋白 ${m.prot}/${t.prot}g</div><div class="sum-mchip ${fatC}">脂肪 ${m.fat}/${t.fat}g</div></div>${st}`;
+    <div class="sum-macros">
+      <div class="sum-mchip ${carbC}">碳水 ${m.carb}/${t.carb}g</div>
+      <div class="sum-mchip ${protC}">蛋白 ${m.prot}/${t.prot}g</div>
+      <div class="sum-mchip ${fatC}">脂肪 ${m.fat}/${t.fat}g</div>
+    </div>${st}`;
   document.getElementById('summarySection').classList.add('fade-in');
   setTimeout(()=>document.getElementById('summarySection').scrollIntoView({behavior:'smooth',block:'start'}),120);
 }
@@ -1257,27 +1857,43 @@ function renderSummary(){
 //  RESET
 // ══════════════════════════════════════════════════════════
 function resetAll(){
-  S={workout:null,calLimit:null,breakfast:{},bfConfirmed:false,lunch:null,preworkout:null,postworkout:null,dinner:null,exclCats:[],sheetSlot:null};
+  S={workout:null,calLimit:null,breakfast:{},bfConfirmed:false,
+    lunch:null,preworkout:null,postworkout:null,dinner:null,exclCats:[],sheetSlot:null};
   document.querySelectorAll('.pill').forEach(p=>p.classList.remove('sel'));
-  const s1=document.getElementById('s1n');s1.classList.add('active');s1.classList.remove('done');s1.textContent='1';
+  const s1=document.getElementById('s1n');
+  s1.classList.add('active');s1.classList.remove('done');s1.textContent='1';
   document.getElementById('mealSection').classList.add('locked');
-  document.getElementById('s2n').classList.remove('active');document.getElementById('s2lbl').classList.remove('active');
+  document.getElementById('s2n').classList.remove('active');
+  document.getElementById('s2lbl').classList.remove('active');
   document.getElementById('calInputRow').style.display='none';
   document.getElementById('summarySection').style.display='none';
+  // Reset buttons
   ['btnBreakfast','btnLunch','btnDinner','btnPost'].forEach(id=>{
-    const b=document.getElementById(id);if(b){b.classList.remove('filled');if(id!=='btnBreakfast')b.classList.add('locked');}
+    const b=document.getElementById(id);
+    if(b){b.classList.remove('filled');if(id!=='btnBreakfast')b.classList.add('locked');}
   });
-  document.getElementById('bfName').textContent='點此選擇早餐';document.getElementById('bfCal').textContent='';
-  document.getElementById('lunchName').textContent='請先完成早餐';document.getElementById('dinnerName').textContent='請先完成午餐';
+  document.getElementById('bfName').textContent='點此選擇早餐';
+  document.getElementById('bfCal').textContent='';
+  document.getElementById('lunchName').textContent='請先完成早餐';
+  document.getElementById('dinnerName').textContent='請先完成午餐';
   document.getElementById('postName').textContent='請先完成訓前補給';
   ['lunchCal','dinnerCal','postCal'].forEach(id=>document.getElementById(id).textContent='');
   document.getElementById('postWrap').style.display='none';
-  document.getElementById('calCur').textContent='0';document.getElementById('calCur').className='cal-cur';
-  document.getElementById('calMax').textContent='— kcal';document.getElementById('calRem').textContent='請先選擇運動日類型';
-  document.getElementById('ringFg').style.strokeDashoffset='119.4';document.getElementById('ringFg').style.stroke='var(--blue)';
+  // Explicitly zero all dashboard visuals (S.workout=null means getT()=null)
+  document.getElementById('calCur').textContent='0';
+  document.getElementById('calCur').className='cal-cur';
+  document.getElementById('calMax').textContent='— kcal';
+  document.getElementById('calRem').textContent='請先選擇運動日類型';
+  document.getElementById('ringFg').style.strokeDashoffset='119.4';
+  document.getElementById('ringFg').style.stroke='var(--blue)';
   document.getElementById('ringPct').textContent='0%';
-  ['b-carb','b-prot','b-fat'].forEach(id=>{const el=document.getElementById(id);el.style.width='0';el.style.background=id==='b-prot'?'var(--tx3)':id==='b-fat'?'var(--warn)':'var(--blue)';});
-  ['v-carb','v-prot','v-fat'].forEach(id=>{const el=document.getElementById(id);el.textContent='0/—g';el.style.color='var(--tx2)';});
+  ['b-carb','b-prot','b-fat'].forEach(id=>{
+    const el=document.getElementById(id);
+    el.style.width='0'; el.style.background=id==='b-prot'?'var(--tx3)':id==='b-fat'?'var(--warn)':'var(--blue)';
+  });
+  ['v-carb','v-prot','v-fat'].forEach(id=>{
+    const el=document.getElementById(id); el.textContent='0/—g'; el.style.color='var(--tx2)';
+  });
   window.scrollTo({top:0,behavior:'smooth'});
 }
 
@@ -1289,125 +1905,321 @@ function switchTab(tab){
   document.querySelectorAll('.tb-btn').forEach(b=>b.classList.remove('active'));
   document.getElementById('page-'+tab).classList.add('active');
   document.getElementById('tab-'+tab).classList.add('active');
-  if(tab==='admin')renderFoodCards();
+  if(tab==='admin') renderFoodCards();
 }
 function setFilter(f,el){
-  adminFilter=f;document.querySelectorAll('.ftab').forEach(t=>t.classList.remove('active'));el.classList.add('active');renderFoodCards();
+  adminFilter=f;
+  document.querySelectorAll('.ftab').forEach(t=>t.classList.remove('active'));
+  el.classList.add('active'); renderFoodCards();
 }
+
 function renderFoodCards(){
-  const searchQ=(document.getElementById('adminSearch')?.value||'').trim().toLowerCase();
-  const foods=(adminFilter==='全部'?FOODS:FOODS.filter(f=>{const meals=Array.isArray(f.meal)?f.meal:[f.meal];return meals.includes(adminFilter);})).filter(f=>!searchQ||f.name.toLowerCase().includes(searchQ));
+  // meal is now an array; filter matches if adminFilter is in the array
+  const searchEl=document.getElementById('adminSearch');
+  const searchQ=(searchEl?.value||'').trim().toLowerCase();
+  const foods=(adminFilter==='全部'
+    ? FOODS
+    : FOODS.filter(f=>{
+        const meals=Array.isArray(f.meal)?f.meal:[f.meal];
+        return meals.includes(adminFilter);
+      })
+  ).filter(f=>!searchQ||f.name.toLowerCase().includes(searchQ));
   document.getElementById('foodCount').textContent=FOODS.length;
-  const container=document.getElementById('foodCards');container.innerHTML='';
-  if(!foods.length){container.innerHTML='<div style="text-align:center;color:var(--tx3);font-size:12px;padding:24px">暫無資料</div>';return;}
+  const container=document.getElementById('foodCards'); container.innerHTML='';
+
+  if(!foods.length){
+    container.innerHTML='<div style="text-align:center;color:var(--tx3);font-size:12px;padding:24px">暫無資料</div>';
+    return;
+  }
+
   const fitLabels={rest:'休息',cardio:'有氧',strength:'重訓',flex:'彈性'};
-  const mealColors={'早餐':'var(--warn)','午餐':'var(--blue)','晚餐':'var(--purple)','訓前補給':'var(--purple)','訓後補給':'var(--green)'};
+  const mealColors={'早餐':'var(--warn)','午餐':'var(--blue)','晚餐':'var(--purple)',
+    '訓前補給':'var(--purple)','訓後補給':'var(--green)'};
+
   foods.forEach(f=>{
     const fitStr=f.fit.map(k=>fitLabels[k]||k).join(' · ');
     const meals=Array.isArray(f.meal)?f.meal:[f.meal];
-    const mealTags=meals.map(m=>{const c=mealColors[m]||'var(--tx2)';return `<span class="fc-meal" style="color:${c};border-color:${c};background:${c}18">${m}</span>`;}).join('');
-    const card=document.createElement('div');card.className='food-card';card.dataset.id=f.id;
-    card.innerHTML=`<div class="drag-handle" draggable="false">☰</div>
+    const mealTags=meals.map(m=>{
+      const c=mealColors[m]||'var(--tx2)';
+      return `<span class="fc-meal" style="color:${c};border-color:${c};background:${c}18">${m}</span>`;
+    }).join('');
+    const card=document.createElement('div');
+    card.className='food-card';
+    card.dataset.id=f.id;
+    card.innerHTML=`
+      <div class="drag-handle" draggable="false">☰</div>
       <div class="fc-icon">${f.icon||'🍽️'}</div>
       <div class="fc-body">
         <div class="fc-name">${f.name} ${mealTags}</div>
-        <div class="fc-macros"><span>${f.cal} kcal</span>碳${f.carb}g 蛋白${f.prot}g 脂${f.fat}g</div>
-        <div class="fc-tags"><span class="fc-tag">${f.cat}</span><span class="fc-tag">${f.proc}</span><span class="fc-tag">飽足感${f.sat}</span>${fitStr?`<span class="fc-tag">${fitStr}</span>`:''}${f.pre?'<span class="fc-tag" style="color:var(--purple)">訓前✓</span>':''}${f.post?'<span class="fc-tag" style="color:var(--green)">訓後✓</span>':''}${f.dinner_ok===false?'<span class="fc-tag" style="color:var(--red)">晚餐×</span>':f.dinner_ok===true?'<span class="fc-tag" style="color:var(--tx3)">晚餐✓</span>':''}</div>
+        <div class="fc-macros">
+          <span>${f.cal} kcal</span>
+          碳${f.carb}g 蛋白${f.prot}g 脂${f.fat}g
+        </div>
+        <div class="fc-tags">
+          <span class="fc-tag">${f.cat}</span>
+          <span class="fc-tag">${f.proc}</span>
+          <span class="fc-tag">飽足感${f.sat}</span>
+          ${fitStr?`<span class="fc-tag">${fitStr}</span>`:''}
+          ${f.pre?'<span class="fc-tag" style="color:var(--purple)">訓前✓</span>':''}
+          ${f.post?'<span class="fc-tag" style="color:var(--green)">訓後✓</span>':''}
+          ${f.dinner_ok===false?'<span class="fc-tag" style="color:var(--red)">晚餐×</span>':f.dinner_ok===true?'<span class="fc-tag" style="color:var(--tx3)">晚餐✓</span>':''}
+        </div>
       </div>
-      <div class="fc-actions"><button class="fc-edit" onclick="openFoodForm('${f.id}')">編輯</button><button class="fc-del" onclick="delFood('${f.id}')">刪除</button></div>`;
+      <div class="fc-actions">
+        <button class="fc-edit" onclick="openFoodForm('${f.id}')">編輯</button>
+        <button class="fc-del" onclick="delFood('${f.id}')">刪除</button>
+      </div>`;
     container.appendChild(card);
   });
   initDragSort(container);
 }
 
-let sortModeActive=false,dragSrcId=null;
+// ── Sort mode & drag-to-reorder ──
+let sortModeActive = false;
+let dragSrcId = null;
+
 function toggleSortMode(){
-  sortModeActive=!sortModeActive;
-  const btn=document.getElementById('sortModeBtn'),hint=document.getElementById('sortHint'),cards=document.getElementById('foodCards');
-  btn.classList.toggle('active',sortModeActive);
-  document.getElementById('sortModeIcon').textContent=sortModeActive?'✓':'↕️';
-  document.getElementById('sortModeTxt').textContent=sortModeActive?'完成排序':'調整順序';
-  hint.style.display=sortModeActive?'block':'none';
-  cards.classList.toggle('sort-mode',sortModeActive);
-  cards.querySelectorAll('.food-card').forEach(card=>{card.draggable=sortModeActive;});
-}
-function initDragSort(container){
-  container.addEventListener('dragstart',e=>{const card=e.target.closest('.food-card');if(!card||!sortModeActive)return;dragSrcId=card.dataset.id;card.classList.add('dragging');e.dataTransfer.effectAllowed='move';});
-  container.addEventListener('dragend',e=>{const card=e.target.closest('.food-card');if(card)card.classList.remove('dragging');container.querySelectorAll('.food-card').forEach(c=>c.classList.remove('drag-over'));});
-  container.addEventListener('dragover',e=>{e.preventDefault();const card=e.target.closest('.food-card');if(!card||card.dataset.id===dragSrcId)return;container.querySelectorAll('.food-card').forEach(c=>c.classList.remove('drag-over'));card.classList.add('drag-over');});
-  container.addEventListener('drop',e=>{e.preventDefault();const card=e.target.closest('.food-card');if(!card||!dragSrcId||card.dataset.id===dragSrcId)return;reorderFood(dragSrcId,card.dataset.id);dragSrcId=null;});
-  let touchDragId=null;
-  container.addEventListener('touchstart',e=>{if(!sortModeActive)return;const handle=e.target.closest('.drag-handle');if(!handle)return;const card=handle.closest('.food-card');if(!card)return;e.preventDefault();touchDragId=card.dataset.id;card.classList.add('dragging');},{passive:false});
-  container.addEventListener('touchmove',e=>{if(!touchDragId)return;e.preventDefault();const y=e.touches[0].clientY;container.querySelectorAll('.food-card').forEach(c=>{if(c.dataset.id===touchDragId)return;const rect=c.getBoundingClientRect();c.classList.toggle('drag-over',y>rect.top&&y<rect.bottom);});},{passive:false});
-  container.addEventListener('touchend',e=>{if(!touchDragId)return;const overCard=container.querySelector('.food-card.drag-over');if(overCard)reorderFood(touchDragId,overCard.dataset.id);container.querySelectorAll('.food-card').forEach(c=>{c.classList.remove('dragging','drag-over');});touchDragId=null;});
-}
-function reorderFood(srcId,targetId){
-  const si=FOODS.findIndex(f=>f.id===srcId),ti=FOODS.findIndex(f=>f.id===targetId);
-  if(si<0||ti<0)return;const[moved]=FOODS.splice(si,1);FOODS.splice(ti,0,moved);renderFoodCards();
-  if(sortModeActive){const cards=document.getElementById('foodCards');cards.classList.add('sort-mode');cards.querySelectorAll('.food-card').forEach(c=>{c.draggable=true;});}
+  sortModeActive = !sortModeActive;
+  const btn = document.getElementById('sortModeBtn');
+  const hint = document.getElementById('sortHint');
+  const cards = document.getElementById('foodCards');
+
+  btn.classList.toggle('active', sortModeActive);
+  document.getElementById('sortModeIcon').textContent = sortModeActive ? '✓' : '↕️';
+  document.getElementById('sortModeTxt').textContent = sortModeActive ? '完成排序' : '調整順序';
+  hint.style.display = sortModeActive ? 'block' : 'none';
+  cards.classList.toggle('sort-mode', sortModeActive);
+
+  // Enable/disable draggable on cards
+  cards.querySelectorAll('.food-card').forEach(card => {
+    card.draggable = sortModeActive;
+  });
 }
 
-let editingFoodId=null;
-function openFoodForm(id){
-  editingFoodId=id;const f=id?FOODS.find(x=>x.id===id):null;
-  document.getElementById('formTitle').textContent=f?'編輯品項':'新增品項';
-  document.getElementById('formSaveBtn').textContent=f?'儲存修改':'新增品項';
-  const existingMeals=f?(Array.isArray(f.meal)?f.meal:[f.meal]):['午餐'];
-  document.querySelectorAll('.meal-chk input').forEach(cb=>{cb.checked=existingMeals.includes(cb.dataset.m);});
-  setV('f_name',f?.name||'');setV('f_icon',f?.icon||'');setV('f_cat',f?.cat||'高蛋白');setV('f_note',f?.note||'');
-  setV('f_cal',f?.cal||'');setV('f_carb',f?.carb||'');setV('f_prot',f?.prot||'');setV('f_fat',f?.fat||'');
-  setV('f_pl',f?.pl||'中');setV('f_cl',f?.cl||'中');setV('f_fl',f?.fl||'中');setV('f_fib',f?.fib||'中');
-  setV('f_proc',f?.proc||'輕加工');setV('f_sat',f?.sat||'中');setV('f_exc',f?.exc||'');
-  setV('f_pre',f?.pre?'true':'false');setV('f_post',f?.post?'true':'false');
-  setV('f_dinner_ok',f?.dinner_ok===true?'true':f?.dinner_ok===false?'false':'');
-  document.querySelectorAll('.fit-chk input').forEach(cb=>{cb.checked=f?f.fit.includes(cb.dataset.k):true;});
-  document.getElementById('formOverlay').classList.add('open');document.getElementById('formSheet').classList.add('open');
-  document.body.style.overflow='hidden';document.getElementById('formSheet').querySelector('.sheet-body').scrollTop=0;
+function initDragSort(container){
+  // Desktop drag events
+  container.addEventListener('dragstart', e => {
+    const card = e.target.closest('.food-card');
+    if(!card || !sortModeActive) return;
+    dragSrcId = card.dataset.id;
+    card.classList.add('dragging');
+    e.dataTransfer.effectAllowed = 'move';
+  });
+  container.addEventListener('dragend', e => {
+    const card = e.target.closest('.food-card');
+    if(card) card.classList.remove('dragging');
+    container.querySelectorAll('.food-card').forEach(c => c.classList.remove('drag-over'));
+  });
+  container.addEventListener('dragover', e => {
+    e.preventDefault();
+    const card = e.target.closest('.food-card');
+    if(!card || card.dataset.id === dragSrcId) return;
+    container.querySelectorAll('.food-card').forEach(c => c.classList.remove('drag-over'));
+    card.classList.add('drag-over');
+  });
+  container.addEventListener('drop', e => {
+    e.preventDefault();
+    const card = e.target.closest('.food-card');
+    if(!card || !dragSrcId || card.dataset.id === dragSrcId) return;
+    reorderFood(dragSrcId, card.dataset.id);
+    dragSrcId = null;
+  });
+
+  // Touch drag events for mobile
+  let touchDragId = null, touchClone = null, offsetY = 0;
+  container.addEventListener('touchstart', e => {
+    if(!sortModeActive) return;
+    const handle = e.target.closest('.drag-handle');
+    if(!handle) return;
+    const card = handle.closest('.food-card');
+    if(!card) return;
+    e.preventDefault();
+    touchDragId = card.dataset.id;
+    card.classList.add('dragging');
+    offsetY = e.touches[0].clientY - card.getBoundingClientRect().top;
+  }, {passive:false});
+
+  container.addEventListener('touchmove', e => {
+    if(!touchDragId) return;
+    e.preventDefault();
+    const y = e.touches[0].clientY;
+    container.querySelectorAll('.food-card').forEach(c => {
+      if(c.dataset.id === touchDragId) return;
+      const rect = c.getBoundingClientRect();
+      const mid = rect.top + rect.height/2;
+      c.classList.toggle('drag-over', y > rect.top && y < rect.bottom);
+    });
+  }, {passive:false});
+
+  container.addEventListener('touchend', e => {
+    if(!touchDragId) return;
+    const overCard = container.querySelector('.food-card.drag-over');
+    if(overCard) reorderFood(touchDragId, overCard.dataset.id);
+    container.querySelectorAll('.food-card').forEach(c => {
+      c.classList.remove('dragging','drag-over');
+    });
+    touchDragId = null;
+  });
 }
-function closeFoodForm(){document.getElementById('formOverlay').classList.remove('open');document.getElementById('formSheet').classList.remove('open');document.body.style.overflow='';editingFoodId=null;}
-function setV(id,val){const el=document.getElementById(id);if(!el)return;el.value=val===null||val===undefined?'':val;}
+
+function reorderFood(srcId, targetId){
+  const si = FOODS.findIndex(f=>f.id===srcId);
+  const ti = FOODS.findIndex(f=>f.id===targetId);
+  if(si<0||ti<0) return;
+  const [moved] = FOODS.splice(si, 1);
+  FOODS.splice(ti, 0, moved);
+  renderFoodCards();
+  // Re-enable sort mode after re-render
+  if(sortModeActive){
+    const cards = document.getElementById('foodCards');
+    cards.classList.add('sort-mode');
+    cards.querySelectorAll('.food-card').forEach(c => { c.draggable = true; });
+  }
+}
+let editingFoodId = null;
+
+function openFoodForm(id){
+  editingFoodId = id;
+  const f = id ? FOODS.find(x=>x.id===id) : null;
+  document.getElementById('formTitle').textContent = f ? '編輯品項' : '新增品項';
+  document.getElementById('formSaveBtn').textContent = f ? '儲存修改' : '新增品項';
+
+  // Set meal checkboxes (meal is now array or string for legacy)
+  const existingMeals = f ? (Array.isArray(f.meal)?f.meal:[f.meal]) : ['午餐'];
+  document.querySelectorAll('.meal-chk input').forEach(cb=>{
+    cb.checked = existingMeals.includes(cb.dataset.m);
+  });
+
+  // Fill other form fields
+  setV('f_name',   f?.name   || '');
+  setV('f_icon',   f?.icon   || '');
+  setV('f_cat',    f?.cat    || '高蛋白');
+  setV('f_note',   f?.note   || '');
+  setV('f_cal',    f?.cal    || '');
+  setV('f_carb',   f?.carb   || '');
+  setV('f_prot',   f?.prot   || '');
+  setV('f_fat',    f?.fat    || '');
+  setV('f_pl',     f?.pl     || '中');
+  setV('f_cl',     f?.cl     || '中');
+  setV('f_fl',     f?.fl     || '中');
+  setV('f_fib',    f?.fib    || '中');
+  setV('f_proc',   f?.proc   || '輕加工');
+  setV('f_sat',    f?.sat    || '中');
+  setV('f_exc',    f?.exc    || '');
+  setV('f_pre',    f?.pre    ? 'true' : 'false');
+  setV('f_post',   f?.post   ? 'true' : 'false');
+  setV('f_dinner_ok', f?.dinner_ok===true?'true':f?.dinner_ok===false?'false':'');
+
+  // Set fit checkboxes
+  document.querySelectorAll('.fit-chk input').forEach(cb=>{
+    cb.checked = f ? f.fit.includes(cb.dataset.k) : true;
+  });
+
+  // Open sheet
+  document.getElementById('formOverlay').classList.add('open');
+  document.getElementById('formSheet').classList.add('open');
+  document.body.style.overflow='hidden';
+  document.getElementById('formSheet').querySelector('.sheet-body').scrollTop=0;
+}
+
+function closeFoodForm(){
+  document.getElementById('formOverlay').classList.remove('open');
+  document.getElementById('formSheet').classList.remove('open');
+  document.body.style.overflow='';
+  editingFoodId=null;
+}
+
+function setV(id,val){
+  const el=document.getElementById(id);
+  if(!el) return;
+  el.value=val===null||val===undefined?'':val;
+}
+
 function saveFood(){
-  const name=document.getElementById('f_name').value.trim();const cal=parseInt(document.getElementById('f_cal').value);
-  if(!name){showToast('⚠️ 請填入品項名稱');return;}if(!cal){showToast('⚠️ 請填入熱量');return;}
+  const name=document.getElementById('f_name').value.trim();
+  const cal=parseInt(document.getElementById('f_cal').value);
+  if(!name){showToast('⚠️ 請填入品項名稱'); return;}
+  if(!cal){showToast('⚠️ 請填入熱量'); return;}
+
+  // Collect selected meals (array)
   const meals=[...document.querySelectorAll('.meal-chk input:checked')].map(cb=>cb.dataset.m);
-  if(!meals.length){showToast('⚠️ 請至少選一個餐別');return;}
-  const meal=meals.length===1?meals[0]:meals;
+  if(!meals.length){showToast('⚠️ 請至少選一個餐別'); return;}
+  // Store as array (single = still array for consistency)
+  const meal = meals.length===1 ? meals[0] : meals;
+
   const carb=parseFloat(document.getElementById('f_carb').value)||0;
   const prot=parseFloat(document.getElementById('f_prot').value)||0;
   const fat=parseFloat(document.getElementById('f_fat').value)||0;
-  const cat=document.getElementById('f_cat').value,excVal=document.getElementById('f_exc').value;
-  const exc=excVal||null,note=document.getElementById('f_note').value.trim()||null;
+  const cat=document.getElementById('f_cat').value;
+  const excVal=document.getElementById('f_exc').value;
+  const exc=excVal||null;
+  const note=document.getElementById('f_note').value.trim()||null;
   const icon=document.getElementById('f_icon').value.trim()||'🍽️';
-  const proc=document.getElementById('f_proc').value,sat=document.getElementById('f_sat').value;
-  const pl=document.getElementById('f_pl').value,cl=document.getElementById('f_cl').value;
-  const fl=document.getElementById('f_fl').value,fib=document.getElementById('f_fib').value;
+  const proc=document.getElementById('f_proc').value;
+  const sat=document.getElementById('f_sat').value;
+  const pl=document.getElementById('f_pl').value;
+  const cl=document.getElementById('f_cl').value;
+  const fl=document.getElementById('f_fl').value;
+  const fib=document.getElementById('f_fib').value;
   const pre=document.getElementById('f_pre').value==='true';
   const dinner_ok_raw=document.getElementById('f_dinner_ok').value;
   const dinner_ok=dinner_ok_raw===''?undefined:dinner_ok_raw==='true';
   const post=document.getElementById('f_post').value==='true';
   const fit=[...document.querySelectorAll('.fit-chk input:checked')].map(cb=>cb.dataset.k);
-  const foodObj={meal,name,icon,cal,carb,prot,fat,cat,exc,note,proc,sat,pl,cl,fl,fib,pre,post,...(dinner_ok!==undefined&&{dinner_ok}),fit:fit.length?fit:['rest','cardio','strength','flex']};
-  if(editingFoodId){const idx=FOODS.findIndex(f=>f.id===editingFoodId);if(idx>=0)FOODS[idx]={...FOODS[idx],...foodObj};showToast('✅ 已更新：'+icon+' '+name);}
-  else{FOODS.push({id:'u'+Date.now(),...foodObj});showToast('✅ 已新增：'+icon+' '+name);}
-  closeFoodForm();renderFoodCards();
+
+  const foodObj={meal,name,icon,cal,carb,prot,fat,cat,exc,note,proc,sat,pl,cl,fl,fib,pre,post,...(dinner_ok!==undefined&&{dinner_ok}),
+    fit:fit.length?fit:['rest','cardio','strength','flex']};
+
+  if(editingFoodId){
+    const idx=FOODS.findIndex(f=>f.id===editingFoodId);
+    if(idx>=0) FOODS[idx]={...FOODS[idx],...foodObj};
+    showToast('✅ 已更新：'+icon+' '+name);
+  } else {
+    FOODS.push({id:'u'+Date.now(),...foodObj});
+    showToast('✅ 已新增：'+icon+' '+name);
+  }
+
+  closeFoodForm();
+  renderFoodCards();
 }
 
 // ══════════════════════════════════════════════════════════
-//  CONFIRM DIALOG
+//  CUSTOM CONFIRM DIALOG (replaces browser confirm())
 // ══════════════════════════════════════════════════════════
-let _cdialogResolve=null;
-function cdialogResolve(result){document.getElementById('cdialogOverlay').classList.remove('open');if(_cdialogResolve){_cdialogResolve(result);_cdialogResolve=null;}}
-function showConfirm(msg,sub=''){document.getElementById('cdialogMsg').textContent=msg;document.getElementById('cdialogSub').textContent=sub;document.getElementById('cdialogOverlay').classList.add('open');return new Promise(resolve=>{_cdialogResolve=resolve;});}
-async function delFood(id){const f=FOODS.find(x=>x.id===id);if(!f)return;const ok=await showConfirm(`確定刪除「${f.name}」？`,'此動作無法復原');if(!ok)return;FOODS.splice(FOODS.findIndex(x=>x.id===id),1);renderFoodCards();showToast('已刪除：'+f.name);}
+let _cdialogResolve = null;
+function cdialogResolve(result){
+  document.getElementById('cdialogOverlay').classList.remove('open');
+  if(_cdialogResolve){ _cdialogResolve(result); _cdialogResolve=null; }
+}
+function showConfirm(msg, sub=''){
+  document.getElementById('cdialogMsg').textContent = msg;
+  document.getElementById('cdialogSub').textContent = sub;
+  document.getElementById('cdialogOverlay').classList.add('open');
+  return new Promise(resolve => { _cdialogResolve = resolve; });
+}
+
+async function delFood(id){
+  const f=FOODS.find(x=>x.id===id);
+  if(!f) return;
+  const ok = await showConfirm(`確定刪除「${f.name}」？`, '此動作無法復原');
+  if(!ok) return;
+  FOODS.splice(FOODS.findIndex(x=>x.id===id),1);
+  renderFoodCards();
+  showToast('已刪除：'+f.name);
+}
 
 // ══════════════════════════════════════════════════════════
 //  INIT
 // ══════════════════════════════════════════════════════════
 let toastT;
-function showToast(msg){const t=document.getElementById('toast');t.textContent=msg;t.classList.add('show');clearTimeout(toastT);toastT=setTimeout(()=>t.classList.remove('show'),2200);}
+function showToast(msg){
+  const t=document.getElementById('toast');t.textContent=msg;t.classList.add('show');
+  clearTimeout(toastT);toastT=setTimeout(()=>t.classList.remove('show'),2200);
+}
 const _d=new Date();
-document.getElementById('dateTag').textContent=`${_d.getMonth()+1}/${_d.getDate()} 週${'日一二三四五六'[_d.getDay()]}`;
-renderFoodCards();updateDash();
+document.getElementById('dateTag').textContent=
+  `${_d.getMonth()+1}/${_d.getDate()} 週${'日一二三四五六'[_d.getDay()]}`;
+renderFoodCards(); updateDash();
 </script>
 </body>
 </html>
