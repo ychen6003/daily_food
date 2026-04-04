@@ -184,6 +184,22 @@ body{background:var(--bg);color:var(--tx);font-family:'Noto Sans TC',sans-serif;
 /* Workout pill time badge */
 .pill-timebadge{font-size:9px;color:var(--green);margin-top:2px;display:block;font-weight:700}
 
+
+/* ── Optional post-workout supplement button (下午班) ── */
+.opt-supp-wrap{margin-bottom:8px;display:none}
+.opt-supp-btn{width:100%;background:transparent;border:1.5px dashed var(--bd2);
+  border-radius:var(--r);padding:11px 14px;display:flex;align-items:center;gap:10px;
+  cursor:pointer;transition:all .18s;text-align:left;color:var(--tx2)}
+.opt-supp-btn:active{border-color:var(--green);background:var(--greenbg)}
+.opt-supp-btn.filled{border-style:solid;border-color:var(--green);background:var(--greenbg)}
+.opt-supp-icon{font-size:18px;flex-shrink:0}
+.opt-supp-info{flex:1;min-width:0}
+.opt-supp-label{font-size:10px;color:var(--tx3);margin-bottom:1px}
+.opt-supp-btn.filled .opt-supp-label{color:var(--green)}
+.opt-supp-name{font-size:12px;font-weight:700;color:var(--tx2)}
+.opt-supp-btn.filled .opt-supp-name{color:var(--green)}
+.opt-supp-cal{font-family:'Space Mono',monospace;font-size:10px;color:var(--warn)}
+.opt-supp-arrow{font-size:13px;color:var(--tx3);flex-shrink:0}
 /* ── Subcat filter pills ── */
 .subcat-bar{display:flex;gap:6px;padding:8px 0 4px;flex-wrap:nowrap;overflow-x:auto;
   scrollbar-width:none;-webkit-overflow-scrolling:touch}
@@ -683,17 +699,30 @@ body{background:var(--bg);color:var(--tx);font-family:'Noto Sans TC',sans-serif;
       </button>
     </div>
 
-    <!-- Post-workout (strength only) -->
+    <!-- Post-workout (晚上班 strength only) -->
     <div style="margin-bottom:8px;display:none" id="postWrap">
       <button class="meal-open-btn locked" id="btnPost" onclick="openMealSheet('postworkout')">
         <div class="mob-icon">💪</div>
         <div class="mob-info">
-          <div class="mob-label">訓後補給（21:00–22:00）</div>
+          <div class="mob-label">訓後補給</div>
           <div class="mob-name" id="postName">請先完成訓前補給</div>
           <div class="mob-cal" id="postCal"></div>
         </div>
         <div class="mob-clear" onclick="event.stopPropagation();clearMeal('postworkout')">×</div>
         <div class="mob-arrow">›</div>
+      </button>
+    </div>
+
+    <!-- Optional supplement (下午班 strength only) -->
+    <div class="opt-supp-wrap" id="optSuppWrap">
+      <button class="opt-supp-btn" id="btnOptSupp" onclick="toggleOptSupp()">
+        <div class="opt-supp-icon">🥛</div>
+        <div class="opt-supp-info">
+          <div class="opt-supp-label">＋ 需要訓後輕量補給嗎？（可略過）</div>
+          <div class="opt-supp-name" id="optSuppName">練完超過1小時才吃晚餐 → 點此先補蛋白</div>
+          <div class="opt-supp-cal" id="optSuppCal"></div>
+        </div>
+        <div class="opt-supp-arrow" id="optSuppArrow">›</div>
       </button>
     </div>
   </div>
@@ -966,6 +995,7 @@ let S = {
   breakfast:{},   // {id:qty}
   bfConfirmed:false,
   lunch:null, preworkout:null, postworkout:null, dinner:null,
+  optSupp:null,   // 下午班可選訓後輕量補給
   exclCats:[],
   sheetSlot:null,
 };
@@ -985,7 +1015,7 @@ function getMacros(){
   Object.entries(S.breakfast).forEach(([id,q])=>{
     const f=FOODS.find(x=>x.id===id); if(f){cal+=f.cal*q;carb+=f.carb*q;prot+=f.prot*q;fat+=f.fat*q;}
   });
-  [S.lunch,S.preworkout,S.postworkout,S.dinner].filter(Boolean).forEach(f=>{
+  [S.lunch,S.preworkout,S.postworkout,S.dinner,S.optSupp].filter(Boolean).forEach(f=>{
     cal+=f.cal;carb+=f.carb;prot+=f.prot;fat+=f.fat;
   });
   return {cal,carb,prot,fat};
@@ -1033,7 +1063,7 @@ function score(food, slot){
     (S.workout==='strength' && st==='afternoon' && slot==='lunch');
 
   const isPostSlot =      // 訓後
-    slot==='postworkout' ||
+    slot==='postworkout' || slot==='optsupp' ||
     (S.workout==='strength' && st==='morning' && slot==='lunch') ||
     (S.workout==='strength' && st==='afternoon' && (slot==='dinner'||slot==='dinner_post'));
 
@@ -1355,9 +1385,11 @@ function openMealSheet(slot){
   document.getElementById('sheetTip').innerHTML=
     `<div class="tbox ${tipClass}" style="margin-bottom:8px">${tipContent}</div>`;
 
-  const mealTypeMap={lunch:'午餐',dinner:'晚餐',dinner_post:'晚餐',preworkout:'訓前補給',postworkout:'訓後補給'};
+  const mealTypeMap={lunch:'午餐',dinner:'晚餐',dinner_post:'晚餐',preworkout:'訓前補給',postworkout:'訓後補給',optsupp:'訓後補給'};
   const mealType=mealTypeMap[slot];
 
+  // optsupp: show foods suitable for light post-workout from all meal categories
+  // These are high-protein items that are also tagged post:true, or from post/lunch/dinner
   const foods=FOODS
     .filter(f=>{const m=Array.isArray(f.meal)?f.meal:[f.meal];return m.includes(mealType)&&f.fit.includes(S.workout);})
     .map(f=>({...f,sc:score(f,slot)}))
@@ -1558,7 +1590,9 @@ function toggleMcDetail(e,id){
 }
 
 function pickMeal(food,slot){
-  const key={lunch:'lunch',preworkout:'preworkout',postworkout:'postworkout',dinner:'dinner'}[slot];
+  // optsupp has its own handler
+  if(slot==='optsupp'){ pickOptSupp(food); return; }
+  const key={lunch:'lunch',preworkout:'preworkout',postworkout:'postworkout',dinner:'dinner',dinner_post:'dinner'}[slot];
   S[key]=food; rebuildExcl(); closeSheet();
   updateMealButton(slot); updateDash();
   // Unlock next step
@@ -1596,7 +1630,7 @@ function updateMealButton(slot){
     const n=document.getElementById('lunchName'),c=document.getElementById('lunchCal'),b=document.getElementById('btnLunch');
     if(food){n.textContent=food.icon+' '+food.name;c.textContent=food.cal+' kcal';b.classList.add('filled');}
     else{n.textContent='請先完成早餐';c.textContent='';b.classList.remove('filled');}
-  } else if(slot==='dinner'||slot==='preworkout'){
+  } else if(slot==='dinner'||slot==='preworkout'||slot==='dinner_post'){
     const n=document.getElementById('dinnerName'),c=document.getElementById('dinnerCal'),b=document.getElementById('btnDinner');
     if(food){n.textContent=food.icon+' '+food.name;c.textContent=food.cal+' kcal';b.classList.add('filled');}
     else{n.textContent='請先完成午餐';c.textContent='';b.classList.remove('filled');}
@@ -1607,20 +1641,53 @@ function updateMealButton(slot){
   }
 }
 
+
+// ══════════════════════════════════════════════════════════
+//  OPTIONAL SUPPLEMENT (下午班訓後輕量補給)
+// ══════════════════════════════════════════════════════════
+function toggleOptSupp(){
+  // Open meal sheet with postworkout-style scoring but from lunch/dinner foods
+  // Use a dedicated optsupp slot
+  openMealSheet('optsupp');
+}
+
+function pickOptSupp(food){
+  S.optSupp=food;
+  const btn=document.getElementById('btnOptSupp');
+  btn.classList.add('filled');
+  document.getElementById('optSuppName').textContent=food.icon+' '+food.name;
+  document.getElementById('optSuppCal').textContent=food.cal+' kcal';
+  document.getElementById('optSuppArrow').textContent='×';
+  // Override click to clear
+  btn.onclick=()=>{
+    S.optSupp=null;
+    btn.classList.remove('filled');
+    document.getElementById('optSuppName').textContent='練完超過1小時才吃晚餐 → 點此先補蛋白';
+    document.getElementById('optSuppCal').textContent='';
+    document.getElementById('optSuppArrow').textContent='›';
+    btn.onclick=()=>openMealSheet('optsupp');
+    updateDash();
+  };
+  closeSheet();
+  updateDash();
+}
+
 function checkComplete(){
   const cfg=WCF[S.workout];
   const pst=S.strengthTime;
   let done;
   if(!cfg.str){
+    // 非重訓日: 午餐＋晚餐
     done = S.lunch && S.dinner;
   } else if(pst==='evening'){
+    // 晚上班: 午餐＋訓前補給＋訓後補給（三個必選）
     done = S.lunch && S.preworkout && S.postworkout;
   } else if(pst==='morning'){
-    // breakfast(pre) + lunch(post) + dinner = complete
+    // 早上班: 早餐(訓前)＋午餐(訓後)＋晚餐(一般) → 三餐全選才完成
     done = S.bfConfirmed && S.lunch && S.dinner;
   } else if(pst==='afternoon'){
-    // breakfast + lunch(pre) + dinner(post) = complete
-    done = S.bfConfirmed && S.lunch && S.dinner;
+    // 下午班: 午餐(訓前主餐)＋晚餐(訓後) → 兩餐必選，optSupp可選
+    done = S.lunch && S.dinner;
   } else {
     done = S.lunch && S.dinner;
   }
@@ -1711,7 +1778,8 @@ function applyWorkout(type, strengthTime){
   if(WCF[type].str){
     const st=strengthTime;
     if(st==='evening'){
-      // 晚上班: 早餐=一般, 午餐=補碳水備能, 訓前+訓後獨立
+      // 晚上班: 早餐=一般, 午餐=補碳水備能, 訓前+訓後獨立步驟
+      document.getElementById('optSuppWrap').style.display='none';
       document.getElementById('dinnerLabel').textContent='訓前補給（18:00 前）';
       document.getElementById('btnDinner').onclick=()=>openMealSheet('preworkout');
       document.getElementById('dinnerName').textContent='請先完成午餐';
@@ -1724,22 +1792,28 @@ function applyWorkout(type, strengthTime){
       document.getElementById('btnBreakfast').querySelector('.mob-label').textContent='早餐';
       document.getElementById('btnLunch').querySelector('.mob-label').textContent='午餐（建議補充碳水）';
     } else if(st==='morning'){
-      // 早上班: 早餐=訓前輕食, 午餐=訓後補給, 晚餐=一般
+      // 早上班: 早餐=訓前輕食, 午餐=訓後, 晚餐=一般正餐（無補給任務）
       document.getElementById('dinnerLabel').textContent='晚餐';
       document.getElementById('btnDinner').onclick=()=>openMealSheet('dinner');
       document.getElementById('dinnerName').textContent='請先完成午餐';
       document.getElementById('dinnerCal').textContent='';
       document.getElementById('postWrap').style.display='none';
+      document.getElementById('optSuppWrap').style.display='none';
       document.getElementById('btnBreakfast').querySelector('.mob-label').textContent='早餐（訓前輕食）';
-      document.getElementById('btnLunch').querySelector('.mob-label').textContent='午餐（訓後補給）';
+      document.getElementById('btnLunch').querySelector('.mob-label').textContent='午餐（訓後）';
     } else if(st==='afternoon'){
-      // 下午班: 早餐=一般, 午餐=訓前主餐（補碳水）, 晚餐=訓後補給
-      document.getElementById('dinnerLabel').textContent='晚餐（訓後補給）';
+      // 下午班: 早餐=一般, 午餐=訓前主餐, 晚餐=訓後（兼正餐）, 可選輕量補給
+      document.getElementById('dinnerLabel').textContent='晚餐（訓後）';
       document.getElementById('btnDinner').onclick=()=>openMealSheet('dinner_post');
       document.getElementById('dinnerName').textContent='請先完成午餐';
       document.getElementById('dinnerCal').textContent='';
+      document.getElementById('dinnerCal').textContent='';
       document.getElementById('postWrap').style.display='none';
-      document.getElementById('btnBreakfast').querySelector('.mob-label').textContent='早餐';
+      document.getElementById('optSuppWrap').style.display='none'; // shown after dinner picked
+      document.getElementById('optSuppName').textContent='練完超過1小時才吃晚餐 → 點此先補蛋白';
+      document.getElementById('optSuppCal').textContent='';
+      document.getElementById('btnOptSupp').classList.remove('filled');
+      document.getElementById('btnBreakfast').querySelector('.mob-label').textContent='早餐（可複選）';
       document.getElementById('btnLunch').querySelector('.mob-label').textContent='午餐（訓前主餐）';
     }
   } else {
@@ -1751,6 +1825,7 @@ function applyWorkout(type, strengthTime){
     document.getElementById('dinnerName').textContent='請先完成午餐';
     document.getElementById('dinnerCal').textContent='';
     document.getElementById('postWrap').style.display='none';
+    document.getElementById('optSuppWrap').style.display='none';
   }
 
   document.getElementById('summarySection').style.display='none';
@@ -1796,10 +1871,18 @@ function clearMeal(slot){
       document.getElementById('btnPost').classList.remove('filled');
     }
     document.getElementById('summarySection').style.display='none';
-  } else if(slot==='dinner'){
+  } else if(slot==='dinner'||slot==='dinner_post'){
+    S.optSupp=null;
     document.getElementById('btnDinner').classList.remove('filled');
     document.getElementById('dinnerName').textContent='請先完成午餐';
     document.getElementById('dinnerCal').textContent='';
+    document.getElementById('optSuppWrap').style.display='none';
+    const ob=document.getElementById('btnOptSupp');
+    ob.classList.remove('filled');
+    document.getElementById('optSuppName').textContent='練完超過1小時才吃晚餐 → 點此先補蛋白';
+    document.getElementById('optSuppCal').textContent='';
+    document.getElementById('optSuppArrow').textContent='›';
+    ob.onclick=()=>openMealSheet('optsupp');
     document.getElementById('summarySection').style.display='none';
   } else if(slot==='postworkout'){
     if(document.getElementById('btnPost')){
@@ -1882,6 +1965,13 @@ function renderSummary(){
       <div class="sum-kcal">${S.dinner?.cal||0} kcal</div>
       ${editBtn}
     </div>`;
+    if(S.optSupp) rows+=`
+    <div class="sum-row" onclick="toggleOptSupp()" style="cursor:pointer">
+      <div class="sum-lbl">輕量補給</div>
+      <div class="sum-body"><div class="sum-name">${S.optSupp.icon+' '+S.optSupp.name}</div></div>
+      <div class="sum-kcal">${S.optSupp.cal} kcal</div>
+      ${editBtn}
+    </div>`;
   } else {
     rows+=`
     <div class="sum-row" onclick="openMealSheet('dinner')" style="cursor:pointer">
@@ -1914,8 +2004,8 @@ function renderSummary(){
 //  RESET
 // ══════════════════════════════════════════════════════════
 function resetAll(){
-  S={workout:null,calLimit:null,breakfast:{},bfConfirmed:false,
-    lunch:null,preworkout:null,postworkout:null,dinner:null,exclCats:[],sheetSlot:null};
+  S={workout:null,calLimit:null,strengthTime:null,breakfast:{},bfConfirmed:false,
+    lunch:null,preworkout:null,postworkout:null,dinner:null,optSupp:null,exclCats:[],sheetSlot:null};
   document.querySelectorAll('.pill').forEach(p=>p.classList.remove('sel'));
   const s1=document.getElementById('s1n');
   s1.classList.add('active');s1.classList.remove('done');s1.textContent='1';
