@@ -54,6 +54,9 @@ var FOODS = [
  cat:'中碳',exc:'精緻澱粉',pl:'中',cl:'高',fl:'中',fib:'低',proc:'高加工',sat:'中',
  fit:['cardio','strength','flex'],pre:true,post:false,dinner_ok:false,
  note:'含蛋白質但仍以碳水為主，晚餐不建議'},
+{id:'b16',meal:['早餐'],name:'炒蛋起司三明治',icon:'🥪',cal:330,carb:30,prot:14,fat:15,
+cat:'均衡',exc:null,pl:'中',cl:'中',fl:'中',fib:'低',proc:'輕加工',sat:'中',
+fit:['cardio','strength','flex'],pre:false,post:false,note:'碳水蛋白均有，脂肪偏中，早餐可'},
 
 // ─── 午餐／晚餐 ───
 
@@ -181,6 +184,12 @@ var FOODS = [
 {id:'l40',meal:['午餐','晚餐'],name:'肉圓',icon:'🧿',cal:250,carb:35,prot:10,fat:8,
  cat:'精緻澱粉',subcat:'其他',exc:null,pl:'低',cl:'中',fl:'中',fib:'低',proc:'高加工',sat:'低',
  fit:['flex'],pre:false,post:false,dinner_ok:false,note:'蛋白質不足+高加工，僅彈性日'},
+{id:'l41',meal:['午餐','晚餐'],name:'涮涮鍋',icon:'🍲',cal:975,carb:80,prot:60,fat:35,
+ cat:'高脂',subcat:'其他',exc:'高脂',pl:'高',cl:'高',fl:'高',fib:'中',proc:'輕加工',sat:'高',
+ fit:['flex'],pre:false,post:false,dinner_ok:false,note:'高蛋白但脂肪與熱量皆高，僅彈性日偶爾可'},
+{id:'l42',meal:['午餐','晚餐'],name:'炒烏龍麵',icon:'🍜',cal:700,carb:90,prot:20,fat:30,
+ cat:'精緻澱粉',subcat:'麵',exc:'精緻澱粉',pl:'中',cl:'高',fl:'高',fib:'低',proc:'高加工',sat:'中',
+ fit:['cardio','flex'],pre:false,post:false,dinner_ok:false,note:'高油熱炒麵類，碳水與脂肪皆高，晚餐不建議'},
 
 // ─── 訓前補給 ───
 
