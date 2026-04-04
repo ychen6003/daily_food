@@ -1,8 +1,8 @@
-// ══════════════════════════════════════════════════════════
-//  FOODS DATABASE — 每日飲食 v16
-//  獨立檔案，方便編輯與擴充
-// ══════════════════════════════════════════════════════════
-window.FOODS_DATA = [
+// foods.js — Diet Selector Food Database
+// Edit this file to add, remove, or modify food items.
+// Each item is loaded by index.html at startup.
+
+let FOODS = [
 // ─────────────── 早餐 ───────────────
 {id:'b01',meal:['早餐'],name:'水煮蛋',icon:'🥚',cal:70,carb:1,prot:6,fat:5,
  cat:'高蛋白',exc:null,pl:'中',cl:'低',fl:'低',fib:'低',proc:'原型',sat:'中',
@@ -40,6 +40,7 @@ window.FOODS_DATA = [
  cat:'原型澱粉',exc:null,pl:'低',cl:'中',fl:'低',fib:'中',proc:'輕加工',sat:'低',
  fit:['cardio','strength','flex'],pre:true,post:false,note:'可搭配蛋補蛋白質'},
 
+
 {id:'b10',meal:['早餐'],name:'蛋餅',icon:'🫔',cal:260,carb:30,prot:12,fat:9,
  cat:'均衡',exc:null,pl:'中',cl:'中',fl:'中',fib:'低',proc:'輕加工',sat:'高',
  fit:['cardio','strength','flex'],pre:false,post:false,note:'外食常見，有氧/重訓/彈性日可'},
@@ -52,7 +53,7 @@ window.FOODS_DATA = [
  cat:'均衡',exc:null,pl:'低',cl:'中',fl:'低',fib:'低',proc:'輕加工',sat:'低',
  fit:['cardio','strength','flex'],pre:true,post:false,note:'有氧/訓前補充輕量碳水'},
 
-// ─────────────── 午餐/晚餐 ───────────────
+// ─────────────── 午餐 ───────────────
 {id:'l01',meal:['午餐','晚餐'],name:'雞胸餐盒（半飯）',icon:'🍱',cal:485,carb:50,prot:40,fat:12,
  cat:'高蛋白',subcat:'飯',exc:null,pl:'高',cl:'中',fl:'低',fib:'中',proc:'輕加工',sat:'高',
  fit:['rest','cardio','strength','flex'],pre:false,post:false,dinner_ok:true,note:'各日型首選，高蛋白低脂'},
@@ -116,6 +117,7 @@ window.FOODS_DATA = [
 {id:'l16',meal:['午餐','晚餐'],name:'湯滷味（一般）',icon:'🍢',cal:400,carb:30,prot:25,fat:15,
  cat:'高蛋白',subcat:'其他',exc:null,pl:'中',cl:'低',fl:'中',fib:'低',proc:'輕加工',sat:'中',
  fit:['rest','flex'],pre:false,post:true,dinner_ok:true,note:'無運動/彈性日，脂肪略高'},
+
 
 {id:'l18',meal:['午餐','晚餐'],name:'小火鍋（不吃主食）',icon:'🍲',cal:420,carb:18,prot:32,fat:14,
  cat:'高蛋白',subcat:'其他',exc:null,pl:'高',cl:'低',fl:'中',fib:'高',proc:'輕加工',sat:'高',
@@ -202,6 +204,8 @@ window.FOODS_DATA = [
  fit:['rest','cardio','strength','flex'],pre:false,post:false,dinner_ok:true,
  note:'高蛋白低碳低脂，午晚餐首選'},
 
+
+
 {id:'l41',meal:['午餐','晚餐'],name:'小火鍋（烏龍麵）',icon:'🍲',cal:580,carb:72,prot:28,fat:14,
  cat:'中碳',subcat:'麵',exc:null,pl:'中',cl:'高',fl:'中',fib:'中',proc:'輕加工',sat:'高',
  fit:['cardio','flex'],pre:false,post:false,dinner_ok:false,
@@ -211,6 +215,7 @@ window.FOODS_DATA = [
  cat:'高蛋白',subcat:'其他',exc:null,pl:'高',cl:'低',fl:'中',fib:'低',proc:'高加工',sat:'高',
  fit:['rest','cardio','strength','flex'],pre:false,post:false,dinner_ok:true,
  note:'高蛋白低碳，高加工降次選，去皮後脂肪可接受'},
+
 
 {id:'l43',meal:['午餐','晚餐'],name:'乾炒牛河粉',icon:'🍜',cal:750,carb:90,prot:28,fat:30,
  cat:'精緻澱粉',subcat:'麵',exc:'精緻澱粉',pl:'中',cl:'高',fl:'高',fib:'低',proc:'輕加工',sat:'中',
@@ -232,7 +237,7 @@ window.FOODS_DATA = [
  fit:['cardio','strength','flex'],pre:true,post:false,dinner_ok:false,
  note:'含蛋白質但仍以碳水為主，晚餐不建議'},
 
-// ─────────────── 訓前補給 ───────────────
+// ─────────────── 訓前補給（重訓日 18:00） ───────────────
 {id:'pre01',meal:['訓前補給'],name:'香蕉＋豆漿',icon:'🍌',cal:180,carb:28,prot:9,fat:4,
  cat:'原型澱粉',exc:null,pl:'低',cl:'中',fl:'低',fib:'中',proc:'原型',sat:'中',
  fit:['strength'],pre:true,post:false,note:'快速補碳，不油不重，訓前理想'},
@@ -273,12 +278,7 @@ window.FOODS_DATA = [
  cat:'高蛋白',exc:null,pl:'高',cl:'中',fl:'低',fib:'低',proc:'輕加工',sat:'高',
  fit:['strength'],pre:true,post:false,note:'低脂高蛋白，理想訓前正餐'},
 
-{id:'x02',meal:['訓前補給'],name:'草莓大福',icon:'🍓',cal:275,carb:50,prot:4,fat:5,
- cat:'精緻澱粉',exc:null,pl:'低',cl:'高',fl:'低',fib:'低',proc:'高加工',sat:'低',
- fit:['strength','flex'],pre:true,post:false,dinner_ok:true,
- note:'快速補充糖分，訓前輕量補碳用，蛋白質不足'},
-
-// ─────────────── 訓後補給 ───────────────
+// ─────────────── 訓後補給（重訓日 21:00） ───────────────
 {id:'post01',meal:['訓後補給'],name:'雞胸肉＋白飯（小）',icon:'🍗',cal:380,carb:35,prot:35,fat:8,
  cat:'高蛋白',exc:null,pl:'高',cl:'中',fl:'低',fib:'低',proc:'輕加工',sat:'高',
  fit:['strength'],pre:false,post:true,note:'黃金訓後：高蛋白＋少量碳水'},
@@ -318,4 +318,20 @@ window.FOODS_DATA = [
 {id:'post10',meal:['訓後補給'],name:'越式海鮮河粉',icon:'🍜',cal:475,carb:68,prot:23,fat:8,
  cat:'中碳',exc:null,pl:'中',cl:'中',fl:'低',fib:'低',proc:'輕加工',sat:'中',
  fit:['strength'],pre:false,post:true,note:'低脂補碳，訓後可'},
+
+// ─────────────── 新增品項 2025 ───────────────
+{id:'x01',meal:['午餐'],name:'牛肉湯餃（10顆）',icon:'🥟',cal:550,carb:60,prot:28,fat:18,
+ cat:'中碳',subcat:'其他',exc:null,pl:'中',cl:'中',fl:'中',fib:'低',proc:'輕加工',sat:'高',
+ fit:['cardio','strength','flex'],pre:false,post:true,dinner_ok:true,
+ note:'脂肪偏中，有氧/彈性日可，重訓後也適合'},
+
+{id:'x02',meal:['訓前補給'],name:'草莓大福',icon:'🍓',cal:275,carb:50,prot:4,fat:5,
+ cat:'精緻澱粉',exc:null,pl:'低',cl:'高',fl:'低',fib:'低',proc:'高加工',sat:'低',
+ fit:['strength','flex'],pre:true,post:false,dinner_ok:true,
+ note:'快速補充糖分，訓前輕量補碳用，蛋白質不足'},
+
+{id:'x03',meal:['午餐'],name:'綜合魷魚羹板條',icon:'🦑',cal:575,carb:78,prot:24,fat:14,
+ cat:'中碳',subcat:'麵',exc:null,pl:'中',cl:'高',fl:'中',fib:'低',proc:'輕加工',sat:'高',
+ fit:['cardio','strength','flex'],pre:false,post:true,dinner_ok:true,
+ note:'碳水偏高，有氧/彈性日可，重訓後補碳適合'},
 ];
