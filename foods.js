@@ -2,7 +2,7 @@
 // Edit this file to add, remove, or modify food items.
 // Each item is loaded by index.html at startup.
 
-let FOODS = [
+var FOODS = [
 // ─────────────── 早餐 ───────────────
 {id:'b01',meal:['早餐'],name:'水煮蛋',icon:'🥚',cal:70,carb:1,prot:6,fat:5,
  cat:'高蛋白',exc:null,pl:'中',cl:'低',fl:'低',fib:'低',proc:'原型',sat:'中',
