@@ -252,19 +252,16 @@ var FOODS = [
 
 {id:'pre04',meal:['訓前補給'],name:'香蕉',icon:'🍌',cal:90,carb:23,prot:1,fat:0,
  cat:'原型澱粉',exc:null,pl:'低',cl:'中',fl:'低',fib:'中',proc:'原型',sat:'低',
- fit:['strength'],pre:true,post:false,note:'最輕量訓前補碳，不影響胃'},
+ fit:['strength'],pre:true,post:true,note:'最輕量訓前補碳，不影響胃'},
 
 {id:'pre05',meal:['訓前補給'],name:'烤雞飯半份（去皮）',icon:'🍗',cal:275,carb:35,prot:20,fat:6,
  cat:'高蛋白',exc:null,pl:'中',cl:'中',fl:'低',fib:'低',proc:'輕加工',sat:'中',
- fit:['strength'],pre:true,post:false,note:'有蛋白的完整訓前，控半份'},
+ fit:['strength'],pre:true,post:true,note:'有蛋白的完整訓前，控半份'},
 
 {id:'pre06',meal:['訓前補給'],name:'廣東粥',icon:'🥣',cal:300,carb:48,prot:18,fat:8,
  cat:'中碳',exc:null,pl:'中',cl:'中',fl:'低',fib:'低',proc:'輕加工',sat:'低',
- fit:['strength'],pre:true,post:false,note:'輕食補碳，易消化，飽足感低'},
+ fit:['strength'],pre:true,post:true,note:'輕食補碳，易消化，飽足感低'},
 
-{id:'pre07',meal:['訓前補給'],name:'北部粽（1顆）',icon:'🫙',cal:500,carb:65,prot:14,fat:18,
- cat:'高脂',exc:null,pl:'低',cl:'中',fl:'中',fib:'低',proc:'輕加工',sat:'中',
- fit:['strength'],pre:false,post:false,note:'高脂→訓前不建議（延遲消化）'},
 
 {id:'pre08',meal:['訓前補給'],name:'黃燜雞米飯半份',icon:'🍗',cal:343,carb:45,prot:17,fat:12,
  cat:'均衡',exc:null,pl:'中',cl:'中',fl:'中',fib:'低',proc:'輕加工',sat:'中',
@@ -276,7 +273,7 @@ var FOODS = [
 
 {id:'pre10',meal:['訓前補給'],name:'甘蔗雞烏龍麵（去皮）',icon:'🍜',cal:420,carb:48,prot:28,fat:6,
  cat:'高蛋白',exc:null,pl:'高',cl:'中',fl:'低',fib:'低',proc:'輕加工',sat:'高',
- fit:['strength'],pre:true,post:false,note:'低脂高蛋白，理想訓前正餐'},
+ fit:['strength'],pre:true,post:false,note:'熱量420kcal偏高，距上課需120分鐘以上再吃，否則選輕量選項'},
 
 // ─────────────── 訓後補給（重訓日 21:00） ───────────────
 {id:'post01',meal:['訓後補給'],name:'雞胸肉＋白飯（小）',icon:'🍗',cal:380,carb:35,prot:35,fat:8,
@@ -297,11 +294,11 @@ var FOODS = [
 
 {id:'post05',meal:['訓後補給'],name:'無糖豆漿＋地瓜',icon:'🥛',cal:195,carb:28,prot:10,fat:4,
  cat:'均衡',exc:null,pl:'中',cl:'中',fl:'低',fib:'中',proc:'輕加工',sat:'中',
- fit:['strength'],pre:false,post:true,note:'植物蛋白＋低GI碳水，清爽輕量'},
+ fit:['strength'],pre:false,post:true,note:'蛋白質偏低（10g），植物蛋白吸收率較低，輕量訓後可，建議補充額外蛋白質'},
 
 {id:'post06',meal:['訓後補給'],name:'無糖優格＋香蕉',icon:'🍌',cal:190,carb:30,prot:11,fat:3,
  cat:'均衡',exc:null,pl:'中',cl:'中',fl:'低',fib:'中',proc:'輕加工',sat:'中',
- fit:['strength'],pre:false,post:true,note:'蛋白＋天然糖分快速補充'},
+ fit:['strength'],pre:false,post:true,note:'輕量訓後補給，蛋白質偏低（11g），適合不餓時快速補充，建議搭配雞胸'},
 
 {id:'post07',meal:['訓後補給'],name:'高蛋白奶 250ml',icon:'🥛',cal:160,carb:12,prot:18,fat:3,
  cat:'高蛋白',exc:null,pl:'高',cl:'低',fl:'低',fib:'低',proc:'輕加工',sat:'低',
@@ -320,18 +317,37 @@ var FOODS = [
  fit:['strength'],pre:false,post:true,note:'低脂補碳，訓後可'},
 
 // ─────────────── 新增品項 2025 ───────────────
-{id:'x01',meal:['午餐'],name:'牛肉湯餃（10顆）',icon:'🥟',cal:550,carb:60,prot:28,fat:18,
- cat:'中碳',subcat:'其他',exc:null,pl:'中',cl:'中',fl:'中',fib:'低',proc:'輕加工',sat:'高',
- fit:['cardio','strength','flex'],pre:false,post:true,dinner_ok:true,
- note:'脂肪偏中，有氧/彈性日可，重訓後也適合'},
 
 {id:'x02',meal:['訓前補給'],name:'草莓大福',icon:'🍓',cal:275,carb:50,prot:4,fat:5,
  cat:'精緻澱粉',exc:null,pl:'低',cl:'高',fl:'低',fib:'低',proc:'高加工',sat:'低',
  fit:['strength','flex'],pre:true,post:false,dinner_ok:true,
- note:'快速補充糖分，訓前輕量補碳用，蛋白質不足'},
+ note:'快速補充糖分，訓前緊急補碳用，蛋白質極低，需搭配蛋白質來源'},
 
-{id:'x03',meal:['午餐'],name:'綜合魷魚羹板條',icon:'🦑',cal:575,carb:78,prot:24,fat:14,
- cat:'中碳',subcat:'麵',exc:null,pl:'中',cl:'高',fl:'中',fib:'低',proc:'輕加工',sat:'高',
- fit:['cardio','strength','flex'],pre:false,post:true,dinner_ok:true,
- note:'碳水偏高，有氧/彈性日可，重訓後補碳適合'},
+// ─────────────── 新增補給組合品項 ───────────────
+{id:'pre11',meal:['訓前補給'],name:'全麥吐司＋茶葉蛋',icon:'🍞',cal:160,carb:16,prot:10,fat:6,
+ cat:'均衡',exc:null,pl:'中',cl:'中',fl:'低',fib:'中',proc:'輕加工',sat:'中',
+ fit:['strength'],pre:true,post:false,
+ note:'輕量訓前，易消化，訓前60分鐘可吃，蛋白碳水比例均衡'},
+
+{id:'pre12',meal:['訓前補給'],name:'無糖優格＋香蕉',icon:'🍌',cal:190,carb:30,prot:11,fat:3,
+ cat:'均衡',exc:null,pl:'中',cl:'中',fl:'低',fib:'中',proc:'輕加工',sat:'中',
+ fit:['strength'],pre:true,post:false,
+ note:'訓前30–60分鐘理想，天然糖快速補碳水，優格提供蛋白質'},
+
+{id:'post11',meal:['訓後補給'],name:'義式香草雞胸肉＋高蛋白奶',icon:'🍗',cal:311,carb:14,prot:45,fat:5,
+ cat:'高蛋白',exc:null,pl:'高',cl:'低',fl:'低',fib:'低',proc:'輕加工',sat:'高',
+ fit:['strength'],pre:false,post:true,
+ note:'訓後黃金組合，P45g超高蛋白，低脂低碳，肌肉修復首選'},
+
+{id:'post12',meal:['訓後補給'],name:'水煮蛋×2＋香蕉',icon:'🥚',cal:230,carb:25,prot:13,fat:10,
+ cat:'均衡',exc:null,pl:'中',cl:'中',fl:'低',fib:'中',proc:'原型',sat:'中',
+ fit:['strength'],pre:false,post:true,
+ note:'輕量訓後，天然補碳水+蛋白質，方便快速，肚子不餓時的最佳選擇'},
+
+{id:'post13',meal:['訓後補給'],name:'雞胸肉＋地瓜（中）',icon:'🍗',cal:280,carb:28,prot:30,fat:4,
+ cat:'高蛋白',exc:null,pl:'高',cl:'中',fl:'低',fib:'中',proc:'輕加工',sat:'高',
+ fit:['strength'],pre:false,post:true,
+ note:'訓後完整補給，高蛋白修復肌肉＋低GI碳水補肝醣，比例最理想'},
+
+
 ];
